@@ -1,22 +1,22 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsGetOutRange\Param;
+
+namespace DouDianSDK\Api\LogisticsGetOutRange\Param;
 
 //auto generated code
 class LogisticsGetOutRangeParam
 {
+    public $logistics_code;
 
-	public $logistics_code;
+    public $sender_address;
 
-	public $sender_address;
+    public $receiver_address;
 
-	public $receiver_address;
+    public $type;
 
-	public $type;
+    public $service_list;
 
-	public $service_list;
+    public $product_type;
 
-	public $product_type;
-
-	public $delivery_req;
+    public $delivery_req;
 
 }

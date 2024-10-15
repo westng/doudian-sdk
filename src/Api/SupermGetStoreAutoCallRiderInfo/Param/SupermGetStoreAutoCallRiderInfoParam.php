@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\SupermGetStoreAutoCallRiderInfo\Param;
+
+namespace DouDianSDK\Api\SupermGetStoreAutoCallRiderInfo\Param;
 
 //auto generated code
 class SupermGetStoreAutoCallRiderInfoParam
 {
-
-	public $store_id;
+    public $store_id;
 
 }

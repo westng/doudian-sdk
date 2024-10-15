@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\ProductEditCbProduct\Param;
+
+namespace DouDianSDK\Api\ProductEditCbProduct\Param;
 
 //auto generated code
 class QualityAttachments
 {
+    public $media_type;
 
-	public $media_type;
-
-	public $url;
+    public $url;
 
 }

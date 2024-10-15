@@ -1,22 +1,22 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsCreateSFOrder\Param;
+
+namespace DouDianSDK\Api\LogisticsCreateSFOrder\Param;
 
 //auto generated code
 class CargoDetails
 {
+    public $name;
 
-	public $name;
+    public $currency;
 
-	public $currency;
+    public $count;
 
-	public $count;
+    public $unit;
 
-	public $unit;
+    public $amount;
 
-	public $amount;
+    public $weight;
 
-	public $weight;
-
-	public $source_area;
+    public $source_area;
 
 }

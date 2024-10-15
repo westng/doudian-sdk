@@ -1,16 +1,16 @@
 <?php
-namespace DoudianSdkPhp\Api\MaterialUploadVideoAsync\Param;
+
+namespace DouDianSDK\Api\MaterialUploadVideoAsync\Param;
 
 //auto generated code
 class MaterialUploadVideoAsyncParam
 {
+    public $folder_id;
 
-	public $folder_id;
+    public $url;
 
-	public $url;
+    public $name;
 
-	public $name;
-
-	public $file_uri;
+    public $file_uri;
 
 }

@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderBatchSensitive\Param;
+
+namespace DouDianSDK\Api\OrderBatchSensitive\Param;
 
 //auto generated code
 class OrderBatchSensitiveParam
 {
-
-	public $cipher_infos;
+    public $cipher_infos;
 
 }

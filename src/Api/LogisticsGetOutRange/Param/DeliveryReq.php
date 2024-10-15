@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsGetOutRange\Param;
+
+namespace DouDianSDK\Api\LogisticsGetOutRange\Param;
 
 //auto generated code
 class DeliveryReq
 {
+    public $is_center_delivery;
 
-	public $is_center_delivery;
-
-	public $is_pickup_self;
+    public $is_pickup_self;
 
 }

@@ -1,22 +1,22 @@
 <?php
-namespace DoudianSdkPhp\Api\BrandGetSug\Param;
+
+namespace DouDianSDK\Api\BrandGetSug\Param;
 
 //auto generated code
 class BrandGetSugParam
 {
+    public $query;
 
-	public $query;
+    public $user_id;
 
-	public $user_id;
+    public $filter_info;
 
-	public $filter_info;
+    public $read_old;
 
-	public $read_old;
+    public $biz_types;
 
-	public $biz_types;
+    public $enable_deduplicate;
 
-	public $enable_deduplicate;
-
-	public $extra_config;
+    public $extra_config;
 
 }

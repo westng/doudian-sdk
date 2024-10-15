@@ -1,24 +1,24 @@
 <?php
-namespace DoudianSdkPhp\Api\AfterSaleFillLogistics\Param;
+
+namespace DouDianSDK\Api\AfterSaleFillLogistics\Param;
 
 //auto generated code
 class AfterSaleFillLogisticsParam
 {
+    public $aftersale_id;
 
-	public $aftersale_id;
+    public $send_type;
 
-	public $send_type;
+    public $company_code;
 
-	public $company_code;
+    public $tracking_no;
 
-	public $tracking_no;
+    public $book_time_begin;
 
-	public $book_time_begin;
+    public $book_time_end;
 
-	public $book_time_end;
+    public $store_id;
 
-	public $store_id;
-
-	public $pick_up_type;
+    public $pick_up_type;
 
 }

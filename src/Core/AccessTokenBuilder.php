@@ -1,6 +1,6 @@
 <?php
 
-namespace DoudianSdkPhp\Core;
+namespace DouDianSDK\Core;
 
 
 class AccessTokenBuilder
@@ -8,8 +8,8 @@ class AccessTokenBuilder
 
     public static function build($codeOrShopId, $type = ACCESS_TOKEN_CODE)
     {
-        $request = new \DoudianSdkPhp\Api\Token\CreateTokenRequest();
-        $param = new \DoudianSdkPhp\Api\Token\Param\CreateTokenParam();
+        $request = new \DouDianSDKi\Token\CreateTokenRequest();
+        $param = new \DouDianSDKi\Token\Param\CreateTokenParam();
         if($type == ACCESS_TOKEN_SHOP_ID) {
             $param->shop_id = $codeOrShopId;
             $param->grant_type = "authorization_self";
@@ -25,8 +25,8 @@ class AccessTokenBuilder
     }
 
     public static function refresh($token) {
-        $request = new \DoudianSdkPhp\Api\Token\RefreshTokenRequest();
-        $param = new \DoudianSdkPhp\Api\Token\Param\RefreshTokenParam();
+        $request = new \DouDianSDKi\Token\RefreshTokenRequest();
+        $param = new \DouDianSDKi\Token\Param\RefreshTokenParam();
         $param->grant_type = "refresh_token";
         if(is_string($token)){
             $param->refresh_token = $token;
@@ -40,7 +40,7 @@ class AccessTokenBuilder
     }
 
     public static function parse($accessTokenStr) {
-        $tokenData = new \DoudianSdkPhp\Api\Token\Data\CreateTokenData();
+        $tokenData = new \DouDianSDKi\Token\Data\CreateTokenData();
         $tokenData->access_token = $accessTokenStr;
         $accessToken = new AccessToken();
         $accessToken->setData($tokenData);

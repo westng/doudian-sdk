@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderOrderDetail\Param;
+
+namespace DouDianSDK\Api\OrderOrderDetail\Param;
 
 //auto generated code
 class OrderOrderDetailParam
 {
+    public $shop_order_id;
 
-	public $shop_order_id;
-
-	public $is_searchable;
+    public $is_searchable;
 
 }

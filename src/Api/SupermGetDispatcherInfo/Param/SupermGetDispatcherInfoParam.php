@@ -1,16 +1,16 @@
 <?php
-namespace DoudianSdkPhp\Api\SupermGetDispatcherInfo\Param;
+
+namespace DouDianSDK\Api\SupermGetDispatcherInfo\Param;
 
 //auto generated code
 class SupermGetDispatcherInfoParam
 {
+    public $store_id;
 
-	public $store_id;
+    public $shop_order_id;
 
-	public $shop_order_id;
+    public $dispatcher_fee_type;
 
-	public $dispatcher_fee_type;
-
-	public $insurance_amount;
+    public $insurance_amount;
 
 }

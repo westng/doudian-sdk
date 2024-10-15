@@ -1,6 +1,6 @@
 <?php
 
-namespace DoudianSdkPhp\Core;
+namespace DouDianSDK\Core;
 
 class DoudianOpConfig
 {

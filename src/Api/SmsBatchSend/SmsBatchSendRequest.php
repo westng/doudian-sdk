@@ -1,5 +1,5 @@
 <?php
-namespace DoudianSdkPhp\Api\SmsBatchSend;
+namespace DouDianSDK\Api\SmsBatchSend;
 
 //auto generated code
 class SmsBatchSendRequest
@@ -37,11 +37,11 @@ class SmsBatchSendRequest
 
 	public function execute($accessToken)
 	{
-		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
+		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
 	}
 }

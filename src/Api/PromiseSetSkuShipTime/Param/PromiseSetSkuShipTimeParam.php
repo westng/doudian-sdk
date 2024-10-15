@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\PromiseSetSkuShipTime\Param;
+
+namespace DouDianSDK\Api\PromiseSetSkuShipTime\Param;
 
 //auto generated code
 class PromiseSetSkuShipTimeParam
 {
-
-	public $rules;
+    public $rules;
 
 }

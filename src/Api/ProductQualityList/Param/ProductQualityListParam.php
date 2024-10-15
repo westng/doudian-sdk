@@ -1,22 +1,22 @@
 <?php
-namespace DoudianSdkPhp\Api\ProductQualityList\Param;
+
+namespace DouDianSDK\Api\ProductQualityList\Param;
 
 //auto generated code
 class ProductQualityListParam
 {
+    public $product_id;
 
-	public $product_id;
+    public $product_name;
 
-	public $product_name;
+    public $order_by;
 
-	public $order_by;
+    public $page;
 
-	public $page;
+    public $page_size;
 
-	public $page_size;
+    public $task_id;
 
-	public $task_id;
-
-	public $diagnose_status;
+    public $diagnose_status;
 
 }

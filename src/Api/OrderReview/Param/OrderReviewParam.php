@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderReview\Param;
+
+namespace DouDianSDK\Api\OrderReview\Param;
 
 //auto generated code
 class OrderReviewParam
 {
+    public $task_type;
 
-	public $task_type;
+    public $reject_code;
 
-	public $reject_code;
-
-	public $object_id;
+    public $object_id;
 
 }

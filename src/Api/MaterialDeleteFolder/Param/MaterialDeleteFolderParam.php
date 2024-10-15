@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\MaterialDeleteFolder\Param;
+
+namespace DouDianSDK\Api\MaterialDeleteFolder\Param;
 
 //auto generated code
 class MaterialDeleteFolderParam
 {
-
-	public $folder_ids;
+    public $folder_ids;
 
 }

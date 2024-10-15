@@ -1,16 +1,16 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsNewCreateOrder\Param;
+
+namespace DouDianSDK\Api\LogisticsNewCreateOrder\Param;
 
 //auto generated code
 class NetInfo
 {
+    public $category;
 
-	public $category;
+    public $net_code;
 
-	public $net_code;
+    public $monthly_account;
 
-	public $monthly_account;
-
-	public $secret_key;
+    public $secret_key;
 
 }

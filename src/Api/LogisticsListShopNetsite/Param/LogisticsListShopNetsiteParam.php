@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsListShopNetsite\Param;
+
+namespace DouDianSDK\Api\LogisticsListShopNetsite\Param;
 
 //auto generated code
 class LogisticsListShopNetsiteParam
 {
-
-	public $logistics_code;
+    public $logistics_code;
 
 }

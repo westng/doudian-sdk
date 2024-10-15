@@ -1,6 +1,6 @@
 <?php
 
-namespace DoudianSdkPhp\Utils;
+namespace DouDianSDK\Utils;
 
 class SignUtil
 {
@@ -31,7 +31,7 @@ class SignUtil
                 $kstring = false;
             }
             if (is_array($v)) {
-                \DoudianSdkPhp\Utils\SignUtil::recKSort($v);
+                \DouDianSDKils\SignUtil::recKSort($v);
             }
         }
         if ($kstring) {
@@ -46,7 +46,7 @@ class SignUtil
             return "{}";
         }
         $arr = self::objToArray($param);
-        \DoudianSdkPhp\Utils\SignUtil::recKSort($arr); // 对关联数组中的kv，执行排序，需要递归
+        \DouDianSDKils\SignUtil::recKSort($arr); // 对关联数组中的kv，执行排序，需要递归
         return json_encode($arr, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); // 重新序列化，确保所有key按字典序排序
     }
 

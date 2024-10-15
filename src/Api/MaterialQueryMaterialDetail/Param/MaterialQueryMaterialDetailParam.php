@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\MaterialQueryMaterialDetail\Param;
+
+namespace DouDianSDK\Api\MaterialQueryMaterialDetail\Param;
 
 //auto generated code
 class MaterialQueryMaterialDetailParam
 {
-
-	public $material_id;
+    public $material_id;
 
 }

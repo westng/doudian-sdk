@@ -1,5 +1,5 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderAddresSwitchConfig;
+namespace DouDianSDK\Api\OrderAddresSwitchConfig;
 
 //auto generated code
 class OrderAddresSwitchConfigRequest
@@ -37,11 +37,11 @@ class OrderAddresSwitchConfigRequest
 
 	public function execute($accessToken)
 	{
-		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
+		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
 	}
 }

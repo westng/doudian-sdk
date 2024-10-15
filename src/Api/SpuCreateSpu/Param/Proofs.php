@@ -1,16 +1,16 @@
 <?php
-namespace DoudianSdkPhp\Api\SpuCreateSpu\Param;
+
+namespace DouDianSDK\Api\SpuCreateSpu\Param;
 
 //auto generated code
 class Proofs
 {
+    public $type;
 
-	public $type;
+    public $name;
 
-	public $name;
+    public $description;
 
-	public $description;
-
-	public $content;
+    public $content;
 
 }

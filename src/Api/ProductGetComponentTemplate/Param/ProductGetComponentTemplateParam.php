@@ -1,20 +1,20 @@
 <?php
-namespace DoudianSdkPhp\Api\ProductGetComponentTemplate\Param;
+
+namespace DouDianSDK\Api\ProductGetComponentTemplate\Param;
 
 //auto generated code
 class ProductGetComponentTemplateParam
 {
+    public $template_type;
 
-	public $template_type;
+    public $template_sub_type;
 
-	public $template_sub_type;
+    public $template_id;
 
-	public $template_id;
+    public $shareable;
 
-	public $shareable;
+    public $page_num;
 
-	public $page_num;
-
-	public $page_size;
+    public $page_size;
 
 }

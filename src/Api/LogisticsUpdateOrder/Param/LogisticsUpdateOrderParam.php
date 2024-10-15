@@ -1,30 +1,30 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsUpdateOrder\Param;
+
+namespace DouDianSDK\Api\LogisticsUpdateOrder\Param;
 
 //auto generated code
 class LogisticsUpdateOrderParam
 {
+    public $sender_info;
 
-	public $sender_info;
+    public $receiver_info;
 
-	public $receiver_info;
+    public $logistics_code;
 
-	public $logistics_code;
+    public $track_no;
 
-	public $track_no;
+    public $items;
 
-	public $items;
+    public $remark;
 
-	public $remark;
+    public $extra;
 
-	public $extra;
+    public $user_id;
 
-	public $user_id;
+    public $volume;
 
-	public $volume;
+    public $weight;
 
-	public $weight;
-
-	public $warehouse;
+    public $warehouse;
 
 }

@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\OpenBinaryupload\Param;
+
+namespace DouDianSDK\Api\OpenBinaryupload\Param;
 
 //auto generated code
 class OpenBinaryuploadParam
 {
-
-	public $file_content;
+    public $file_content;
 
 }

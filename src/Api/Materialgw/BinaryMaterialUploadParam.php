@@ -1,5 +1,6 @@
 <?php
-namespace DoudianSdkPhp\Api\Materialgw;
+
+namespace DouDianSDK\Api\Materialgw;
 
 class BinaryMaterialUploadParam
 {
@@ -7,6 +8,7 @@ class BinaryMaterialUploadParam
 
     public $file_content;
 
-    public function __construct() {
+    public function __construct()
+    {
     }
 }

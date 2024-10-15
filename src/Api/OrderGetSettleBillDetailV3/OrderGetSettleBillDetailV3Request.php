@@ -1,5 +1,5 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderGetSettleBillDetailV3;
+namespace DouDianSDK\Api\OrderGetSettleBillDetailV3;
 
 //auto generated code
 class OrderGetSettleBillDetailV3Request
@@ -37,11 +37,11 @@ class OrderGetSettleBillDetailV3Request
 
 	public function execute($accessToken)
 	{
-		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
+		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
 	}
 }

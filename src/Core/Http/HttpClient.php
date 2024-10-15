@@ -1,6 +1,6 @@
 <?php
 
-namespace DoudianSdkPhp\Core\Http;
+namespace DouDianSDK\Core\Http;
 
 class HttpClient
 {
@@ -75,7 +75,7 @@ class HttpClient
      */
     public function post($httpRequest){
         $data  = $httpRequest->body;
-        $headerArray =array("Content-type:application/json;charset='utf-8'","Accept:application/json", "from:sdk", "sdk-type:php", "sdk-version:".\DoudianSdkPhp\Core\Constant::$DOUDIAN_SDK_VERSION,"x-open-no-old-err-code:1");
+        $headerArray =array("Content-type:application/json;charset='utf-8'","Accept:application/json", "from:sdk", "sdk-type:php", "sdk-version:".\DouDianSDKre\Constant::$DOUDIAN_SDK_VERSION,"x-open-no-old-err-code:1");
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_URL, $httpRequest->url);

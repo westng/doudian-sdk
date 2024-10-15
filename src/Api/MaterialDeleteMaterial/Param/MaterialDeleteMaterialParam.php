@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\MaterialDeleteMaterial\Param;
+
+namespace DouDianSDK\Api\MaterialDeleteMaterial\Param;
 
 //auto generated code
 class MaterialDeleteMaterialParam
 {
-
-	public $material_ids;
+    public $material_ids;
 
 }

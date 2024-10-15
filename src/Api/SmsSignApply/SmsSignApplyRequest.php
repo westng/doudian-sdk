@@ -1,5 +1,5 @@
 <?php
-namespace DoudianSdkPhp\Api\SmsSignApply;
+namespace DouDianSDK\Api\SmsSignApply;
 
 //auto generated code
 class SmsSignApplyRequest
@@ -37,11 +37,11 @@ class SmsSignApplyRequest
 
 	public function execute($accessToken)
 	{
-		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
+		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
 	}
 }

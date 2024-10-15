@@ -1,24 +1,24 @@
 <?php
-namespace DoudianSdkPhp\Api\WarehouseEdit\Param;
+
+namespace DouDianSDK\Api\WarehouseEdit\Param;
 
 //auto generated code
 class WarehouseEditParam
 {
+    public $out_warehouse_id;
 
-	public $out_warehouse_id;
+    public $name;
 
-	public $name;
+    public $intro;
 
-	public $intro;
+    public $address_id1;
 
-	public $address_id1;
+    public $address_id2;
 
-	public $address_id2;
+    public $address_id3;
 
-	public $address_id3;
+    public $address_id4;
 
-	public $address_id4;
-
-	public $address_detail;
+    public $address_detail;
 
 }

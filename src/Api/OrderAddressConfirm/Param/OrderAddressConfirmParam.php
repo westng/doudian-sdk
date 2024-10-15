@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderAddressConfirm\Param;
+
+namespace DouDianSDK\Api\OrderAddressConfirm\Param;
 
 //auto generated code
 class OrderAddressConfirmParam
 {
+    public $order_id;
 
-	public $order_id;
-
-	public $is_approved;
+    public $is_approved;
 
 }

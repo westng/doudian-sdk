@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderBatchSensitive\Param;
+
+namespace DouDianSDK\Api\OrderBatchSensitive\Param;
 
 //auto generated code
 class CipherInfos
 {
+    public $auth_id;
 
-	public $auth_id;
-
-	public $cipher_text;
+    public $cipher_text;
 
 }

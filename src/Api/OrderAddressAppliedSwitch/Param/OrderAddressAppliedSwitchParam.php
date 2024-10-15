@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderAddressAppliedSwitch\Param;
+
+namespace DouDianSDK\Api\OrderAddressAppliedSwitch\Param;
 
 //auto generated code
 class OrderAddressAppliedSwitchParam
 {
+    public $is_allowed;
 
-	public $is_allowed;
-
-	public $review_type;
+    public $review_type;
 
 }

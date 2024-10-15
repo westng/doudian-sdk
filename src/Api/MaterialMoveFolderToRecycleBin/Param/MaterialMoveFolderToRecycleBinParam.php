@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\MaterialMoveFolderToRecycleBin\Param;
+
+namespace DouDianSDK\Api\MaterialMoveFolderToRecycleBin\Param;
 
 //auto generated code
 class MaterialMoveFolderToRecycleBinParam
 {
-
-	public $folder_ids;
+    public $folder_ids;
 
 }

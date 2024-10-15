@@ -1,6 +1,6 @@
 <?php
 
-namespace DoudianSdkPhp\Core;
+namespace DouDianSDK\Core;
 
 
 class DoudianOpSpiClient
@@ -16,10 +16,10 @@ class DoudianOpSpiClient
 
         //将string类型的paramJson转成数组
         $paramJsonArray = json_decode($request->getSpiParam()->paramJson);
-        $sortedParamJson = \DoudianSdkPhp\Utils\SignUtil::marshal($paramJsonArray);
+        $sortedParamJson = \DouDianSDKils\SignUtil::marshal($paramJsonArray);
         $signMethodNumber = $signMethod == 'hmac-sha256' ? 2 : 1;
         //验证签名
-        $calcSign = \DoudianSdkPhp\Utils\SignUtil::spiSign($appKey, $appSecret, $timestamp, $sortedParamJson, $signMethodNumber);
+        $calcSign = \DouDianSDKils\SignUtil::spiSign($appKey, $appSecret, $timestamp, $sortedParamJson, $signMethodNumber);
         print $calcSign . "\n";
         if ($sign != $calcSign) {
             $response->code = 100001;

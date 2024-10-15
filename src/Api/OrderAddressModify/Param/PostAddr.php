@@ -1,20 +1,20 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderAddressModify\Param;
+
+namespace DouDianSDK\Api\OrderAddressModify\Param;
 
 //auto generated code
 class PostAddr
 {
+    public $province;
 
-	public $province;
+    public $city;
 
-	public $city;
+    public $town;
 
-	public $town;
+    public $street;
 
-	public $street;
+    public $address_detail;
 
-	public $address_detail;
-
-	public $land_mark;
+    public $land_mark;
 
 }

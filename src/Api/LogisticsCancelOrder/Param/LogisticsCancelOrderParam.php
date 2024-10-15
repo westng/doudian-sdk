@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsCancelOrder\Param;
+
+namespace DouDianSDK\Api\LogisticsCancelOrder\Param;
 
 //auto generated code
 class LogisticsCancelOrderParam
 {
+    public $logistics_code;
 
-	public $logistics_code;
+    public $track_no;
 
-	public $track_no;
-
-	public $user_id;
+    public $user_id;
 
 }

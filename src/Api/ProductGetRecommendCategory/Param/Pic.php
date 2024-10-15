@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\ProductGetRecommendCategory\Param;
+
+namespace DouDianSDK\Api\ProductGetRecommendCategory\Param;
 
 //auto generated code
 class Pic
 {
-
-	public $url;
+    public $url;
 
 }

@@ -1,16 +1,16 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderAddOrderRemark\Param;
+
+namespace DouDianSDK\Api\OrderAddOrderRemark\Param;
 
 //auto generated code
 class OrderAddOrderRemarkParam
 {
+    public $order_id;
 
-	public $order_id;
+    public $remark;
 
-	public $remark;
+    public $is_add_star;
 
-	public $is_add_star;
-
-	public $star;
+    public $star;
 
 }

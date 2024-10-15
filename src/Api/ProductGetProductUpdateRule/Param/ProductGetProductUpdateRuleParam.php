@@ -1,16 +1,16 @@
 <?php
-namespace DoudianSdkPhp\Api\ProductGetProductUpdateRule\Param;
+
+namespace DouDianSDK\Api\ProductGetProductUpdateRule\Param;
 
 //auto generated code
 class ProductGetProductUpdateRuleParam
 {
+    public $category_id;
 
-	public $category_id;
+    public $senses;
 
-	public $senses;
+    public $standard_brand_id;
 
-	public $standard_brand_id;
-
-	public $spu_id;
+    public $spu_id;
 
 }

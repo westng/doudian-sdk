@@ -1,5 +1,5 @@
 <?php
-namespace DoudianSdkPhp\Api\SmsTemplateApply;
+namespace DouDianSDK\Api\SmsTemplateApply;
 
 //auto generated code
 class SmsTemplateApplyRequest
@@ -37,11 +37,11 @@ class SmsTemplateApplyRequest
 
 	public function execute($accessToken)
 	{
-		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
+		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
 	}
 }

@@ -1,20 +1,20 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderSearchByReceiver\Param;
+
+namespace DouDianSDK\Api\OrderSearchByReceiver\Param;
 
 //auto generated code
 class OrderSearchByReceiverParam
 {
+    public $post_type;
 
-	public $post_type;
+    public $post_receiver;
 
-	public $post_receiver;
+    public $create_time_start;
 
-	public $create_time_start;
+    public $create_time_end;
 
-	public $create_time_end;
+    public $size;
 
-	public $size;
-
-	public $page;
+    public $page;
 
 }

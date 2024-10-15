@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\FreightTemplateUpdate\Param;
+
+namespace DouDianSDK\Api\FreightTemplateUpdate\Param;
 
 //auto generated code
 class ProvinceInfos
 {
+    public $id;
 
-	public $id;
-
-	public $children;
+    public $children;
 
 }

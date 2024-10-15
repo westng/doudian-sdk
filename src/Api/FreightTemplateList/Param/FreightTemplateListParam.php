@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\FreightTemplateList\Param;
+
+namespace DouDianSDK\Api\FreightTemplateList\Param;
 
 //auto generated code
 class FreightTemplateListParam
 {
+    public $name;
 
-	public $name;
+    public $page;
 
-	public $page;
-
-	public $size;
+    public $size;
 
 }

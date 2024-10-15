@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\ProductEditV2\Param;
+
+namespace DouDianSDK\Api\ProductEditV2\Param;
 
 //auto generated code
 class QualityList
 {
+    public $quality_key;
 
-	public $quality_key;
+    public $quality_name;
 
-	public $quality_name;
-
-	public $quality_attachments;
+    public $quality_attachments;
 
 }

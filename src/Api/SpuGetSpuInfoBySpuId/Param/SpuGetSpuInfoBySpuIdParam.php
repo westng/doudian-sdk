@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\SpuGetSpuInfoBySpuId\Param;
+
+namespace DouDianSDK\Api\SpuGetSpuInfoBySpuId\Param;
 
 //auto generated code
 class SpuGetSpuInfoBySpuIdParam
 {
-
-	public $spu_id;
+    public $spu_id;
 
 }

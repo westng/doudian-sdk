@@ -1,18 +1,18 @@
 <?php
-namespace DoudianSdkPhp\Api\WarehouseCreateBatch\Param;
+
+namespace DouDianSDK\Api\WarehouseCreateBatch\Param;
 
 //auto generated code
 class OutWarehouseList
 {
+    public $out_warehouse_id;
 
-	public $out_warehouse_id;
+    public $name;
 
-	public $name;
+    public $intro;
 
-	public $intro;
+    public $address_detail;
 
-	public $address_detail;
-
-	public $warehouse_location;
+    public $warehouse_location;
 
 }

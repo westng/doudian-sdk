@@ -1,5 +1,6 @@
 <?php
-namespace DoudianSdkPhp\Api\Materialgw;
+
+namespace DouDianSDK\Api\Materialgw;
 
 class BinaryMaterialUploadAddressAuthParam
 {

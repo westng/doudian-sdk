@@ -1,18 +1,18 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsRegisterPackageRoute\Param;
+
+namespace DouDianSDK\Api\LogisticsRegisterPackageRoute\Param;
 
 //auto generated code
 class Address
 {
+    public $province;
 
-	public $province;
+    public $city;
 
-	public $city;
+    public $town;
 
-	public $town;
+    public $street;
 
-	public $street;
-
-	public $detail;
+    public $detail;
 
 }

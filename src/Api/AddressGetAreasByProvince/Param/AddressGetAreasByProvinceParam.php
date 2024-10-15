@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\AddressGetAreasByProvince\Param;
+
+namespace DouDianSDK\Api\AddressGetAreasByProvince\Param;
 
 //auto generated code
 class AddressGetAreasByProvinceParam
 {
-
-	public $province_id;
+    public $province_id;
 
 }

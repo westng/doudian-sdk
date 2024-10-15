@@ -1,5 +1,5 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderLogisticsEdit;
+namespace DouDianSDK\Api\OrderLogisticsEdit;
 
 //auto generated code
 class OrderLogisticsEditRequest
@@ -37,11 +37,11 @@ class OrderLogisticsEditRequest
 
 	public function execute($accessToken)
 	{
-		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
+		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
 	}
 }

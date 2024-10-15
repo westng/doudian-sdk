@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsGetRecommendedAndDeliveryExpressByOrder\Param;
+
+namespace DouDianSDK\Api\LogisticsGetRecommendedAndDeliveryExpressByOrder\Param;
 
 //auto generated code
 class OrderInfoList
 {
+    public $order_id;
 
-	public $order_id;
+    public $product_type;
 
-	public $product_type;
-
-	public $express_list;
+    public $express_list;
 
 }

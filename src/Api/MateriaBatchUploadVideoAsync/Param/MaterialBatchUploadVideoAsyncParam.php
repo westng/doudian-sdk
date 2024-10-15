@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\MateriaBatchUploadVideoAsync\Param;
+
+namespace DouDianSDK\Api\MateriaBatchUploadVideoAsync\Param;
 
 //auto generated code
 class MaterialBatchUploadVideoAsyncParam
 {
-
-	public $materials;
+    public $materials;
 
 }

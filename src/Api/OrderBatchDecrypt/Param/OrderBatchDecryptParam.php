@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderBatchDecrypt\Param;
+
+namespace DouDianSDK\Api\OrderBatchDecrypt\Param;
 
 //auto generated code
 class OrderBatchDecryptParam
 {
+    public $cipher_infos;
 
-	public $cipher_infos;
+    public $account_id;
 
-	public $account_id;
-
-	public $account_type;
+    public $account_type;
 
 }

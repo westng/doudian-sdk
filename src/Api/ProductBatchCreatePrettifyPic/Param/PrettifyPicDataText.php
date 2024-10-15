@@ -1,18 +1,18 @@
 <?php
-namespace DoudianSdkPhp\Api\ProductBatchCreatePrettifyPic\Param;
+
+namespace DouDianSDK\Api\ProductBatchCreatePrettifyPic\Param;
 
 //auto generated code
 class PrettifyPicDataText
 {
+    public $text;
 
-	public $text;
+    public $background_color;
 
-	public $background_color;
+    public $font_color;
 
-	public $font_color;
+    public $font_size;
 
-	public $font_size;
-
-	public $text_align;
+    public $text_align;
 
 }

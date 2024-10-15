@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\SmsTemplateRevoke\Param;
+
+namespace DouDianSDK\Api\SmsTemplateRevoke\Param;
 
 //auto generated code
 class SmsTemplateRevokeParam
 {
+    public $sms_account;
 
-	public $sms_account;
-
-	public $sms_template_apply_id;
+    public $sms_template_apply_id;
 
 }

@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\SpuCreateSpu\Param;
+
+namespace DouDianSDK\Api\SpuCreateSpu\Param;
 
 //auto generated code
 class Content
 {
+    public $content;
 
-	public $content;
-
-	public $name;
+    public $name;
 
 }

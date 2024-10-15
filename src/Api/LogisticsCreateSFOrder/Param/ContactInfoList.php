@@ -1,28 +1,28 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsCreateSFOrder\Param;
+
+namespace DouDianSDK\Api\LogisticsCreateSFOrder\Param;
 
 //auto generated code
 class ContactInfoList
 {
+    public $contact_type;
 
-	public $contact_type;
+    public $biz_company;
 
-	public $biz_company;
+    public $contact;
 
-	public $contact;
+    public $tel;
 
-	public $tel;
+    public $mobile;
 
-	public $mobile;
+    public $country;
 
-	public $country;
+    public $province;
 
-	public $province;
+    public $city;
 
-	public $city;
+    public $county;
 
-	public $county;
-
-	public $address;
+    public $address;
 
 }

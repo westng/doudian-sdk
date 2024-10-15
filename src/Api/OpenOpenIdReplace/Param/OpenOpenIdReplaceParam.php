@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\OpenOpenIdReplace\Param;
+
+namespace DouDianSDK\Api\OpenOpenIdReplace\Param;
 
 //auto generated code
 class OpenOpenIdReplaceParam
 {
-
-	public $open_ids;
+    public $open_ids;
 
 }

@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsNewCreateOrder\Param;
+
+namespace DouDianSDK\Api\LogisticsNewCreateOrder\Param;
 
 //auto generated code
 class SenderInfo
 {
+    public $address;
 
-	public $address;
-
-	public $contact;
+    public $contact;
 
 }

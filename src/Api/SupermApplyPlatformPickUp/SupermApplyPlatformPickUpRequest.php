@@ -1,5 +1,5 @@
 <?php
-namespace DoudianSdkPhp\Api\SupermApplyPlatformPickUp;
+namespace DouDianSDK\Api\SupermApplyPlatformPickUp;
 
 //auto generated code
 class SupermApplyPlatformPickUpRequest
@@ -37,11 +37,11 @@ class SupermApplyPlatformPickUpRequest
 
 	public function execute($accessToken)
 	{
-		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
+		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
 	}
 }

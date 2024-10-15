@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\SpuBatchUploadImg\Param;
+
+namespace DouDianSDK\Api\SpuBatchUploadImg\Param;
 
 //auto generated code
 class ImageUrlList
 {
+    public $name;
 
-	public $name;
-
-	public $url;
+    public $url;
 
 }

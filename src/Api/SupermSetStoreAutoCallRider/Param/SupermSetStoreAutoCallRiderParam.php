@@ -1,16 +1,16 @@
 <?php
-namespace DoudianSdkPhp\Api\SupermSetStoreAutoCallRider\Param;
+
+namespace DouDianSDK\Api\SupermSetStoreAutoCallRider\Param;
 
 //auto generated code
 class SupermSetStoreAutoCallRiderParam
 {
+    public $store_id;
 
-	public $store_id;
+    public $op_type;
 
-	public $op_type;
+    public $service_type;
 
-	public $service_type;
-
-	public $delay_time;
+    public $delay_time;
 
 }

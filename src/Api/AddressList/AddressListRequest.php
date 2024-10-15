@@ -1,5 +1,5 @@
 <?php
-namespace DoudianSdkPhp\Api\AddressList;
+namespace DouDianSDK\Api\AddressList;
 
 //auto generated code
 class AddressListRequest
@@ -37,11 +37,11 @@ class AddressListRequest
 
 	public function execute($accessToken)
 	{
-		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
+		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
 	}
 }

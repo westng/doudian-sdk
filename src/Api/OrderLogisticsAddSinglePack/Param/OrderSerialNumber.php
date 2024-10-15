@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderLogisticsAddSinglePack\Param;
+
+namespace DouDianSDK\Api\OrderLogisticsAddSinglePack\Param;
 
 //auto generated code
 class OrderSerialNumber
 {
+    public $order_id;
 
-	public $order_id;
-
-	public $serial_number_list;
+    public $serial_number_list;
 
 }

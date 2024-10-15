@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\SupermGetPlatformPickUpEstimatedCharge\Param;
+
+namespace DouDianSDK\Api\SupermGetPlatformPickUpEstimatedCharge\Param;
 
 //auto generated code
 class SupermGetPlatformPickUpEstimatedChargeParam
 {
+    public $aftersale_id;
 
-	public $aftersale_id;
+    public $selected_calendar_period;
 
-	public $selected_calendar_period;
-
-	public $dispatcher_fee_type;
+    public $dispatcher_fee_type;
 
 }

@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\SkuList\Param;
+
+namespace DouDianSDK\Api\SkuList\Param;
 
 //auto generated code
 class SkuListParam
 {
+    public $product_id;
 
-	public $product_id;
-
-	public $out_product_id;
+    public $out_product_id;
 
 }

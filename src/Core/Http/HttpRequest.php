@@ -1,6 +1,6 @@
 <?php
 
-namespace DoudianSdkPhp\Core\Http;
+namespace DouDianSDK\Core\Http;
 
 class HttpRequest
 {

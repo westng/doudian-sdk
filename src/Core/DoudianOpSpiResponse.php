@@ -1,10 +1,9 @@
 <?php
 
-namespace DoudianSdkPhp\Core;
+namespace DouDianSDK\Core;
 
 class DoudianOpSpiResponse
 {
-
     public $code;
 
     public $message;

@@ -1,5 +1,5 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderPolicy;
+namespace DouDianSDK\Api\OrderPolicy;
 
 //auto generated code
 class OrderPolicyRequest
@@ -37,11 +37,11 @@ class OrderPolicyRequest
 
 	public function execute($accessToken)
 	{
-		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
+		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
 	}
 }

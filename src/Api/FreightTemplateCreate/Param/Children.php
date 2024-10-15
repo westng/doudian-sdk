@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\FreightTemplateCreate\Param;
+
+namespace DouDianSDK\Api\FreightTemplateCreate\Param;
 
 //auto generated code
 class Children
 {
+    public $id;
 
-	public $id;
-
-	public $children;
+    public $children;
 
 }

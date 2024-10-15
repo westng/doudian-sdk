@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\SupermGetPlatformPickUpCalendar\Param;
+
+namespace DouDianSDK\Api\SupermGetPlatformPickUpCalendar\Param;
 
 //auto generated code
 class SupermGetPlatformPickUpCalendarParam
 {
-
-	public $aftersale_id;
+    public $aftersale_id;
 
 }

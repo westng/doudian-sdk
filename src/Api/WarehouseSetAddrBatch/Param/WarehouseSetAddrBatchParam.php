@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\WarehouseSetAddrBatch\Param;
+
+namespace DouDianSDK\Api\WarehouseSetAddrBatch\Param;
 
 //auto generated code
 class WarehouseSetAddrBatchParam
 {
+    public $out_warehouse_id;
 
-	public $out_warehouse_id;
-
-	public $addr_list;
+    public $addr_list;
 
 }

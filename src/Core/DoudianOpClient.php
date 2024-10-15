@@ -1,23 +1,23 @@
 <?php
 
-namespace DoudianSdkPhp\Core;
+namespace DouDianSDK\Core;
 
 class DoudianOpClient
 {
     private $httpClient;
     function __construct() {
-        $this->httpClient = \DoudianSdkPhp\Core\Http\HttpClient::getInstance();
+        $this->httpClient = \DouDianSDKre\Http\HttpClient::getInstance();
     }
 
     public function request($request, $accessToken) {
         $config = $request->getConfig();
         $urlPath = $request->getUrlPath();
         $method = $this->getMethod($urlPath);
-        $paramJson = \DoudianSdkPhp\Utils\SignUtil::marshal($request->getParam());
+        $paramJson = \DouDianSDKils\SignUtil::marshal($request->getParam());
         $appKey = $config->appKey;
         $appSecret = $config->appSecret;
         $timestamp = time();
-        $sign = \DoudianSdkPhp\Utils\SignUtil::sign($appKey, $appSecret, $method, $timestamp, $paramJson);
+        $sign = \DouDianSDKils\SignUtil::sign($appKey, $appSecret, $method, $timestamp, $paramJson);
 //        print $sign . "\n";
         $openHost = $config->openRequestUrl;
         $accessTokenStr = "";
@@ -29,7 +29,7 @@ class DoudianOpClient
         $requestUrl = $openHost.$urlPath."?"."app_key=".$appKey."&method=".$method."&v=2&sign=".$sign."&timestamp=".$timestamp."&access_token=".$accessTokenStr."&sign_method=hmac-sha256";
 
         //发送http请求
-        $httpRequest = new \DoudianSdkPhp\Core\Http\HttpRequest();
+        $httpRequest = new \DouDianSDKre\Http\HttpRequest();
         $httpRequest->url = $requestUrl;
         $httpRequest->body = $paramJson;
         $httpRequest->connectTimeout = $config->httpConnectTimeout;

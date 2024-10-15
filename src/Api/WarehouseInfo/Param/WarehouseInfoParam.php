@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\WarehouseInfo\Param;
+
+namespace DouDianSDK\Api\WarehouseInfo\Param;
 
 //auto generated code
 class WarehouseInfoParam
 {
-
-	public $out_warehouse_id;
+    public $out_warehouse_id;
 
 }

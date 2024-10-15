@@ -1,16 +1,16 @@
 <?php
-namespace DoudianSdkPhp\Api\SpuQueryBookNameByISBN\Param;
+
+namespace DouDianSDK\Api\SpuQueryBookNameByISBN\Param;
 
 //auto generated code
 class SpuQueryBookNameByISBNParam
 {
+    public $category_leaf_id;
 
-	public $category_leaf_id;
+    public $isbn;
 
-	public $isbn;
+    public $page_no;
 
-	public $page_no;
-
-	public $page_size;
+    public $page_size;
 
 }

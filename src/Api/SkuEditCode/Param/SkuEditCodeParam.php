@@ -1,18 +1,18 @@
 <?php
-namespace DoudianSdkPhp\Api\SkuEditCode\Param;
+
+namespace DouDianSDK\Api\SkuEditCode\Param;
 
 //auto generated code
 class SkuEditCodeParam
 {
+    public $code;
 
-	public $code;
+    public $sku_id;
 
-	public $sku_id;
+    public $out_sku_id;
 
-	public $out_sku_id;
+    public $product_id;
 
-	public $product_id;
-
-	public $out_product_id;
+    public $out_product_id;
 
 }

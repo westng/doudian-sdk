@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\SpuCreateSpu\Param;
+
+namespace DouDianSDK\Api\SpuCreateSpu\Param;
 
 //auto generated code
 class PropertyInfos
 {
+    public $property_id;
 
-	public $property_id;
-
-	public $values;
+    public $values;
 
 }

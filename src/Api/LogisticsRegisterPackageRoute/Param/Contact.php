@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsRegisterPackageRoute\Param;
+
+namespace DouDianSDK\Api\LogisticsRegisterPackageRoute\Param;
 
 //auto generated code
 class Contact
 {
+    public $name;
 
-	public $name;
+    public $phone;
 
-	public $phone;
-
-	public $email;
+    public $email;
 
 }

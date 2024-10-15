@@ -1,5 +1,5 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderBatchDecrypt;
+namespace DouDianSDK\Api\OrderBatchDecrypt;
 
 //auto generated code
 class OrderBatchDecryptRequest
@@ -37,11 +37,11 @@ class OrderBatchDecryptRequest
 
 	public function execute($accessToken)
 	{
-		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
+		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
 	}
 }

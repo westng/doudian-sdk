@@ -1,16 +1,16 @@
 <?php
-namespace DoudianSdkPhp\Api\SkuSyncStockBatchMultiProducts\Param;
+
+namespace DouDianSDK\Api\SkuSyncStockBatchMultiProducts\Param;
 
 //auto generated code
 class SkuSyncStockBatchMultiProductsParam
 {
+    public $items;
 
-	public $items;
+    public $idempotent_id;
 
-	public $idempotent_id;
+    public $incremental;
 
-	public $incremental;
-
-	public $source;
+    public $source;
 
 }

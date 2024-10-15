@@ -1,18 +1,18 @@
 <?php
-namespace DoudianSdkPhp\Api\ProductEditV2\Param;
+
+namespace DouDianSDK\Api\ProductEditV2\Param;
 
 //auto generated code
 class DelayRule
 {
+    public $enable;
 
-	public $enable;
+    public $config_type;
 
-	public $config_type;
+    public $config_value;
 
-	public $config_value;
+    public $start_time;
 
-	public $start_time;
-
-	public $end_time;
+    public $end_time;
 
 }

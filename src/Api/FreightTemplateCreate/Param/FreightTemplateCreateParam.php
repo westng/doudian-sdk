@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\FreightTemplateCreate\Param;
+
+namespace DouDianSDK\Api\FreightTemplateCreate\Param;
 
 //auto generated code
 class FreightTemplateCreateParam
 {
+    public $template;
 
-	public $template;
-
-	public $columns;
+    public $columns;
 
 }

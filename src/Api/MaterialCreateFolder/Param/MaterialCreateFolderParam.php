@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\MaterialCreateFolder\Param;
+
+namespace DouDianSDK\Api\MaterialCreateFolder\Param;
 
 //auto generated code
 class MaterialCreateFolderParam
 {
+    public $name;
 
-	public $name;
+    public $parent_folder_id;
 
-	public $parent_folder_id;
-
-	public $type;
+    public $type;
 
 }

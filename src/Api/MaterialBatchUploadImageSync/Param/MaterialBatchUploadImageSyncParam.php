@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\MaterialBatchUploadImageSync\Param;
+
+namespace DouDianSDK\Api\MaterialBatchUploadImageSync\Param;
 
 //auto generated code
 class MaterialBatchUploadImageSyncParam
 {
+    public $materials;
 
-	public $materials;
-
-	public $need_distinct;
+    public $need_distinct;
 
 }

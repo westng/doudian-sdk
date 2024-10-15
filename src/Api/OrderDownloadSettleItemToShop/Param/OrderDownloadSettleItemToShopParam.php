@@ -1,24 +1,24 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderDownloadSettleItemToShop\Param;
+
+namespace DouDianSDK\Api\OrderDownloadSettleItemToShop\Param;
 
 //auto generated code
 class OrderDownloadSettleItemToShopParam
 {
+    public $start_time;
 
-	public $start_time;
+    public $end_time;
 
-	public $end_time;
+    public $time_type;
 
-	public $time_type;
+    public $order_id;
 
-	public $order_id;
+    public $bill_id;
 
-	public $bill_id;
+    public $product_id;
 
-	public $product_id;
+    public $pay_type;
 
-	public $pay_type;
-
-	public $flow_type;
+    public $flow_type;
 
 }

@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\BrandConvert\Param;
+
+namespace DouDianSDK\Api\BrandConvert\Param;
 
 //auto generated code
 class BrandConvertParam
 {
-
-	public $related_id;
+    public $related_id;
 
 }

@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderAddressModify\Param;
+
+namespace DouDianSDK\Api\OrderAddressModify\Param;
 
 //auto generated code
 class Town
 {
+    public $id;
 
-	public $id;
-
-	public $name;
+    public $name;
 
 }

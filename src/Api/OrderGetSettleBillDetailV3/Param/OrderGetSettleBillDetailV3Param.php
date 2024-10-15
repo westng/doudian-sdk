@@ -1,26 +1,26 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderGetSettleBillDetailV3\Param;
+
+namespace DouDianSDK\Api\OrderGetSettleBillDetailV3\Param;
 
 //auto generated code
 class OrderGetSettleBillDetailV3Param
 {
+    public $size;
 
-	public $size;
+    public $start_time;
 
-	public $start_time;
+    public $end_time;
 
-	public $end_time;
+    public $order_id;
 
-	public $order_id;
+    public $product_id;
 
-	public $product_id;
+    public $pay_type;
 
-	public $pay_type;
+    public $flow_type;
 
-	public $flow_type;
+    public $time_type;
 
-	public $time_type;
-
-	public $start_index;
+    public $start_index;
 
 }

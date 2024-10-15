@@ -1,18 +1,18 @@
 <?php
-namespace DoudianSdkPhp\Api\MaterialEasyShuttle\Param;
+
+namespace DouDianSDK\Api\MaterialEasyShuttle\Param;
 
 //auto generated code
 class MaterialEasyShuttleParam
 {
+    public $folder_id_list;
 
-	public $folder_id_list;
+    public $operate_type;
 
-	public $operate_type;
+    public $material_type_list;
 
-	public $material_type_list;
+    public $only_material;
 
-	public $only_material;
-
-	public $create_time_end;
+    public $create_time_end;
 
 }

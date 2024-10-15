@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\WarehouseRemoveAddr\Param;
+
+namespace DouDianSDK\Api\WarehouseRemoveAddr\Param;
 
 //auto generated code
 class WarehouseRemoveAddrParam
 {
+    public $out_warehouse_id;
 
-	public $out_warehouse_id;
-
-	public $addr;
+    public $addr;
 
 }

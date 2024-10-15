@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderAddSerialNumber\Param;
+
+namespace DouDianSDK\Api\OrderAddSerialNumber\Param;
 
 //auto generated code
 class OrderAddSerialNumberParam
 {
+    public $order_id;
 
-	public $order_id;
-
-	public $serial_number_list;
+    public $serial_number_list;
 
 }

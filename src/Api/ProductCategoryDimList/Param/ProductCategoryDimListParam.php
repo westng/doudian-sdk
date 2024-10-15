@@ -1,15 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\ProductCategoryDimList\Param;
 
+namespace DouDianSDK\Api\ProductCategoryDimList\Param;
 
 //auto generated code
 class ProductCategoryDimListParam
 {
+    public $level;
 
-	public $level;
+    public $name;
 
-	public $name;
-
-	public $parent_id;
+    public $parent_id;
 
 }

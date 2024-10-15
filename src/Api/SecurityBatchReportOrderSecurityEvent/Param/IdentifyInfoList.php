@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\SecurityBatchReportOrderSecurityEvent\Param;
+
+namespace DouDianSDK\Api\SecurityBatchReportOrderSecurityEvent\Param;
 
 //auto generated code
 class IdentifyInfoList
 {
+    public $name;
 
-	public $name;
-
-	public $encrypted;
+    public $encrypted;
 
 }

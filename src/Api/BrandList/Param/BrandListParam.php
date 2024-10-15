@@ -1,26 +1,26 @@
 <?php
-namespace DoudianSdkPhp\Api\BrandList\Param;
+
+namespace DouDianSDK\Api\BrandList\Param;
 
 //auto generated code
 class BrandListParam
 {
+    public $categories;
 
-	public $categories;
+    public $offset;
 
-	public $offset;
+    public $size;
 
-	public $size;
+    public $sort;
 
-	public $sort;
+    public $status;
 
-	public $status;
+    public $full_brand_info;
 
-	public $full_brand_info;
+    public $category_id;
 
-	public $category_id;
+    public $query;
 
-	public $query;
-
-	public $brand_ids;
+    public $brand_ids;
 
 }

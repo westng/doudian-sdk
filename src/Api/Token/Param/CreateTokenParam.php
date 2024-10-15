@@ -1,5 +1,6 @@
 <?php
-namespace DoudianSdkPhp\Api\Token\Param;
+
+namespace DouDianSDK\Api\Token\Param;
 
 class CreateTokenParam
 {

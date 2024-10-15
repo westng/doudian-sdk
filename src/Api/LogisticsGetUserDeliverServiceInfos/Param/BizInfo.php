@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsGetUserDeliverServiceInfos\Param;
+
+namespace DouDianSDK\Api\LogisticsGetUserDeliverServiceInfos\Param;
 
 //auto generated code
 class BizInfo
 {
-
-	public $biz_type;
+    public $biz_type;
 
 }

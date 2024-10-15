@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\AfterSaleAddOrderRemark\Param;
+
+namespace DouDianSDK\Api\AfterSaleAddOrderRemark\Param;
 
 //auto generated code
 class AfterSaleAddOrderRemarkParam
 {
+    public $order_id;
 
-	public $order_id;
+    public $after_sale_id;
 
-	public $after_sale_id;
-
-	public $remark;
+    public $remark;
 
 }

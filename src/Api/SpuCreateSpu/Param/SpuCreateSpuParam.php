@@ -1,20 +1,20 @@
 <?php
-namespace DoudianSdkPhp\Api\SpuCreateSpu\Param;
+
+namespace DouDianSDK\Api\SpuCreateSpu\Param;
 
 //auto generated code
 class SpuCreateSpuParam
 {
+    public $category_leaf_id;
 
-	public $category_leaf_id;
+    public $spu_images;
 
-	public $spu_images;
+    public $property_infos;
 
-	public $property_infos;
+    public $spu_actual_images;
 
-	public $spu_actual_images;
+    public $materials;
 
-	public $materials;
-
-	public $proofs;
+    public $proofs;
 
 }

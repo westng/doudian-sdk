@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\ProductEditV2\Param;
+
+namespace DouDianSDK\Api\ProductEditV2\Param;
 
 //auto generated code
 class AfterSaleServiceV2
 {
-
-	public $is_large_product;
+    public $is_large_product;
 
 }

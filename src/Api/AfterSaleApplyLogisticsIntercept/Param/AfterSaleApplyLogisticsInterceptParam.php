@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\AfterSaleApplyLogisticsIntercept\Param;
+
+namespace DouDianSDK\Api\AfterSaleApplyLogisticsIntercept\Param;
 
 //auto generated code
 class AfterSaleApplyLogisticsInterceptParam
 {
+    public $after_sale_id;
 
-	public $after_sale_id;
+    public $op_from;
 
-	public $op_from;
-
-	public $intercept_targets;
+    public $intercept_targets;
 
 }

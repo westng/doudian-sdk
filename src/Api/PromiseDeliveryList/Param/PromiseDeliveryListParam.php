@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\PromiseDeliveryList\Param;
+
+namespace DouDianSDK\Api\PromiseDeliveryList\Param;
 
 //auto generated code
 class PromiseDeliveryListParam
 {
+    public $product_id;
 
-	public $product_id;
+    public $page;
 
-	public $page;
-
-	public $size;
+    public $size;
 
 }

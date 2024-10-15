@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\ProductBatchCreatePrettifyPic\Param;
+
+namespace DouDianSDK\Api\ProductBatchCreatePrettifyPic\Param;
 
 //auto generated code
 class PrettifyPicDataList
 {
+    public $name;
 
-	public $name;
-
-	public $prettify_pic_data_text;
+    public $prettify_pic_data_text;
 
 }

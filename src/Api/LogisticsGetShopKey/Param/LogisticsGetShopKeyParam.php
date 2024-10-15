@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsGetShopKey\Param;
+
+namespace DouDianSDK\Api\LogisticsGetShopKey\Param;
 
 //auto generated code
 class LogisticsGetShopKeyParam
 {
+    public $cipher_text;
 
-	public $cipher_text;
-
-	public $deviceInfo;
+    public $deviceInfo;
 
 }

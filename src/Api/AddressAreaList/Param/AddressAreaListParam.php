@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\AddressAreaList\Param;
+
+namespace DouDianSDK\Api\AddressAreaList\Param;
 
 //auto generated code
 class AddressAreaListParam
 {
-
-	public $city_id;
+    public $city_id;
 
 }

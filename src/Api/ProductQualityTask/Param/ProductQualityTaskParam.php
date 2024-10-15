@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\ProductQualityTask\Param;
+
+namespace DouDianSDK\Api\ProductQualityTask\Param;
 
 //auto generated code
 class ProductQualityTaskParam
 {
-
-	public $brief_only;
+    public $brief_only;
 
 }

@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\AfterSaleOperate\Param;
+
+namespace DouDianSDK\Api\AfterSaleOperate\Param;
 
 //auto generated code
 class Evidence
 {
+    public $type;
 
-	public $type;
+    public $url;
 
-	public $url;
-
-	public $desc;
+    public $desc;
 
 }

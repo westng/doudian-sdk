@@ -1,5 +1,5 @@
 <?php
-namespace DoudianSdkPhp\Api\Token;
+namespace DouDianSDK\Api\Token;
 
 class RefreshTokenRequest
 {
@@ -33,12 +33,12 @@ class RefreshTokenRequest
     }
 
     public function execute($accessToken) {
-        return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
+        return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
     }
 
     public function __construct()
     {
-        $this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
-        $this->param = new \DoudianSdkPhp\Api\Token\Param\CreateTokenParam();
+        $this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
+        $this->param = new \DouDianSDKi\Token\Param\CreateTokenParam();
     }
 }

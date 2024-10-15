@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\AntispamOrderQuery\Param;
+
+namespace DouDianSDK\Api\AntispamOrderQuery\Param;
 
 //auto generated code
 class User
 {
+    public $uid_type;
 
-	public $uid_type;
-
-	public $user_id;
+    public $user_id;
 
 }

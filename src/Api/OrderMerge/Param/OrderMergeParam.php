@@ -1,10 +1,10 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderMerge\Param;
+
+namespace DouDianSDK\Api\OrderMerge\Param;
 
 //auto generated code
 class OrderMergeParam
 {
-
-	public $merge_list;
+    public $merge_list;
 
 }

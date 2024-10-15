@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\AntispamOrderSend\Param;
+
+namespace DouDianSDK\Api\AntispamOrderSend\Param;
 
 //auto generated code
 class AntispamOrderSendParam
 {
+    public $event_time;
 
-	public $event_time;
+    public $user;
 
-	public $user;
-
-	public $params;
+    public $params;
 
 }

@@ -1,12 +1,12 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderUpdateOrderAmount\Param;
+
+namespace DouDianSDK\Api\OrderUpdateOrderAmount\Param;
 
 //auto generated code
 class UpdateDetail
 {
+    public $order_id;
 
-	public $order_id;
-
-	public $discount_amount;
+    public $discount_amount;
 
 }

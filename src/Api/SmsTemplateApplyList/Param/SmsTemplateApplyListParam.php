@@ -1,20 +1,20 @@
 <?php
-namespace DoudianSdkPhp\Api\SmsTemplateApplyList\Param;
+
+namespace DouDianSDK\Api\SmsTemplateApplyList\Param;
 
 //auto generated code
 class SmsTemplateApplyListParam
 {
+    public $sms_account;
 
-	public $sms_account;
+    public $template_content;
 
-	public $template_content;
+    public $sms_template_apply_id;
 
-	public $sms_template_apply_id;
+    public $size;
 
-	public $size;
+    public $page;
 
-	public $page;
-
-	public $status;
+    public $status;
 
 }

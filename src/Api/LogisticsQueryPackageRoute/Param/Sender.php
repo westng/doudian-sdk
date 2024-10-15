@@ -1,18 +1,18 @@
 <?php
-namespace DoudianSdkPhp\Api\LogisticsQueryPackageRoute\Param;
+
+namespace DouDianSDK\Api\LogisticsQueryPackageRoute\Param;
 
 //auto generated code
 class Sender
 {
+    public $name;
 
-	public $name;
+    public $phone;
 
-	public $phone;
+    public $mobile;
 
-	public $mobile;
+    public $email;
 
-	public $email;
-
-	public $virtual_mobile;
+    public $virtual_mobile;
 
 }

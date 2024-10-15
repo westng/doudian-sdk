@@ -1,5 +1,5 @@
 <?php
-namespace DoudianSdkPhp\Api\SkuSyncStockBatchMultiProducts;
+namespace DouDianSDK\Api\SkuSyncStockBatchMultiProducts;
 
 //auto generated code
 class SkuSyncStockBatchMultiProductsRequest
@@ -37,11 +37,11 @@ class SkuSyncStockBatchMultiProductsRequest
 
 	public function execute($accessToken)
 	{
-		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
+		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
 	}
 }

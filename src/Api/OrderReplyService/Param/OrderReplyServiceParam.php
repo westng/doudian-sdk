@@ -1,14 +1,14 @@
 <?php
-namespace DoudianSdkPhp\Api\OrderReplyService\Param;
+
+namespace DouDianSDK\Api\OrderReplyService\Param;
 
 //auto generated code
 class OrderReplyServiceParam
 {
+    public $id;
 
-	public $id;
+    public $reply;
 
-	public $reply;
-
-	public $evidence;
+    public $evidence;
 
 }
