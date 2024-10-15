@@ -2,10 +2,10 @@
 
 namespace DouDianSDK\Core;
 
-
 class DoudianOpSpiClient
 {
-    public function request($request, $callback) {
+    public function request($request, $callback)
+    {
         $appKey = $request->getSpiParam()->appKey;
         $timestamp = $request->getSpiParam()->timestamp;
         $sign = $request->getSpiParam()->sign;
@@ -16,10 +16,10 @@ class DoudianOpSpiClient
 
         //将string类型的paramJson转成数组
         $paramJsonArray = json_decode($request->getSpiParam()->paramJson);
-        $sortedParamJson = \DouDianSDKils\SignUtil::marshal($paramJsonArray);
+        $sortedParamJson = \DouDianSDKls\SignUtil::marshal($paramJsonArray);
         $signMethodNumber = $signMethod == 'hmac-sha256' ? 2 : 1;
         //验证签名
-        $calcSign = \DouDianSDKils\SignUtil::spiSign($appKey, $appSecret, $timestamp, $sortedParamJson, $signMethodNumber);
+        $calcSign = \DouDianSDKls\SignUtil::spiSign($appKey, $appSecret, $timestamp, $sortedParamJson, $signMethodNumber);
         print $calcSign . "\n";
         if ($sign != $calcSign) {
             $response->code = 100001;
@@ -37,9 +37,10 @@ class DoudianOpSpiClient
 
     private static $defaultInstance;
 
-    public static function getInstance(){
+    public static function getInstance()
+    {
 
-        if(!(self::$defaultInstance instanceof self)){
+        if (!(self::$defaultInstance instanceof self)) {
             self::$defaultInstance = new self();
         }
         return self::$defaultInstance;

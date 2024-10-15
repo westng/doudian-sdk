@@ -1,4 +1,10 @@
 <?php
+/*
+ * @Date: 2023-07-18 21:40:27
+ * @LastEditors: west_ng 457395070@qq.com
+ * @LastEditTime: 2024-10-15 13:16:34
+ * @FilePath: /doudian-sdk/src/Api/AddressAreaList/AddressAreaListRequest.php
+ */
 
 namespace DouDianSDK\Api\AddressAreaList;
 

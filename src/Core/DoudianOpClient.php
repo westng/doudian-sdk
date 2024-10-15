@@ -5,23 +5,25 @@ namespace DouDianSDK\Core;
 class DoudianOpClient
 {
     private $httpClient;
-    function __construct() {
+    public function __construct()
+    {
         $this->httpClient = \DouDianSDKre\Http\HttpClient::getInstance();
     }
 
-    public function request($request, $accessToken) {
+    public function request($request, $accessToken)
+    {
         $config = $request->getConfig();
         $urlPath = $request->getUrlPath();
         $method = $this->getMethod($urlPath);
-        $paramJson = \DouDianSDKils\SignUtil::marshal($request->getParam());
+        $paramJson = \DouDianSDKls\SignUtil::marshal($request->getParam());
         $appKey = $config->appKey;
         $appSecret = $config->appSecret;
         $timestamp = time();
-        $sign = \DouDianSDKils\SignUtil::sign($appKey, $appSecret, $method, $timestamp, $paramJson);
-//        print $sign . "\n";
+        $sign = \DouDianSDKls\SignUtil::sign($appKey, $appSecret, $method, $timestamp, $paramJson);
+        //        print $sign . "\n";
         $openHost = $config->openRequestUrl;
         $accessTokenStr = "";
-        if($accessToken != null) {
+        if ($accessToken != null) {
             $accessTokenStr = $accessToken->getAccessToken();
         }
 
@@ -39,7 +41,8 @@ class DoudianOpClient
         return json_decode($httpResponse->body, false, 512, JSON_UNESCAPED_UNICODE);
     }
 
-    private function getMethod($urlPath) {
+    private function getMethod($urlPath)
+    {
         if (strlen($urlPath) == 0) {
             return $urlPath;
         }
@@ -54,9 +57,10 @@ class DoudianOpClient
 
     private static $defaultInstance;
 
-    public static function getInstance(){
+    public static function getInstance()
+    {
 
-        if(!(self::$defaultInstance instanceof self)){
+        if (!(self::$defaultInstance instanceof self)) {
             self::$defaultInstance = new self();
         }
         return self::$defaultInstance;
