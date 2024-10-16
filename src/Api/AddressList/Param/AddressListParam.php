@@ -1,20 +1,18 @@
 <?php
-
-namespace DouDianSDK\Api\AddressList\Param;
+namespace DoudianSdkPhp\Api\AddressList\Param;
 
 //auto generated code
 class AddressListParam
 {
-    public $shop_id;
 
-    public $page_size;
+	public $shop_id;
 
-    public $page_no;
+	public $page_size;
 
-    public $order_by;
+	public $page_no;
 
-    public $order_field;
+	public $order_by;
 
-    public $store_id;
+	public $order_field;
 
 }

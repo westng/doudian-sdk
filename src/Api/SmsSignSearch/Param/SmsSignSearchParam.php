@@ -1,16 +1,16 @@
 <?php
-
-namespace DouDianSDK\Api\SmsSignSearch\Param;
+namespace DoudianSdkPhp\Api\SmsSignSearch\Param;
 
 //auto generated code
 class SmsSignSearchParam
 {
-    public $sms_account;
 
-    public $like;
+	public $sms_account;
 
-    public $size;
+	public $like;
 
-    public $page;
+	public $size;
+
+	public $page;
 
 }

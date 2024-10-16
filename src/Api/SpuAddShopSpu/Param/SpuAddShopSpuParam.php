@@ -1,18 +1,18 @@
 <?php
-
-namespace DouDianSDK\Api\SpuAddShopSpu\Param;
+namespace DoudianSdkPhp\Api\SpuAddShopSpu\Param;
 
 //auto generated code
 class SpuAddShopSpuParam
 {
-    public $spu_name;
 
-    public $upc_code;
+	public $spu_name;
 
-    public $category_id;
+	public $upc_code;
 
-    public $brand_id;
+	public $category_id;
 
-    public $property_infos;
+	public $brand_id;
+
+	public $property_infos;
 
 }

@@ -1,9 +1,9 @@
 <?php
-
-namespace DouDianSDK\Api\Token;
+namespace DoudianSdkPhp\Api\Token;
 
 class RefreshTokenRequest
 {
+
     //通用变量
     private $param;
 
@@ -20,29 +20,25 @@ class RefreshTokenRequest
     }
 
     //通用方法
-    public function getUrlPath()
-    {
+    public function getUrlPath() {
         return "/token/refresh";
     }
 
-    public function setConfig($config)
-    {
+    public function setConfig($config) {
         $this->config = $config;
     }
 
-    public function getConfig()
-    {
+    public function getConfig() {
         return $this->config;
     }
 
-    public function execute($accessToken)
-    {
-        return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
+    public function execute($accessToken) {
+        return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
     }
 
     public function __construct()
     {
-        $this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
-        $this->param = new \DouDianSDK\Token\Param\CreateTokenParam();
+        $this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
+        $this->param = new \DoudianSdkPhp\Api\Token\Param\CreateTokenParam();
     }
 }

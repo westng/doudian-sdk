@@ -1,10 +1,10 @@
 <?php
-
-namespace DouDianSDK\Api\OrderBatchSearchIndex\Param;
+namespace DoudianSdkPhp\Api\OrderBatchSearchIndex\Param;
 
 //auto generated code
 class OrderBatchSearchIndexParam
 {
-    public $plain_text_list;
+
+	public $plain_text_list;
 
 }

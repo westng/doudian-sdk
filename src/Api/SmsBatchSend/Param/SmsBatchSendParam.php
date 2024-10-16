@@ -1,20 +1,20 @@
 <?php
-
-namespace DouDianSDK\Api\SmsBatchSend\Param;
+namespace DoudianSdkPhp\Api\SmsBatchSend\Param;
 
 //auto generated code
 class SmsBatchSendParam
 {
-    public $sms_account;
 
-    public $sign;
+	public $sms_account;
 
-    public $sms_message_list;
+	public $sign;
 
-    public $template_id;
+	public $sms_message_list;
 
-    public $tag;
+	public $template_id;
 
-    public $user_ext_code;
+	public $tag;
+
+	public $user_ext_code;
 
 }

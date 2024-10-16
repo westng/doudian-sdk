@@ -1,26 +1,22 @@
 <?php
-
-namespace DouDianSDK\Api\OrderLogisticsAddMultiPack\Param;
+namespace DoudianSdkPhp\Api\OrderLogisticsAddMultiPack\Param;
 
 //auto generated code
 class OrderLogisticsAddMultiPackParam
 {
-    public $order_id;
 
-    public $pack_list;
+	public $order_id;
 
-    public $is_reject_refund;
+	public $pack_list;
 
-    public $request_id;
+	public $is_reject_refund;
 
-    public $address_id;
+	public $request_id;
 
-    public $serial_number_list;
+	public $address_id;
 
-    public $is_refund_reject;
+	public $serial_number_list;
 
-    public $store_id;
-
-    public $after_sale_address_id;
+	public $is_refund_reject;
 
 }

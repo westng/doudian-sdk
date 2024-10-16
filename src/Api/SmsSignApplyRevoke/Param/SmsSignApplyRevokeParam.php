@@ -1,12 +1,12 @@
 <?php
-
-namespace DouDianSDK\Api\SmsSignApplyRevoke\Param;
+namespace DoudianSdkPhp\Api\SmsSignApplyRevoke\Param;
 
 //auto generated code
 class SmsSignApplyRevokeParam
 {
-    public $sms_account;
 
-    public $sms_sign_apply_id;
+	public $sms_account;
+
+	public $sms_sign_apply_id;
 
 }

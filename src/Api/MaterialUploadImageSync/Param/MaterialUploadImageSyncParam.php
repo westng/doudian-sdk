@@ -1,18 +1,18 @@
 <?php
-
-namespace DouDianSDK\Api\MaterialUploadImageSync\Param;
+namespace DoudianSdkPhp\Api\MaterialUploadImageSync\Param;
 
 //auto generated code
 class MaterialUploadImageSyncParam
 {
-    public $folder_id;
 
-    public $url;
+	public $folder_id;
 
-    public $material_name;
+	public $url;
 
-    public $file_uri;
+	public $material_name;
 
-    public $need_distinct;
+	public $need_distinct;
+
+	public $request_id;
 
 }

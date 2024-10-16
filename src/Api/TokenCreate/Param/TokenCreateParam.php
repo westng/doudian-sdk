@@ -1,20 +1,16 @@
 <?php
-
-namespace DouDianSDK\Api\TokenCreate\Param;
+namespace DoudianSdkPhp\Api\TokenCreate\Param;
 
 //auto generated code
 class TokenCreateParam
 {
-    public $code;
 
-    public $grant_type;
+	public $code;
 
-    public $test_shop;
+	public $grant_type;
 
-    public $shop_id;
+	public $test_shop;
 
-    public $auth_id;
-
-    public $auth_subject_type;
+	public $shop_id;
 
 }

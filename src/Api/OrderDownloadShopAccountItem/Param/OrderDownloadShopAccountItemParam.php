@@ -1,22 +1,22 @@
 <?php
-
-namespace DouDianSDK\Api\OrderDownloadShopAccountItem\Param;
+namespace DoudianSdkPhp\Api\OrderDownloadShopAccountItem\Param;
 
 //auto generated code
 class OrderDownloadShopAccountItemParam
 {
-    public $start_time;
 
-    public $end_time;
+	public $start_time;
 
-    public $order_id;
+	public $end_time;
 
-    public $account_type;
+	public $order_id;
 
-    public $biz_type;
+	public $account_type;
 
-    public $time_type;
+	public $biz_type;
 
-    public $product_id;
+	public $time_type;
+
+	public $product_id;
 
 }

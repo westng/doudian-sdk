@@ -1,12 +1,12 @@
 <?php
-
-namespace DouDianSDK\Api\AfterSaleApplyLogisticsIntercept\Param;
+namespace DoudianSdkPhp\Api\AfterSaleApplyLogisticsIntercept\Param;
 
 //auto generated code
 class InterceptTargets
 {
-    public $company_code;
 
-    public $tracking_no;
+	public $company_code;
+
+	public $tracking_no;
 
 }

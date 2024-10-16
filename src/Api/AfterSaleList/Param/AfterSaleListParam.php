@@ -55,10 +55,4 @@ class AfterSaleListParam
 
 	public $agree_refuse_sign;
 
-	public $aftersale_sub_type;
-
-	public $aftersale_status_to_final_start_time;
-
-	public $aftersale_status_to_final_end_time;
-
 }

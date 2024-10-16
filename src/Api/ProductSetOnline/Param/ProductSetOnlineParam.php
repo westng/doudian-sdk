@@ -1,10 +1,10 @@
 <?php
-
-namespace DouDianSDK\Api\ProductSetOnline\Param;
+namespace DoudianSdkPhp\Api\ProductSetOnline\Param;
 
 //auto generated code
 class ProductSetOnlineParam
 {
-    public $product_id;
+
+	public $product_id;
 
 }

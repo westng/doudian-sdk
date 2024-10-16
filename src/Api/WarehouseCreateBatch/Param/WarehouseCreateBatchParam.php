@@ -1,10 +1,10 @@
 <?php
-
-namespace DouDianSDK\Api\WarehouseCreateBatch\Param;
+namespace DoudianSdkPhp\Api\WarehouseCreateBatch\Param;
 
 //auto generated code
 class WarehouseCreateBatchParam
 {
-    public $out_warehouse_list;
+
+	public $out_warehouse_list;
 
 }

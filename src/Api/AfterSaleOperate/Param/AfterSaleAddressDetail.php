@@ -1,30 +1,30 @@
 <?php
-
-namespace DouDianSDK\Api\AfterSaleOperate\Param;
+namespace DoudianSdkPhp\Api\AfterSaleOperate\Param;
 
 //auto generated code
 class AfterSaleAddressDetail
 {
-    public $province_name;
 
-    public $city_name;
+	public $province_name;
 
-    public $town_name;
+	public $city_name;
 
-    public $detail;
+	public $town_name;
 
-    public $user_name;
+	public $detail;
 
-    public $mobile;
+	public $user_name;
 
-    public $street_name;
+	public $mobile;
 
-    public $province_id;
+	public $street_name;
 
-    public $city_id;
+	public $province_id;
 
-    public $town_id;
+	public $city_id;
 
-    public $street_id;
+	public $town_id;
+
+	public $street_id;
 
 }

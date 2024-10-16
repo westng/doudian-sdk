@@ -1,16 +1,16 @@
 <?php
-
-namespace DouDianSDK\Api\ProductAuditList\Param;
+namespace DoudianSdkPhp\Api\ProductAuditList\Param;
 
 //auto generated code
 class ProductAuditListParam
 {
-    public $publish_status;
 
-    public $page;
+	public $publish_status;
 
-    public $size;
+	public $page;
 
-    public $product_id;
+	public $size;
+
+	public $product_id;
 
 }

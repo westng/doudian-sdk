@@ -1,7 +1,7 @@
 <?php
-
-namespace DouDianSDK\Api\Token;
+namespace DoudianSdkPhp\Api\Token;
 
 class CreateTokenResponse
 {
+
 }

@@ -1,12 +1,12 @@
 <?php
-
-namespace DouDianSDK\Api\WarehouseSetPriority\Param;
+namespace DoudianSdkPhp\Api\WarehouseSetPriority\Param;
 
 //auto generated code
 class WarehouseSetPriorityParam
 {
-    public $addr;
 
-    public $priorities;
+	public $addr;
+
+	public $priorities;
 
 }

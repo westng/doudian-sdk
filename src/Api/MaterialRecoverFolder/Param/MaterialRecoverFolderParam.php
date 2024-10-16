@@ -1,10 +1,10 @@
 <?php
-
-namespace DouDianSDK\Api\MaterialRecoverFolder\Param;
+namespace DoudianSdkPhp\Api\MaterialRecoverFolder\Param;
 
 //auto generated code
 class MaterialRecoverFolderParam
 {
-    public $folder_ids;
+
+	public $folder_ids;
 
 }

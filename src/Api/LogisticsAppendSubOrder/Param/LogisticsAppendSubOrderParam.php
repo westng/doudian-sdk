@@ -1,16 +1,14 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsAppendSubOrder\Param;
+namespace DoudianSdkPhp\Api\LogisticsAppendSubOrder\Param;
 
 //auto generated code
 class LogisticsAppendSubOrderParam
 {
-    public $track_no;
 
-    public $logistics_code;
+	public $track_no;
 
-    public $pack_add_quantity;
+	public $logistics_code;
 
-    public $is_return_full_sub_codes;
+	public $pack_add_quantity;
 
 }

@@ -1,12 +1,12 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsDeliveryNotice\Param;
+namespace DoudianSdkPhp\Api\LogisticsDeliveryNotice\Param;
 
 //auto generated code
 class LogisticsDeliveryNoticeParam
 {
-    public $waybill_no;
 
-    public $notice_type;
+	public $waybill_no;
+
+	public $notice_type;
 
 }

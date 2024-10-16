@@ -1,26 +1,26 @@
 <?php
-
-namespace DouDianSDK\Api\OrderGetServiceList\Param;
+namespace DoudianSdkPhp\Api\OrderGetServiceList\Param;
 
 //auto generated code
 class OrderGetServiceListParam
 {
-    public $start_time;
 
-    public $end_time;
+	public $start_time;
 
-    public $status;
+	public $end_time;
 
-    public $order_id;
+	public $status;
 
-    public $service_id;
+	public $order_id;
 
-    public $order_by;
+	public $service_id;
 
-    public $page;
+	public $order_by;
 
-    public $size;
+	public $page;
 
-    public $order;
+	public $size;
+
+	public $order;
 
 }

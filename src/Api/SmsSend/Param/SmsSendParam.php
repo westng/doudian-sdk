@@ -1,22 +1,22 @@
 <?php
-
-namespace DouDianSDK\Api\SmsSend\Param;
+namespace DoudianSdkPhp\Api\SmsSend\Param;
 
 //auto generated code
 class SmsSendParam
 {
-    public $sms_account;
 
-    public $sign;
+	public $sms_account;
 
-    public $template_id;
+	public $sign;
 
-    public $template_param;
+	public $template_id;
 
-    public $tag;
+	public $template_param;
 
-    public $post_tel;
+	public $tag;
 
-    public $user_ext_code;
+	public $post_tel;
+
+	public $user_ext_code;
 
 }

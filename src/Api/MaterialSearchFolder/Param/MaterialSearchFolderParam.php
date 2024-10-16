@@ -1,26 +1,26 @@
 <?php
-
-namespace DouDianSDK\Api\MaterialSearchFolder\Param;
+namespace DoudianSdkPhp\Api\MaterialSearchFolder\Param;
 
 //auto generated code
 class MaterialSearchFolderParam
 {
-    public $order_by;
 
-    public $page_num;
+	public $order_by;
 
-    public $page_size;
+	public $page_num;
 
-    public $name;
+	public $page_size;
 
-    public $folder_id;
+	public $name;
 
-    public $create_time_start;
+	public $folder_id;
 
-    public $create_time_end;
+	public $create_time_start;
 
-    public $parent_folder_id;
+	public $create_time_end;
 
-    public $operate_status;
+	public $parent_folder_id;
+
+	public $operate_status;
 
 }

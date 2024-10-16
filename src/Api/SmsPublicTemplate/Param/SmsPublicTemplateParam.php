@@ -1,14 +1,14 @@
 <?php
-
-namespace DouDianSDK\Api\SmsPublicTemplate\Param;
+namespace DoudianSdkPhp\Api\SmsPublicTemplate\Param;
 
 //auto generated code
 class SmsPublicTemplateParam
 {
-    public $size;
 
-    public $page;
+	public $size;
 
-    public $template_id;
+	public $page;
+
+	public $template_id;
 
 }

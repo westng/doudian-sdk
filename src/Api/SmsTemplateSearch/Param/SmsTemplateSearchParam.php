@@ -1,20 +1,20 @@
 <?php
-
-namespace DouDianSDK\Api\SmsTemplateSearch\Param;
+namespace DoudianSdkPhp\Api\SmsTemplateSearch\Param;
 
 //auto generated code
 class SmsTemplateSearchParam
 {
-    public $sms_account;
 
-    public $template_id;
+	public $sms_account;
 
-    public $template_content;
+	public $template_id;
 
-    public $page;
+	public $template_content;
 
-    public $size;
+	public $page;
 
-    public $template_name;
+	public $size;
+
+	public $template_name;
 
 }

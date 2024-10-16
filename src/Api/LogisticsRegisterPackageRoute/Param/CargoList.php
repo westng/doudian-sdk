@@ -1,20 +1,20 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsRegisterPackageRoute\Param;
+namespace DoudianSdkPhp\Api\LogisticsRegisterPackageRoute\Param;
 
 //auto generated code
 class CargoList
 {
-    public $name;
 
-    public $quantity;
+	public $name;
 
-    public $volume;
+	public $quantity;
 
-    public $total_weight;
+	public $volume;
 
-    public $total_net_weight;
+	public $total_weight;
 
-    public $unit;
+	public $total_net_weight;
+
+	public $unit;
 
 }

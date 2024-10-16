@@ -1,9 +1,10 @@
 <?php
 
-namespace DouDianSDK\Core;
+namespace DoudianSdkPhp\Core;
 
 class DoudianOpSpiParam
 {
+
     public $appKey; //服务器下发的app key
 
     public $timestamp; //服务器下发的时间戳

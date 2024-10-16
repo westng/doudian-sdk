@@ -1,5 +1,5 @@
 <?php
-namespace DouDianSDK\Api\FreightTemplateList;
+namespace DoudianSdkPhp\Api\FreightTemplateList;
 
 //auto generated code
 class FreightTemplateListRequest
@@ -37,11 +37,11 @@ class FreightTemplateListRequest
 
 	public function execute($accessToken)
 	{
-		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
+		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
 	}
 }

@@ -1,10 +1,10 @@
 <?php
-
-namespace DouDianSDK\Api\AfterSaleOpenOutAfterSale\Param;
+namespace DoudianSdkPhp\Api\AfterSaleOpenOutAfterSale\Param;
 
 //auto generated code
 class AfterSaleOpenOutAfterSaleParam
 {
-    public $order_id;
+
+	public $order_id;
 
 }

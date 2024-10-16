@@ -1,28 +1,20 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsUpdateOrder\Param;
+namespace DoudianSdkPhp\Api\LogisticsUpdateOrder\Param;
 
 //auto generated code
 class Address
 {
-    public $country_code;
 
-    public $province_name;
+	public $country_code;
 
-    public $city_name;
+	public $province_name;
 
-    public $district_name;
+	public $city_name;
 
-    public $street_name;
+	public $district_name;
 
-    public $detail_address;
+	public $street_name;
 
-    public $province_code;
-
-    public $city_code;
-
-    public $district_code;
-
-    public $street_code;
+	public $detail_address;
 
 }

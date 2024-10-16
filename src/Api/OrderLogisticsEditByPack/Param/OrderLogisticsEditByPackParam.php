@@ -1,22 +1,18 @@
 <?php
-
-namespace DouDianSDK\Api\OrderLogisticsEditByPack\Param;
+namespace DoudianSdkPhp\Api\OrderLogisticsEditByPack\Param;
 
 //auto generated code
 class OrderLogisticsEditByPackParam
 {
-    public $order_id;
 
-    public $pack_id;
+	public $order_id;
 
-    public $logistics_code;
+	public $pack_id;
 
-    public $company_code;
+	public $logistics_code;
 
-    public $logistics_id;
+	public $company_code;
 
-    public $store_id;
-
-    public $after_sale_address_id;
+	public $logistics_id;
 
 }

@@ -1,5 +1,5 @@
 <?php
-namespace DouDianSDK\Api\ProductQualificationConfig;
+namespace DoudianSdkPhp\Api\ProductQualificationConfig;
 
 //auto generated code
 class ProductQualificationConfigRequest
@@ -37,11 +37,11 @@ class ProductQualificationConfigRequest
 
 	public function execute($accessToken)
 	{
-		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
+		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
 	}
 }

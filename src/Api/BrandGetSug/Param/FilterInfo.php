@@ -1,20 +1,20 @@
 <?php
-
-namespace DouDianSDK\Api\BrandGetSug\Param;
+namespace DoudianSdkPhp\Api\BrandGetSug\Param;
 
 //auto generated code
 class FilterInfo
 {
-    public $brand_ids;
 
-    public $brand_category;
+	public $brand_ids;
 
-    public $status;
+	public $brand_category;
 
-    public $related_ids;
+	public $status;
 
-    public $trade_mark_ids;
+	public $related_ids;
 
-    public $audit_status;
+	public $trade_mark_ids;
+
+	public $audit_status;
 
 }

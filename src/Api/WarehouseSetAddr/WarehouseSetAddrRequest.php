@@ -1,5 +1,5 @@
 <?php
-namespace DouDianSDK\Api\WarehouseSetAddr;
+namespace DoudianSdkPhp\Api\WarehouseSetAddr;
 
 //auto generated code
 class WarehouseSetAddrRequest
@@ -37,11 +37,11 @@ class WarehouseSetAddrRequest
 
 	public function execute($accessToken)
 	{
-		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
+		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
 	}
 }

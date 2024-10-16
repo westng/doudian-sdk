@@ -1,32 +1,32 @@
 <?php
-
-namespace DouDianSDK\Api\ProductAddV2\Param;
+namespace DoudianSdkPhp\Api\ProductAddV2\Param;
 
 //auto generated code
 class PoiResource
 {
-    public $valid_days;
 
-    public $valid_start;
+	public $valid_days;
 
-    public $valid_end;
+	public $valid_start;
 
-    public $service_num;
+	public $valid_end;
 
-    public $notification;
+	public $service_num;
 
-    public $code_type;
+	public $notification;
 
-    public $count;
+	public $code_type;
 
-    public $couponSecondExchange;
+	public $count;
 
-    public $total_can_use_count;
+	public $couponSecondExchange;
 
-    public $link;
+	public $total_can_use_count;
 
-    public $condition;
+	public $link;
 
-    public $coupon_return_methods;
+	public $condition;
+
+	public $coupon_return_methods;
 
 }

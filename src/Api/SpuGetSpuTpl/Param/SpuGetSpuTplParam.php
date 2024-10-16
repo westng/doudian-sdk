@@ -1,10 +1,10 @@
 <?php
-
-namespace DouDianSDK\Api\SpuGetSpuTpl\Param;
+namespace DoudianSdkPhp\Api\SpuGetSpuTpl\Param;
 
 //auto generated code
 class SpuGetSpuTplParam
 {
-    public $category_id;
+
+	public $category_id;
 
 }

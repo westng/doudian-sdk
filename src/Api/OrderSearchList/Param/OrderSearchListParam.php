@@ -1,46 +1,44 @@
 <?php
-
-namespace DouDianSDK\Api\OrderSearchList\Param;
+namespace DoudianSdkPhp\Api\OrderSearchList\Param;
 
 //auto generated code
 class OrderSearchListParam
 {
-    public $product;
 
-    public $b_type;
+	public $product;
 
-    public $after_sale_status_desc;
+	public $b_type;
 
-    public $tracking_no;
+	public $after_sale_status_desc;
 
-    public $presell_type;
+	public $tracking_no;
 
-    public $order_type;
+	public $presell_type;
 
-    public $create_time_start;
+	public $order_type;
 
-    public $create_time_end;
+	public $create_time_start;
 
-    public $abnormal_order;
+	public $create_time_end;
 
-    public $trade_type;
+	public $abnormal_order;
 
-    public $combine_status;
+	public $trade_type;
 
-    public $update_time_start;
+	public $combine_status;
 
-    public $update_time_end;
+	public $update_time_start;
 
-    public $size;
+	public $update_time_end;
 
-    public $page;
+	public $size;
 
-    public $order_by;
+	public $page;
 
-    public $order_asc;
+	public $order_by;
 
-    public $fulfil_status;
+	public $order_asc;
 
-    public $is_searchable;
+	public $is_searchable;
 
 }

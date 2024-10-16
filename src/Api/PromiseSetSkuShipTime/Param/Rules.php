@@ -1,18 +1,18 @@
 <?php
-
-namespace DouDianSDK\Api\PromiseSetSkuShipTime\Param;
+namespace DoudianSdkPhp\Api\PromiseSetSkuShipTime\Param;
 
 //auto generated code
 class Rules
 {
-    public $sku_id;
 
-    public $out_warehouse_id;
+	public $sku_id;
 
-    public $pre_sell_type;
+	public $out_warehouse_id;
 
-    public $delay_day;
+	public $pre_sell_type;
 
-    public $pre_sell_end_time;
+	public $delay_day;
+
+	public $pre_sell_end_time;
 
 }

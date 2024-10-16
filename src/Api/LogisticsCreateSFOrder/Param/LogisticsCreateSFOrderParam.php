@@ -1,42 +1,42 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsCreateSFOrder\Param;
+namespace DoudianSdkPhp\Api\LogisticsCreateSFOrder\Param;
 
 //auto generated code
 class LogisticsCreateSFOrderParam
 {
-    public $order_id;
 
-    public $pack_id;
+	public $order_id;
 
-    public $cargo_details;
+	public $pack_id;
 
-    public $service_list;
+	public $cargo_details;
 
-    public $contact_info_list;
+	public $service_list;
 
-    public $pay_method;
+	public $contact_info_list;
 
-    public $express_type_id;
+	public $pay_method;
 
-    public $parcel_qty;
+	public $express_type_id;
 
-    public $total_weight;
+	public $parcel_qty;
 
-    public $is_sign_back;
+	public $total_weight;
 
-    public $remark;
+	public $is_sign_back;
 
-    public $total_length;
+	public $remark;
 
-    public $total_width;
+	public $total_length;
 
-    public $total_height;
+	public $total_width;
 
-    public $volume;
+	public $total_height;
 
-    public $user_id;
+	public $volume;
 
-    public $order_channel;
+	public $user_id;
+
+	public $order_channel;
 
 }

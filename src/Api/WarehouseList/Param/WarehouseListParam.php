@@ -1,24 +1,24 @@
 <?php
-
-namespace DouDianSDK\Api\WarehouseList\Param;
+namespace DoudianSdkPhp\Api\WarehouseList\Param;
 
 //auto generated code
 class WarehouseListParam
 {
-    public $out_warehouse_id;
 
-    public $warehouse_name;
+	public $out_warehouse_id;
 
-    public $addr;
+	public $warehouse_name;
 
-    public $out_warehouse_ids;
+	public $addr;
 
-    public $order_by;
+	public $out_warehouse_ids;
 
-    public $rank;
+	public $order_by;
 
-    public $page;
+	public $rank;
 
-    public $size;
+	public $page;
+
+	public $size;
 
 }

@@ -1,60 +1,56 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsNewCreateOrder\Param;
+namespace DoudianSdkPhp\Api\LogisticsNewCreateOrder\Param;
 
 //auto generated code
 class OrderInfos
 {
-    public $order_id;
 
-    public $pack_id;
+	public $order_id;
 
-    public $service_list;
+	public $pack_id;
 
-    public $product_type;
+	public $service_list;
 
-    public $pay_method;
+	public $product_type;
 
-    public $pay_amount;
+	public $pay_method;
 
-    public $pod_model_address;
+	public $pay_amount;
 
-    public $receiver_info;
+	public $pod_model_address;
 
-    public $items;
+	public $receiver_info;
 
-    public $sender_fetch_time;
+	public $items;
 
-    public $is_sign_back;
+	public $sender_fetch_time;
 
-    public $remark;
+	public $is_sign_back;
 
-    public $extra;
+	public $remark;
 
-    public $total_pack_count;
+	public $extra;
 
-    public $total_weight;
+	public $total_pack_count;
 
-    public $total_length;
+	public $total_weight;
 
-    public $total_width;
+	public $total_length;
 
-    public $total_height;
+	public $total_width;
 
-    public $volume;
+	public $total_height;
 
-    public $warehouse;
+	public $volume;
 
-    public $net_info;
+	public $warehouse;
 
-    public $shipping_code;
+	public $net_info;
 
-    public $special_delivery_type_code;
+	public $shipping_code;
 
-    public $special_delivery_type_value;
+	public $special_delivery_type_code;
 
-    public $package_weight;
-
-    public $combine_orders;
+	public $special_delivery_type_value;
 
 }

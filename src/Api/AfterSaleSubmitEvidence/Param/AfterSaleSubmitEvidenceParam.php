@@ -1,14 +1,14 @@
 <?php
-
-namespace DouDianSDK\Api\AfterSaleSubmitEvidence\Param;
+namespace DoudianSdkPhp\Api\AfterSaleSubmitEvidence\Param;
 
 //auto generated code
 class AfterSaleSubmitEvidenceParam
 {
-    public $aftersale_id;
 
-    public $comment;
+	public $aftersale_id;
 
-    public $evidence;
+	public $comment;
+
+	public $evidence;
 
 }

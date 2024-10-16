@@ -1,10 +1,10 @@
 <?php
-
-namespace DouDianSDK\Api\OrderInsurance\Param;
+namespace DoudianSdkPhp\Api\OrderInsurance\Param;
 
 //auto generated code
 class OrderInsuranceParam
 {
-    public $order_id;
+
+	public $order_id;
 
 }

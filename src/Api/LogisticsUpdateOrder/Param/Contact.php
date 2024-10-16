@@ -1,14 +1,14 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsUpdateOrder\Param;
+namespace DoudianSdkPhp\Api\LogisticsUpdateOrder\Param;
 
 //auto generated code
 class Contact
 {
-    public $name;
 
-    public $phone;
+	public $name;
 
-    public $mobile;
+	public $phone;
+
+	public $mobile;
 
 }

@@ -1,42 +1,38 @@
 <?php
-
-namespace DouDianSDK\Api\SecurityBatchReportOrderSecurityEvent\Param;
+namespace DoudianSdkPhp\Api\SecurityBatchReportOrderSecurityEvent\Param;
 
 //auto generated code
 class Events
 {
-    public $event_id;
 
-    public $account_id;
+	public $account_id;
 
-    public $account_type;
+	public $shop_ids;
 
-    public $order_related_shop_id;
+	public $order_ids;
 
-    public $shop_ids;
+	public $operation_type;
 
-    public $order_ids;
+	public $operate_time;
 
-    public $operation_type;
+	public $url;
 
-    public $operate_time;
+	public $ip;
 
-    public $url;
+	public $mac;
 
-    public $ip;
+	public $identify_info_list;
 
-    public $mac;
+	public $device_type;
 
-    public $identify_info_list;
+	public $device_id;
 
-    public $device_type;
+	public $referer;
 
-    public $device_id;
+	public $user_agent;
 
-    public $referer;
+	public $order_related_shop_id;
 
-    public $user_agent;
-
-    public $purchase_product_info_list;
+	public $account_type;
 
 }

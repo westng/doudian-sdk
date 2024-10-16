@@ -1,18 +1,18 @@
 <?php
-
-namespace DouDianSDK\Api\OrderLogisticsAddMultiPack\Param;
+namespace DoudianSdkPhp\Api\OrderLogisticsAddMultiPack\Param;
 
 //auto generated code
 class PackList
 {
-    public $shipped_order_info;
 
-    public $logistics_code;
+	public $shipped_order_info;
 
-    public $company;
+	public $logistics_code;
 
-    public $company_code;
+	public $company;
 
-    public $logistics_id;
+	public $company_code;
+
+	public $logistics_id;
 
 }

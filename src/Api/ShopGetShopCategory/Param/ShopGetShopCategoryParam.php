@@ -1,10 +1,10 @@
 <?php
-
-namespace DouDianSDK\Api\ShopGetShopCategory\Param;
+namespace DoudianSdkPhp\Api\ShopGetShopCategory\Param;
 
 //auto generated code
 class ShopGetShopCategoryParam
 {
-    public $cid;
+
+	public $cid;
 
 }

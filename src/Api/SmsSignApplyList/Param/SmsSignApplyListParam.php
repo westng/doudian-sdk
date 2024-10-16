@@ -1,18 +1,18 @@
 <?php
-
-namespace DouDianSDK\Api\SmsSignApplyList\Param;
+namespace DoudianSdkPhp\Api\SmsSignApplyList\Param;
 
 //auto generated code
 class SmsSignApplyListParam
 {
-    public $sms_account;
 
-    public $like;
+	public $sms_account;
 
-    public $page;
+	public $like;
 
-    public $size;
+	public $page;
 
-    public $sms_sign_apply_id;
+	public $size;
+
+	public $sms_sign_apply_id;
 
 }

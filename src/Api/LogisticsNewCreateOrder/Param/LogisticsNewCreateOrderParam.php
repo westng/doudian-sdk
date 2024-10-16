@@ -1,20 +1,20 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsNewCreateOrder\Param;
+namespace DoudianSdkPhp\Api\LogisticsNewCreateOrder\Param;
 
 //auto generated code
 class LogisticsNewCreateOrderParam
 {
-    public $sender_info;
 
-    public $logistics_code;
+	public $sender_info;
 
-    public $order_infos;
+	public $logistics_code;
 
-    public $user_id;
+	public $order_infos;
 
-    public $delivery_req;
+	public $user_id;
 
-    public $order_channel;
+	public $delivery_req;
+
+	public $order_channel;
 
 }

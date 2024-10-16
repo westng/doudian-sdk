@@ -1,39 +1,40 @@
 <?php
 
-namespace DouDianSDK\Core;
+declare(strict_types=1);
+/**
+ * This file is part of MineAdmin.
+ *
+ * @link     https://www.mineadmin.com
+ * @document https://doc.mineadmin.com
+ * @contact  root@imoi.cn
+ * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
+ */
+
+namespace DoudianSdkPhp\Core;
 
 class AccessToken
 {
-    private $code;
+    private $errNo;
 
-    private $msg;
-
-    private $sub_code;
-
-    private $sub_msg;
+    private $message;
 
     private $logId;
 
     private $data;
 
-    public static function wrap($resp) {
+    public static function wrap($resp)
+    {
         $accessToken = new AccessToken();
-        if(property_exists($resp, "code")) {
-            $accessToken->setCode($resp->code);
+        if (property_exists($resp, 'err_no')) {
+            $accessToken->setErrNo($resp->err_no);
         }
-        if(property_exists($resp, "msg")){
-            $accessToken->setMsg($resp->msg);
+        if (property_exists($resp, 'message')) {
+            $accessToken->setMessage($resp->message);
         }
-        if(property_exists($resp, "sub_code")){
-            $accessToken->setSubCode($resp->sub_code);
-        }
-        if(property_exists($resp, "sub_msg")){
-            $accessToken->setSubMsg($resp->sub_msg);
-        }
-        if(property_exists($resp, "log_id")) {
+        if (property_exists($resp, 'log_id')) {
             $accessToken->setLogId($resp->log_id);
         }
-        if(property_exists($resp, "data")) {
+        if (property_exists($resp, 'data')) {
             $accessToken->setData($resp->data);
         }
         return $accessToken;
@@ -41,91 +42,75 @@ class AccessToken
 
     public function isSuccess()
     {
-        return $this->code == 10000;
+        return $this->errNo == 0;
     }
 
     public function getAccessToken()
     {
-        if($this->data != null && property_exists($this->data, "access_token")) {
+        if ($this->data != null && property_exists($this->data, 'access_token')) {
             return $this->data->access_token;
         }
         return null;
     }
 
-    public function getExpireIn() {
-        if($this->data != null && property_exists($this->data, "expires_in")) {
+    public function getExpireIn()
+    {
+        if ($this->data != null && property_exists($this->data, 'expires_in')) {
             return $this->data->expires_in;
         }
         return null;
     }
 
-    public function getRefreshToken() {
-        if($this->data != null && property_exists($this->data, "refresh_token")) {
+    public function getRefreshToken()
+    {
+        if ($this->data != null && property_exists($this->data, 'refresh_token')) {
             return $this->data->refresh_token;
         }
         return null;
     }
 
-    public function getScope() {
-        if($this->data != null && property_exists($this->data, "scope")) {
+    public function getScope()
+    {
+        if ($this->data != null && property_exists($this->data, 'scope')) {
             return $this->data->scope;
         }
         return null;
     }
 
-    public function getShopId() {
-        if($this->data != null && property_exists($this->data, "shop_id")) {
+    public function getShopId()
+    {
+        if ($this->data != null && property_exists($this->data, 'shop_id')) {
             return $this->data->shop_id;
         }
         return null;
     }
 
-    public function getShopName() {
-        if($this->data != null && property_exists($this->data, "shop_name")) {
+    public function getShopName()
+    {
+        if ($this->data != null && property_exists($this->data, 'shop_name')) {
             return $this->data->shop_name;
         }
         return null;
     }
 
-
-    public function getCode()
+    public function getErrNo()
     {
-        return $this->code;
+        return $this->errNo;
     }
 
-    public function setCode($errNo)
+    public function setErrNo($errNo)
     {
-        $this->code = $errNo;
+        $this->errNo = $errNo;
     }
 
-    public function getMsg()
+    public function getMessage()
     {
-        return $this->msg;
+        return $this->message;
     }
 
-    public function setMsg($message)
+    public function setMessage($message)
     {
-        $this->msg = $message;
-    }
-
-    public function setSubCode($sub_code)
-    {
-        $this->sub_code = $sub_code;
-    }
-
-    public function getSubCode()
-    {
-        return $this->sub_code;
-    }
-
-    public function setSubMsg($sub_msg)
-    {
-        $this->sub_msg = $sub_msg;
-    }
-
-    public function getSubMsg()
-    {
-        return $this->sub_msg;
+        $this->message = $message;
     }
 
     public function getLogId()
@@ -148,4 +133,14 @@ class AccessToken
         return $this->data;
     }
 
+    // 新增将AccessToken转换为数组的方法
+    public function toArray()
+    {
+        return [
+            'errNo' => $this->getErrNo() ?? false,
+            'message' => $this->getMessage() ?? '请求成功',
+            'logId' => $this->getLogId(),
+            'data' => $this->data ? (array) $this->data : null,
+        ];
+    }
 }

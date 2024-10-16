@@ -1,12 +1,12 @@
 <?php
-
-namespace DouDianSDK\Api\SkuSyncStockBatch\Param;
+namespace DoudianSdkPhp\Api\SkuSyncStockBatch\Param;
 
 //auto generated code
 class StockMap
 {
-    public $out_warehouse_id;
 
-    public $stock_num;
+	public $out_warehouse_id;
+
+	public $stock_num;
 
 }

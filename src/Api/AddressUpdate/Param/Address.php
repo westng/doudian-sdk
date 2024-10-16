@@ -1,30 +1,28 @@
 <?php
-
-namespace DouDianSDK\Api\AddressUpdate\Param;
+namespace DoudianSdkPhp\Api\AddressUpdate\Param;
 
 //auto generated code
 class Address
 {
-    public $id;
 
-    public $user_name;
+	public $id;
 
-    public $mobile;
+	public $user_name;
 
-    public $province_id;
+	public $mobile;
 
-    public $city_id;
+	public $province_id;
 
-    public $town_id;
+	public $city_id;
 
-    public $detail;
+	public $town_id;
 
-    public $street_id;
+	public $detail;
 
-    public $link_type;
+	public $street_id;
 
-    public $fixed_phone;
+	public $link_type;
 
-    public $remark;
+	public $fixed_phone;
 
 }

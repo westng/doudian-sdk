@@ -1,14 +1,12 @@
 <?php
-
-namespace DouDianSDK\Api\AfterSaleOperate\Param;
+namespace DoudianSdkPhp\Api\AfterSaleOperate\Param;
 
 //auto generated code
 class AfterSaleOperateParam
 {
-    public $type;
 
-    public $items;
+	public $type;
 
-    public $store_id;
+	public $items;
 
 }

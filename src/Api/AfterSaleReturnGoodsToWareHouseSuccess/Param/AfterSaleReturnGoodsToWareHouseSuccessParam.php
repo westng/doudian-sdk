@@ -1,16 +1,16 @@
 <?php
-
-namespace DouDianSDK\Api\AfterSaleReturnGoodsToWareHouseSuccess\Param;
+namespace DoudianSdkPhp\Api\AfterSaleReturnGoodsToWareHouseSuccess\Param;
 
 //auto generated code
 class AfterSaleReturnGoodsToWareHouseSuccessParam
 {
-    public $aftersale_id;
 
-    public $op_time;
+	public $aftersale_id;
 
-    public $tracking_no;
+	public $op_time;
 
-    public $logistics_company_code;
+	public $tracking_no;
+
+	public $logistics_company_code;
 
 }

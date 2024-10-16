@@ -1,16 +1,16 @@
 <?php
-
-namespace DouDianSDK\Api\OrderOrdeReportList\Param;
+namespace DoudianSdkPhp\Api\OrderOrdeReportList\Param;
 
 //auto generated code
 class AddRealMobileWhites
 {
-    public $order_id;
 
-    public $after_sale_id;
+	public $order_id;
 
-    public $reason_no;
+	public $after_sale_id;
 
-    public $remark;
+	public $reason_no;
+
+	public $remark;
 
 }

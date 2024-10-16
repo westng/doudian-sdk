@@ -1,16 +1,16 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsNewCreateOrder\Param;
+namespace DoudianSdkPhp\Api\LogisticsNewCreateOrder\Param;
 
 //auto generated code
 class Warehouse
 {
-    public $is_sum_up;
 
-    public $wh_code;
+	public $is_sum_up;
 
-    public $wh_order_no;
+	public $wh_code;
 
-    public $delivery_type;
+	public $wh_order_no;
+
+	public $delivery_type;
 
 }

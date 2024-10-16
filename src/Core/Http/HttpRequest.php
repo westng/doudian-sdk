@@ -1,6 +1,6 @@
 <?php
 
-namespace DouDianSDK\Core\Http;
+namespace DoudianSdkPhp\Core\Http;
 
 class HttpRequest
 {
@@ -9,6 +9,4 @@ class HttpRequest
 
     public $connectTimeout;
     public $readTimeout;
-
-    public $header;
 }

@@ -1,14 +1,14 @@
 <?php
-
-namespace DouDianSDK\Api\WarehouseCreate\Param;
+namespace DoudianSdkPhp\Api\WarehouseCreate\Param;
 
 //auto generated code
 class WarehouseCreateParam
 {
-    public $out_warehouse_id;
 
-    public $name;
+	public $out_warehouse_id;
 
-    public $intro;
+	public $name;
+
+	public $intro;
 
 }

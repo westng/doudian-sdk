@@ -1,5 +1,5 @@
 <?php
-namespace DouDianSDK\Api\SecurityBatchReportOrderSecurityEvent;
+namespace DoudianSdkPhp\Api\SecurityBatchReportOrderSecurityEvent;
 
 //auto generated code
 class SecurityBatchReportOrderSecurityEventRequest
@@ -37,11 +37,11 @@ class SecurityBatchReportOrderSecurityEventRequest
 
 	public function execute($accessToken)
 	{
-		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
+		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
 	}
 }

@@ -1,20 +1,20 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsCreateSFOrder\Param;
+namespace DoudianSdkPhp\Api\LogisticsCreateSFOrder\Param;
 
 //auto generated code
 class ServiceList
 {
-    public $name;
 
-    public $value;
+	public $name;
 
-    public $value1;
+	public $value;
 
-    public $value2;
+	public $value1;
 
-    public $value3;
+	public $value2;
 
-    public $value4;
+	public $value3;
+
+	public $value4;
 
 }

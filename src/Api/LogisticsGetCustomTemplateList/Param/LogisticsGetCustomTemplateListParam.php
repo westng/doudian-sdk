@@ -1,10 +1,10 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsGetCustomTemplateList\Param;
+namespace DoudianSdkPhp\Api\LogisticsGetCustomTemplateList\Param;
 
 //auto generated code
 class LogisticsGetCustomTemplateListParam
 {
-    public $logistics_code;
+
+	public $logistics_code;
 
 }

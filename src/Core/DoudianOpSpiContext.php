@@ -1,14 +1,13 @@
 <?php
 
-namespace DouDianSDK\Core;
+namespace DoudianSdkPhp\Core;
 
 class DoudianOpSpiContext
 {
     private $request;
     private $response;
 
-    public function setResponseData($data)
-    {
+    public function setResponseData($data) {
         $this->response->data = $data;
     }
 
@@ -22,13 +21,11 @@ class DoudianOpSpiContext
         return $this->request;
     }
 
-    public function getParamJson()
-    {
+    public function getParamJson() {
         return $this->request->getSpiParam()->paramJson;
     }
 
-    public function getParamJsonObject()
-    {
+    public function getParamJsonObject() {
         $str = $this->getParamJson();
         return json_decode($str);
     }
@@ -43,14 +40,12 @@ class DoudianOpSpiContext
         $this->response = $response;
     }
 
-    public function wrapError($code, $message)
-    {
+    public function wrapError($code, $message) {
         $this->response->code = $code;
         $this->response->message = $message;
     }
 
-    public function wrapSuccess()
-    {
+    public function wrapSuccess() {
         $this->response->code = 0;
     }
 }

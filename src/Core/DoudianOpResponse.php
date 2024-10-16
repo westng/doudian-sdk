@@ -1,12 +1,10 @@
 <?php
 
-namespace DouDianSDK\Core;
+namespace DoudianSdkPhp\Core;
 
 class DoudianOpResponse
 {
+    public $err_no;
+    public $message;
     public $data;
-    public $code;
-    public $msg;
-    public $sub_code;
-    public $sub_msg;
 }

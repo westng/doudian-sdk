@@ -1,10 +1,10 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsWaybillApply\Param;
+namespace DoudianSdkPhp\Api\LogisticsWaybillApply\Param;
 
 //auto generated code
 class LogisticsWaybillApplyParam
 {
-    public $waybill_applies;
+
+	public $waybill_applies;
 
 }

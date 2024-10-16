@@ -1,20 +1,20 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsGetOutRange\Param;
+namespace DoudianSdkPhp\Api\LogisticsGetOutRange\Param;
 
 //auto generated code
 class ReceiverAddress
 {
-    public $country_code;
 
-    public $province_name;
+	public $country_code;
 
-    public $city_name;
+	public $province_name;
 
-    public $district_name;
+	public $city_name;
 
-    public $street_name;
+	public $district_name;
 
-    public $detail_address;
+	public $street_name;
+
+	public $detail_address;
 
 }

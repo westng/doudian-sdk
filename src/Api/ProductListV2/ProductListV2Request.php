@@ -1,5 +1,5 @@
 <?php
-namespace DouDianSDK\Api\ProductListV2;
+namespace DoudianSdkPhp\Api\ProductListV2;
 
 //auto generated code
 class ProductListV2Request
@@ -37,11 +37,11 @@ class ProductListV2Request
 
 	public function execute($accessToken)
 	{
-		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
+		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
 	}
 }

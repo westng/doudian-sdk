@@ -1,30 +1,30 @@
 <?php
-
-namespace DouDianSDK\Api\ProductEditCbProduct\Param;
+namespace DoudianSdkPhp\Api\ProductEditCbProduct\Param;
 
 //auto generated code
 class PoiResource
 {
-    public $condition;
 
-    public $valid_days;
+	public $condition;
 
-    public $valid_start;
+	public $valid_days;
 
-    public $valid_end;
+	public $valid_start;
 
-    public $service_num;
+	public $valid_end;
 
-    public $notification;
+	public $service_num;
 
-    public $code_type;
+	public $notification;
 
-    public $total_can_use_count;
+	public $code_type;
 
-    public $coupon_second_exchange;
+	public $total_can_use_count;
 
-    public $link;
+	public $coupon_second_exchange;
 
-    public $count;
+	public $link;
+
+	public $count;
 
 }

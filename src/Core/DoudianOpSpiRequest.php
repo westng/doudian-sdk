@@ -1,6 +1,6 @@
 <?php
 
-namespace DouDianSDK\Core;
+namespace DoudianSdkPhp\Core;
 
 class DoudianOpSpiRequest
 {
@@ -12,13 +12,11 @@ class DoudianOpSpiRequest
 
     private $bizHandler;
 
-    public function execute()
-    {
-        return $this->spiClient->request($this, $this->bizHandler);
+    public function execute() {
+       return $this->spiClient->request($this, $this->bizHandler);
     }
 
-    public function registerHandler($bizHandler)
-    {
+    public function registerHandler($bizHandler){
         $this->bizHandler = $bizHandler;
     }
 

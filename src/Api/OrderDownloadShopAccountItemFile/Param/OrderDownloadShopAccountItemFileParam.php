@@ -1,10 +1,10 @@
 <?php
-
-namespace DouDianSDK\Api\OrderDownloadShopAccountItemFile\Param;
+namespace DoudianSdkPhp\Api\OrderDownloadShopAccountItemFile\Param;
 
 //auto generated code
 class OrderDownloadShopAccountItemFileParam
 {
-    public $download_id;
+
+	public $download_id;
 
 }

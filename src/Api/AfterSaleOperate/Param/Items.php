@@ -1,22 +1,22 @@
 <?php
-
-namespace DouDianSDK\Api\AfterSaleOperate\Param;
+namespace DoudianSdkPhp\Api\AfterSaleOperate\Param;
 
 //auto generated code
 class Items
 {
-    public $aftersale_id;
 
-    public $reason;
+	public $aftersale_id;
 
-    public $remark;
+	public $reason;
 
-    public $evidence;
+	public $remark;
 
-    public $logistics;
+	public $evidence;
 
-    public $reject_reason_code;
+	public $logistics;
 
-    public $update_time;
+	public $update_time;
+
+	public $reject_reason_code;
 
 }

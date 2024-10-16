@@ -1,5 +1,5 @@
 <?php
-namespace DouDianSDK\Api\MaterialUploadImageSync;
+namespace DoudianSdkPhp\Api\MaterialUploadImageSync;
 
 //auto generated code
 class MaterialUploadImageSyncRequest
@@ -37,11 +37,11 @@ class MaterialUploadImageSyncRequest
 
 	public function execute($accessToken)
 	{
-		return \DouDianSDKre\DoudianOpClient::getInstance()->request($this, $accessToken);
+		return \DoudianSdkPhp\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
 	}
 
 	public function __construct()
 	{
-		$this->config = \DouDianSDKre\GlobalConfig::getGlobalConfig();
+		$this->config = \DoudianSdkPhp\Core\GlobalConfig::getGlobalConfig();
 	}
 }

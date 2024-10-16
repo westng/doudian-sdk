@@ -1,34 +1,30 @@
 <?php
-
-namespace DouDianSDK\Api\OrderLogisticsAddSinglePack\Param;
+namespace DoudianSdkPhp\Api\OrderLogisticsAddSinglePack\Param;
 
 //auto generated code
 class OrderLogisticsAddSinglePackParam
 {
-    public $order_id_list;
 
-    public $shipped_order_info;
+	public $order_id_list;
 
-    public $logistics_code;
+	public $shipped_order_info;
 
-    public $company;
+	public $logistics_code;
 
-    public $request_id;
+	public $company;
 
-    public $is_reject_refund;
+	public $request_id;
 
-    public $logistics_id;
+	public $is_reject_refund;
 
-    public $company_code;
+	public $logistics_id;
 
-    public $address_id;
+	public $company_code;
 
-    public $is_refund_reject;
+	public $address_id;
 
-    public $order_serial_number;
+	public $is_refund_reject;
 
-    public $store_id;
-
-    public $after_sale_address_id;
+	public $order_serial_number;
 
 }

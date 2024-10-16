@@ -1,12 +1,12 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsRegisterPackageRoute\Param;
+namespace DoudianSdkPhp\Api\LogisticsRegisterPackageRoute\Param;
 
 //auto generated code
 class Street
 {
-    public $name;
 
-    public $code;
+	public $name;
+
+	public $code;
 
 }

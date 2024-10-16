@@ -1,14 +1,14 @@
 <?php
-
-namespace DouDianSDK\Api\SpuGetKeyPropertyByCid\Param;
+namespace DoudianSdkPhp\Api\SpuGetKeyPropertyByCid\Param;
 
 //auto generated code
 class SpuGetKeyPropertyByCidParam
 {
-    public $category_id;
 
-    public $page;
+	public $category_id;
 
-    public $size;
+	public $page;
+
+	public $size;
 
 }

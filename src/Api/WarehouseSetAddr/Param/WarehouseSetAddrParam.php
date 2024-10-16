@@ -1,12 +1,12 @@
 <?php
-
-namespace DouDianSDK\Api\WarehouseSetAddr\Param;
+namespace DoudianSdkPhp\Api\WarehouseSetAddr\Param;
 
 //auto generated code
 class WarehouseSetAddrParam
 {
-    public $out_warehouse_id;
 
-    public $addr;
+	public $out_warehouse_id;
+
+	public $addr;
 
 }

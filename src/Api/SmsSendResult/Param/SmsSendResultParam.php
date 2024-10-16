@@ -1,30 +1,28 @@
 <?php
-
-namespace DouDianSDK\Api\SmsSendResult\Param;
+namespace DoudianSdkPhp\Api\SmsSendResult\Param;
 
 //auto generated code
 class SmsSendResultParam
 {
-    public $from_time;
 
-    public $to_time;
+	public $from_time;
 
-    public $sms_account;
+	public $to_time;
 
-    public $template_id;
+	public $sms_account;
 
-    public $status;
+	public $template_id;
 
-    public $size;
+	public $status;
 
-    public $page;
+	public $size;
 
-    public $sign;
+	public $page;
 
-    public $post_tel;
+	public $sign;
 
-    public $message_id;
+	public $post_tel;
 
-    public $tpl_type;
+	public $message_id;
 
 }

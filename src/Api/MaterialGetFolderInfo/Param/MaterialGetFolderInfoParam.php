@@ -1,14 +1,14 @@
 <?php
-
-namespace DouDianSDK\Api\MaterialGetFolderInfo\Param;
+namespace DoudianSdkPhp\Api\MaterialGetFolderInfo\Param;
 
 //auto generated code
 class MaterialGetFolderInfoParam
 {
-    public $folder_id;
 
-    public $page_num;
+	public $folder_id;
 
-    public $page_size;
+	public $page_num;
+
+	public $page_size;
 
 }

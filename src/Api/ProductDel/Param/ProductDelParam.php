@@ -1,14 +1,12 @@
 <?php
-
-namespace DouDianSDK\Api\ProductDel\Param;
+namespace DoudianSdkPhp\Api\ProductDel\Param;
 
 //auto generated code
 class ProductDelParam
 {
-    public $product_id;
 
-    public $out_product_id;
+	public $product_id;
 
-    public $delete_forever;
+	public $out_product_id;
 
 }

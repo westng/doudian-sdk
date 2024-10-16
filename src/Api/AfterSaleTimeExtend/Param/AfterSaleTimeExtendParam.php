@@ -1,10 +1,10 @@
 <?php
-
-namespace DouDianSDK\Api\AfterSaleTimeExtend\Param;
+namespace DoudianSdkPhp\Api\AfterSaleTimeExtend\Param;
 
 //auto generated code
 class AfterSaleTimeExtendParam
 {
-    public $aftersale_id;
+
+	public $aftersale_id;
 
 }

@@ -1,24 +1,24 @@
 <?php
-
-namespace DouDianSDK\Api\FreightTemplateUpdate\Param;
+namespace DoudianSdkPhp\Api\FreightTemplateUpdate\Param;
 
 //auto generated code
 class Template
 {
-    public $id;
 
-    public $template_name;
+	public $id;
 
-    public $product_province;
+	public $template_name;
 
-    public $product_city;
+	public $product_province;
 
-    public $calculate_type;
+	public $product_city;
 
-    public $transfer_type;
+	public $calculate_type;
 
-    public $rule_type;
+	public $transfer_type;
 
-    public $fixed_amount;
+	public $rule_type;
+
+	public $fixed_amount;
 
 }

@@ -1,124 +1,122 @@
 <?php
-
-namespace DouDianSDK\Api\ProductEditCbProduct\Param;
+namespace DoudianSdkPhp\Api\ProductEditCbProduct\Param;
 
 //auto generated code
 class ProductEditCbProductParam
 {
-    public $product_id;
 
-    public $product_type;
+	public $product_id;
 
-    public $category_leaf_id;
+	public $product_type;
 
-    public $product_format;
+	public $category_leaf_id;
 
-    public $name;
+	public $product_format;
 
-    public $recommend_remark;
+	public $name;
 
-    public $pic;
+	public $recommend_remark;
 
-    public $description;
+	public $pic;
 
-    public $pay_type;
+	public $description;
 
-    public $delivery_method;
+	public $pay_type;
 
-    public $cdf_category;
+	public $delivery_method;
 
-    public $reduce_type;
+	public $cdf_category;
 
-    public $assoc_ids;
+	public $reduce_type;
 
-    public $freight_id;
+	public $assoc_ids;
 
-    public $weight;
+	public $freight_id;
 
-    public $weight_unit;
+	public $weight;
 
-    public $delivery_delay_day;
+	public $weight_unit;
 
-    public $presell_type;
+	public $delivery_delay_day;
 
-    public $presell_delay;
+	public $presell_type;
 
-    public $presell_end_time;
+	public $presell_delay;
 
-    public $supply_7day_return;
+	public $presell_end_time;
 
-    public $mobile;
+	public $supply_7day_return;
 
-    public $commit;
+	public $mobile;
 
-    public $brand_id;
+	public $commit;
 
-    public $remark;
+	public $brand_id;
 
-    public $out_product_id;
+	public $remark;
 
-    public $quality_list;
+	public $out_product_id;
 
-    public $spec_name;
+	public $quality_list;
 
-    public $specs;
+	public $spec_name;
 
-    public $spec_prices;
+	public $specs;
 
-    public $spec_pic;
+	public $spec_prices;
 
-    public $maximum_per_order;
+	public $spec_pic;
 
-    public $limit_per_buyer;
+	public $maximum_per_order;
 
-    public $minimum_per_order;
+	public $limit_per_buyer;
 
-    public $product_format_new;
+	public $minimum_per_order;
 
-    public $spu_id;
+	public $product_format_new;
 
-    public $appoint_delivery_day;
+	public $spu_id;
 
-    public $third_url;
+	public $appoint_delivery_day;
 
-    public $extra;
+	public $third_url;
 
-    public $src;
+	public $extra;
 
-    public $outer_product_id;
+	public $src;
 
-    public $standard_brand_id;
+	public $outer_product_id;
 
-    public $need_check_out;
+	public $standard_brand_id;
 
-    public $poi_resource;
+	public $need_check_out;
 
-    public $force_use_quality_list;
+	public $poi_resource;
 
-    public $car_vin_code;
+	public $force_use_quality_list;
 
-    public $need_recharge_mode;
+	public $car_vin_code;
 
-    public $presell_config_level;
+	public $need_recharge_mode;
 
-    public $account_template_id;
+	public $presell_config_level;
 
-    public $presell_delivery_type;
+	public $account_template_id;
 
-    public $white_back_ground_pic_url;
+	public $presell_delivery_type;
 
-    public $long_pic_url;
+	public $white_back_ground_pic_url;
 
-    public $after_sale_service;
+	public $long_pic_url;
 
-    public $sell_channel;
+	public $after_sale_service;
 
-    public $start_sale_type;
+	public $sell_channel;
 
-    public $logistics_info;
+	public $start_sale_type;
 
-    public $price_has_tax;
+	public $logistics_info;
 
-    public $size_info_template_id;
+	public $price_has_tax;
 
 }

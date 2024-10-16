@@ -1,26 +1,26 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsRegisterPackageRoute\Param;
+namespace DoudianSdkPhp\Api\LogisticsRegisterPackageRoute\Param;
 
 //auto generated code
 class LogisticsRegisterPackageRouteParam
 {
-    public $express;
 
-    public $track_no;
+	public $express;
 
-    public $outer_order_id;
+	public $track_no;
 
-    public $outer_sub_order_id;
+	public $outer_order_id;
 
-    public $callback_url;
+	public $outer_sub_order_id;
 
-    public $receiver;
+	public $callback_url;
 
-    public $sender;
+	public $receiver;
 
-    public $cargo_list;
+	public $sender;
 
-    public $extend;
+	public $cargo_list;
+
+	public $extend;
 
 }

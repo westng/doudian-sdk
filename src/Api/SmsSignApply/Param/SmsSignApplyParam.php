@@ -1,12 +1,12 @@
 <?php
-
-namespace DouDianSDK\Api\SmsSignApply\Param;
+namespace DoudianSdkPhp\Api\SmsSignApply\Param;
 
 //auto generated code
 class SmsSignApplyParam
 {
-    public $sms_account;
 
-    public $sign;
+	public $sms_account;
+
+	public $sign;
 
 }

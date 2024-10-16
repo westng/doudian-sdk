@@ -1,30 +1,26 @@
 <?php
-
-namespace DouDianSDK\Api\OrderLogisticsAdd\Param;
+namespace DoudianSdkPhp\Api\OrderLogisticsAdd\Param;
 
 //auto generated code
 class OrderLogisticsAddParam
 {
-    public $order_id;
 
-    public $logistics_id;
+	public $order_id;
 
-    public $company;
+	public $logistics_id;
 
-    public $company_code;
+	public $company;
 
-    public $logistics_code;
+	public $company_code;
 
-    public $is_refund_reject;
+	public $logistics_code;
 
-    public $is_reject_refund;
+	public $is_refund_reject;
 
-    public $serial_number_list;
+	public $is_reject_refund;
 
-    public $address_id;
+	public $serial_number_list;
 
-    public $store_id;
-
-    public $after_sale_address_id;
+	public $address_id;
 
 }

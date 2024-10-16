@@ -1,16 +1,16 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsQueryPackageRoute\Param;
+namespace DoudianSdkPhp\Api\LogisticsQueryPackageRoute\Param;
 
 //auto generated code
 class LogisticsQueryPackageRouteParam
 {
-    public $track_no;
 
-    public $express;
+	public $track_no;
 
-    public $receiver;
+	public $express;
 
-    public $sender;
+	public $receiver;
+
+	public $sender;
 
 }

@@ -1,12 +1,12 @@
 <?php
-
-namespace DouDianSDK\Api\SmsBatchSend\Param;
+namespace DoudianSdkPhp\Api\SmsBatchSend\Param;
 
 //auto generated code
 class SmsMessageList
 {
-    public $post_tel;
 
-    public $template_param;
+	public $post_tel;
+
+	public $template_param;
 
 }

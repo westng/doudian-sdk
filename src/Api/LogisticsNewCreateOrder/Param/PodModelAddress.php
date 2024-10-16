@@ -1,20 +1,20 @@
 <?php
-
-namespace DouDianSDK\Api\LogisticsNewCreateOrder\Param;
+namespace DoudianSdkPhp\Api\LogisticsNewCreateOrder\Param;
 
 //auto generated code
 class PodModelAddress
 {
-    public $country_code;
 
-    public $province_name;
+	public $country_code;
 
-    public $city_name;
+	public $province_name;
 
-    public $district_name;
+	public $city_name;
 
-    public $street_name;
+	public $district_name;
 
-    public $detail_address;
+	public $street_name;
+
+	public $detail_address;
 
 }
