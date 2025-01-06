@@ -35,11 +35,11 @@ class BinaryMaterialUploadAddressAuthRequest
 
     public function execute($accessToken)
     {
-        return DoudianOpClient::getInstance()->request($this, $accessToken);
+        return \DouDianSdk\Core\DouDianOpClient::getInstance()->request($this, $accessToken);
     }
 
     public function __construct()
     {
-        $this->config = GlobalConfig::getGlobalConfig();
+        $this->config = \DouDianSdk\Core\GlobalConfig::getGlobalConfig();
     }
 }
