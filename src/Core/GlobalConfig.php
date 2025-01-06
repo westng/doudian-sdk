@@ -2,7 +2,7 @@
 
 namespace DouDianSdk\Core;
 
-class GlobalConfig extends DoudianOpConfig
+class GlobalConfig extends DouDianOpConfig
 {
     private static $instance;
 
@@ -10,7 +10,7 @@ class GlobalConfig extends DoudianOpConfig
     {
     }
 
-    public static function getGlobalConfig()
+    public static function getGlobalConfig(): GlobalConfig
     {
 
         if (!(self::$instance instanceof self)) {

@@ -2,7 +2,7 @@
 
 namespace DouDianSdk\Core;
 
-class DoudianOpSpiParam
+class DouDianOpSpiParam
 {
     public $appKey; //服务器下发的app key
 

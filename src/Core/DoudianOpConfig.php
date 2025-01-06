@@ -2,7 +2,7 @@
 
 namespace DouDianSdk\Core;
 
-class DoudianOpConfig
+class DouDianOpConfig
 {
     public $appKey;
     public $appSecret;

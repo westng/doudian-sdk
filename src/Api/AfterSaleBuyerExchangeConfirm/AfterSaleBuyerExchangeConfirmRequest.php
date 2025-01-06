@@ -37,7 +37,7 @@ class AfterSaleBuyerExchangeConfirmRequest
 
     public function execute($accessToken)
     {
-        return \DouDianSdk\Core\DoudianOpClient::getInstance()->request($this, $accessToken);
+        return \DouDianSdk\Core\DouDianOpClient::getInstance()->request($this, $accessToken);
     }
 
     public function __construct()

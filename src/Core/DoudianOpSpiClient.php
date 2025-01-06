@@ -2,7 +2,7 @@
 
 namespace DouDianSdk\Core;
 
-class DoudianOpSpiClient
+class DouDianOpSpiClient
 {
     public function request($request, $callback)
     {
@@ -12,7 +12,7 @@ class DoudianOpSpiClient
         $signMethod = $request->getSpiParam()->signMethod;
         $appSecret = $request->getConfig()->appSecret;
 
-        $response = new DoudianOpSpiResponse();
+        $response = new DouDianOpSpiResponse();
 
         //将string类型的paramJson转成数组
         $paramJsonArray = json_decode($request->getSpiParam()->paramJson);
@@ -26,7 +26,7 @@ class DoudianOpSpiClient
             return $response;
         }
 
-        $spiContext = new DoudianOpSpiContext();
+        $spiContext = new DouDianOpSpiContext();
         $spiContext->setRequest($request);
         $spiContext->setResponse($response);
         //执行业务逻辑

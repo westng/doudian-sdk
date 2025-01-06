@@ -2,7 +2,7 @@
 
 namespace DouDianSdk\Core;
 
-class DoudianOpResponse
+class DouDianOpResponse
 {
     public $err_no;
     public $message;

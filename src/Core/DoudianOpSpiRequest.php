@@ -2,7 +2,7 @@
 
 namespace DouDianSdk\Core;
 
-class DoudianOpSpiRequest
+class DouDianOpSpiRequest
 {
     private $spiParam;
 
@@ -25,8 +25,8 @@ class DoudianOpSpiRequest
     public function __construct()
     {
         $this->config = GlobalConfig::getGlobalConfig();
-        $this->spiClient = DoudianOpSpiClient::getInstance();
-        $this->spiParam = new DoudianOpSpiParam();
+        $this->spiClient = DouDianOpSpiClient::getInstance();
+        $this->spiParam = new DouDianOpSpiParam();
     }
 
     public function getConfig()

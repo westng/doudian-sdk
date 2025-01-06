@@ -2,7 +2,7 @@
 
 namespace DouDianSdk\Core;
 
-class DoudianOpSpiContext
+class DouDianOpSpiContext
 {
     private $request;
     private $response;

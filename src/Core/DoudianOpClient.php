@@ -2,7 +2,7 @@
 
 namespace DouDianSdk\Core;
 
-class DoudianOpClient
+class DouDianOpClient
 {
     private $httpClient;
     public function __construct()
@@ -24,7 +24,7 @@ class DoudianOpClient
         $openHost = $config->openRequestUrl;
         $accessTokenStr = "";
         if ($accessToken != null) {
-            $accessTokenStr = $accessToken->getAccessToken();
+            $accessTokenStr = is_object($accessToken) ? $accessToken->getAccessToken() : $accessToken;
         }
 
         //String requestUrlPattern = "%s/%s?app_key=%s&method=%s&v=2&sign=%s&timestamp=%s&access_token=%s";

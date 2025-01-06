@@ -12,7 +12,7 @@ class AccessToken
 
     private $data;
 
-    public static function wrap($resp)
+    public static function wrap($resp): AccessToken
     {
         $accessToken = new AccessToken();
         if (property_exists($resp, "err_no")) {
@@ -30,7 +30,7 @@ class AccessToken
         return $accessToken;
     }
 
-    public function isSuccess()
+    public function isSuccess(): bool
     {
         return $this->errNo == 0;
     }

@@ -4,7 +4,7 @@ namespace DouDianSdk\Core;
 
 class AccessTokenBuilder
 {
-    public static function build($codeOrShopId, $type = ACCESS_TOKEN_CODE)
+    public static function build($codeOrShopId, $type = ACCESS_TOKEN_CODE): AccessToken
     {
         $request = new \DouDianSdk\Api\Token\CreateTokenRequest();
         $param = new \DouDianSdk\Api\Token\Param\CreateTokenParam();
@@ -22,7 +22,7 @@ class AccessTokenBuilder
         return AccessToken::wrap($resp);
     }
 
-    public static function refresh($token)
+    public static function refresh($token): AccessToken
     {
         $request = new \DouDianSdk\Api\Token\RefreshTokenRequest();
         $param = new \DouDianSdk\Api\Token\Param\RefreshTokenParam();
@@ -38,7 +38,7 @@ class AccessTokenBuilder
         return AccessToken::wrap($resp);
     }
 
-    public static function parse($accessTokenStr)
+    public static function parse($accessTokenStr): AccessToken
     {
         $tokenData = new \DouDianSdk\Api\Token\Data\CreateTokenData();
         $tokenData->access_token = $accessTokenStr;
