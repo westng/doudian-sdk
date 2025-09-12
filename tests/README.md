@@ -91,12 +91,14 @@ composer test-coverage
 **目的**: 测试单个类或方法的功能
 
 **特点**:
+
 - 快速执行
 - 不依赖外部服务
 - 使用 Mock 对象
 - 测试边界条件
 
 **示例**:
+
 ```php
 public function testSdkInitialization(): void
 {
@@ -113,12 +115,14 @@ public function testSdkInitialization(): void
 **目的**: 测试与真实 API 的集成
 
 **特点**:
+
 - 需要真实的环境变量
 - 可能调用真实 API
 - 测试完整的业务流程
 - 需要网络连接
 
 **环境变量配置**:
+
 ```bash
 export DOUDIAN_APP_KEY="your_real_app_key"
 export DOUDIAN_APP_SECRET="your_real_app_secret"
@@ -132,12 +136,14 @@ export DOUDIAN_SHOP_ID="your_real_shop_id"
 **目的**: 展示 SDK 的各种使用场景
 
 **特点**:
+
 - 不执行真实断言
 - 输出演示信息
 - 展示最佳实践
 - 提供使用示例
 
 **演示内容**:
+
 - 基本 SDK 使用
 - 访问令牌获取
 - API 调用示例
@@ -156,23 +162,23 @@ export DOUDIAN_SHOP_ID="your_real_shop_id"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          colors="true">
-    
+
     <testsuites>
         <testsuite name="Unit">
             <directory>tests/Core</directory>
             <directory>tests/Http</directory>
             <directory>tests/Utils</directory>
         </testsuite>
-        
+
         <testsuite name="Integration">
             <directory>tests/Integration</directory>
         </testsuite>
-        
+
         <testsuite name="Demo">
             <directory>tests/Demo</directory>
         </testsuite>
     </testsuites>
-    
+
     <php>
         <env name="APP_ENV" value="testing"/>
     </php>
@@ -202,11 +208,13 @@ DOUDIAN_TEST_MODE=true
 **位置**: `tests/data/`
 
 **文件说明**:
+
 - `sample_api_response.json`: 正常 API 响应示例
 - `error_api_response.json`: 错误 API 响应示例
 - `after_sale_list_response.json`: 售后列表 API 响应
 
 **使用示例**:
+
 ```php
 public function testApiResponse(): void
 {
@@ -325,10 +333,10 @@ public function testMethodName(): void
     // Arrange - 准备测试数据
     $sdk = new DouDianSdk('key', 'secret');
     $expectedToken = 'mock_token';
-    
+
     // Act - 执行被测试的方法
     $result = $sdk->getAccessToken('shop_id');
-    
+
     // Assert - 验证结果
     $this->assertEquals($expectedToken, $result->getAccessToken());
 }
@@ -353,6 +361,7 @@ public function testMethodName(): void
 **问题**: 测试失败但代码看起来正确
 
 **解决方案**:
+
 - 检查环境变量设置
 - 验证 Mock 对象配置
 - 查看详细的错误信息
@@ -362,6 +371,7 @@ public function testMethodName(): void
 **问题**: 集成测试执行时间过长
 
 **解决方案**:
+
 - 检查网络连接
 - 使用测试专用的 API 环境
 - 设置合理的超时时间
@@ -371,6 +381,7 @@ public function testMethodName(): void
 **问题**: Mock 对象没有按预期工作
 
 **解决方案**:
+
 - 检查 Mock 对象的方法签名
 - 确保调用了正确的方法
 - 验证 Mock 对象的配置
