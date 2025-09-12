@@ -1,16 +1,21 @@
 <?php
 
 declare(strict_types=1);
+
 /**
- * This file is part of MineAdmin.
+ * This file is part of DouDian-SDK
  *
- * @link     https://www.mineadmin.com
- * @document https://doc.mineadmin.com
- * @contact  root@imoi.cn
- * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
  */
 
-namespace DouDianSdk\Core;
+namespace DouDianSdk\Core\Token;
+
+// 访问令牌类型常量
+const ACCESS_TOKEN_CODE    = 1;
+const ACCESS_TOKEN_SHOP_ID = 2;
 
 use DouDianSdk\Api\token\CreateTokenRequest;
 use DouDianSdk\Api\token\data\CreateTokenData;
@@ -23,14 +28,15 @@ class AccessTokenBuilder
     public static function build($codeOrShopId, $type = ACCESS_TOKEN_CODE)
     {
         $request = new CreateTokenRequest();
-        $param = new CreateTokenParam();
-        if ($type == ACCESS_TOKEN_SHOP_ID) {
-            $param->shop_id = $codeOrShopId;
+        $param   = new CreateTokenParam();
+
+        if (ACCESS_TOKEN_SHOP_ID == $type) {
+            $param->shop_id    = $codeOrShopId;
             $param->grant_type = 'authorization_self';
-            $param->code = '';
-        } elseif ($type == ACCESS_TOKEN_CODE) {
+            $param->code       = '';
+        } elseif (ACCESS_TOKEN_CODE == $type) {
             $param->grant_type = 'authorization_code';
-            $param->code = $codeOrShopId;
+            $param->code       = $codeOrShopId;
         }
         $request->setParam($param);
         $resp = $request->execute(null);
@@ -40,9 +46,10 @@ class AccessTokenBuilder
 
     public static function refresh($token)
     {
-        $request = new RefreshTokenRequest();
-        $param = new RefreshTokenParam();
+        $request           = new RefreshTokenRequest();
+        $param             = new RefreshTokenParam();
         $param->grant_type = 'refresh_token';
+
         if (is_string($token)) {
             $param->refresh_token = $token;
         } else {
@@ -51,18 +58,17 @@ class AccessTokenBuilder
         $request->setParam($param);
 
         $resp = $request->execute(null);
+
         return AccessToken::wrap($resp);
     }
 
     public static function parse($accessTokenStr)
     {
-        $tokenData = new CreateTokenData();
+        $tokenData               = new CreateTokenData();
         $tokenData->access_token = $accessTokenStr;
-        $accessToken = new AccessToken();
+        $accessToken             = new AccessToken();
         $accessToken->setData($tokenData);
+
         return $accessToken;
     }
 }
-
-const ACCESS_TOKEN_CODE = 1;
-const ACCESS_TOKEN_SHOP_ID = 2;

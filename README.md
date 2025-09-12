@@ -1,93 +1,145 @@
-# doudian-sdk
+# 抖店 SDK
 
-抖店 SDK
+[![PHP Version](https://img.shields.io/badge/php-%3E%3D7.0-blue.svg)](https://php.net)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-适配版本1.1.0-20241014101848
+抖店（抖音电商）开放平台 PHP SDK，支持 710+ 个 API 接口。
 
+## 特性
 
-# 调用示例
-```php
-// 引入核心
-use DouDianSdk\Core\AccessTokenBuilder;
-use DouDianSdk\Core\GlobalConfig;
+- 🚀 **完整的 API 覆盖**: 支持 710+个抖店开放平台接口
+- 🔒 **安全的签名机制**: 内置 HMAC-SHA256 签名算法
+- ⚡ **高性能**: 基于 GuzzleHttp 实现
+- 🛡️ **异常处理**: 完善的错误处理机制
+- 📦 **易于使用**: 简洁的 API 设计
 
-// 初始化配置
-$globalConfig = GlobalConfig::getGlobalConfig();
-$globalConfig->appKey = 'xxxxx';
-$globalConfig->appSecret = 'xxxxx';
+## 安装
 
-// 获取Token
-$accessToken = AccessTokenBuilder::build('店铺ID', 2);
-// 刷新Token
-$accessToken = AccessTokenBuilder::refresh('refresh_token');
-
-// 调用接口
-/**
- * 发送请求并获取响应结果
- *
- * @param object $request 请求类实例，表示要发送的请求。
- * @param object $param 参数类实例，表示请求的参数。
- * @param array $paramData 请求参数数组，包含实际的请求数据（如 `shop_id` 等）。
- * 
- * @return array 解码后的响应结果数组，包含从抖店 API 获取的响应数据。
- * 
- * @throws \InvalidArgumentException 如果 `shop_id` 参数缺失或无效。
- * @throws \RuntimeException 如果获取 Token 失败或 API 请求失败。
- */
-public function sendRequest(
-    object $request,    // 请求对象
-    object $param,      // 参数对象
-    array $paramData    // 请求数据数组
-): array {
-    // 获取Token方法
-    $TOKEN = null;
-
-    // 动态设置请求参数，忽略值为 null 的参数
-    foreach ($paramData as $key => $value) {
-        if ($value !== null) { // 只处理非 null 参数
-            $param->{$key} = $value;
-        }
-    }
-
-    if (empty($token)) {
-        throw new \RuntimeException('获取 Token 失败');
-    }
-
-    $request->setParam($param);
-
-    // 执行请求并获取响应
-    $response = $request->execute($TOKEN);
-
-    // 错误处理：假设响应中有状态码字段进行验证
-    if (isset($response->status) && $response->status !== 200) {
-        // 如果返回的状态码不是 200，抛出异常
-        throw new \RuntimeException('API 请求失败，错误码：' . $response->status);
-    }
-
-    // 将响应从 stdClass 转换为数组并返回
-    return (array) $response;
-}
-
-
-// 业务请求
-/**
- * 发送请求并获取响应结果
- *
- * 该方法用于构建请求，并通过调用 `sendRequest` 方法来发送请求和获取响应。
- *
- * @param array $paramData 请求参数，包含所需的所有 API 参数。
- * 
- * @return array 解码后的响应结果数组，包含从抖店 API 返回的数据。
- */
-public function send(array $paramData): array
-{
-  // 创建请求对象和参数对象
-  $request = new DouDianSdk\Api\afterSale_List\AfterSaleListRequest();
-  $param = new DouDianSdk\Api\afterSale_List\param\AfterSaleListParam();
-
-  // 通过调用 sendRequest 方法来发送请求，并返回响应结果
-  return $this->sendRequest($request, $param, $paramData);
-}
+```bash
+composer require westng/doudian-sdk
 ```
 
-# 应该是这样用的
+## 快速开始
+
+```php
+<?php
+use DouDianSdk\Core\Client\DouDianSdk;
+
+// 初始化SDK
+$sdk = new DouDianSdk('your_app_key', 'your_app_secret');
+
+// 获取访问令牌
+$accessToken = $sdk->getAccessToken('your_shop_id', ACCESS_TOKEN_SHOP_ID);
+
+// 调用API
+$result = $sdk->callApi(
+    'afterSale_List\AfterSaleListRequest',
+    'afterSale_List\param\AfterSaleListParam',
+    [
+        'page' => 1,
+        'size' => 20,
+        'start_time' => '2024-01-01 00:00:00',
+        'end_time' => '2024-01-31 23:59:59'
+    ],
+    $accessToken
+);
+
+print_r($result);
+```
+
+## 项目结构
+
+```
+src/
+├── Api/                         # API 接口类 (710+ 个接口)
+├── Core/                        # 核心功能模块
+│   ├── Client/                  # 客户端相关类
+│   ├── Config/                  # 配置管理类
+│   ├── Token/                   # 访问令牌管理
+│   ├── Response/                # 响应处理
+│   ├── Exception/               # 异常处理
+│   ├── Http/                    # HTTP 客户端
+│   ├── Logger/                  # 日志记录
+│   └── Validator/               # 参数验证
+└── Utils/                       # 工具类
+```
+
+## 开发
+
+### 安装开发依赖
+
+```bash
+composer install --dev
+```
+
+### 运行测试
+
+```bash
+composer test
+```
+
+### 代码风格检查
+
+```bash
+composer cs-fixer-check
+composer cs-fixer-fix
+```
+
+### 静态分析
+
+```bash
+composer phpstan
+```
+
+## 支持的 API 模块
+
+- **订单管理**: 订单查询、物流管理、售后服务等
+- **商品管理**: 商品发布、库存管理、价格设置等
+- **店铺管理**: 店铺信息、资质管理等
+- **营销工具**: 优惠券、满减活动等
+- **数据统计**: 销售数据、流量分析等
+- **更多模块**: 查看 `src/Api/` 目录了解完整列表
+
+## 更新日志
+
+### v1.3.0 (2024-12-19)
+
+- 🗂️ **目录结构优化**: 重新组织 Core 目录结构，按功能模块分类
+- 🔧 **命名空间重构**: 更新所有相关类的命名空间，提高代码组织性
+- 📚 **文档更新**: 更新 README 文档以反映新的目录结构
+- 🧹 **清理冗余文件**: 删除不必要的开发脚本文件
+
+### v1.2.0 (2024-10-14)
+
+- 🎨 **新增 PHP CS Fixer 支持**: 提供更强大的代码风格检查和自动修复功能
+- 🧹 **代码结构优化**: 删除冗余的 SPI 相关类，统一响应处理
+- 🔧 **统一单例模式**: 使用 SingletonTrait 统一所有单例类的实现
+
+### v1.1.0 (2024-10-14)
+
+- ✨ 新增完整的异常处理体系
+- ✨ 新增自动重试机制
+- ✨ 新增完善的日志记录功能
+- 🔄 **重构 HTTP 客户端**: 使用 GuzzleHttp 替代 cURL
+- ✨ 新增便捷的 SDK 入口类
+- 🧪 **新增完整的测试套件**
+
+### v1.0.0 (初始版本)
+
+- 🎉 初始版本发布
+- 📦 支持 710+ 个抖店开放平台 API
+- 🔒 完整的签名和认证机制
+
+## 许可证
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request 来改进这个项目。
+
+## 联系方式
+
+- 项目地址: [https://github.com/westng/doudian-sdk](https://github.com/westng/doudian-sdk)
+- 问题反馈: [Issues](https://github.com/westng/doudian-sdk/issues)
+- 邮箱: 457395070@qq.com

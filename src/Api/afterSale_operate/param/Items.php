@@ -1,22 +1,30 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\afterSale_operate\param;
 
-//auto generated code
+// auto generated code
 class Items
 {
+    public $aftersale_id;
 
-	public $aftersale_id;
+    public $reason;
 
-	public $reason;
+    public $remark;
 
-	public $remark;
+    public $evidence;
 
-	public $evidence;
+    public $logistics;
 
-	public $logistics;
+    public $reject_reason_code;
 
-	public $reject_reason_code;
-
-	public $update_time;
-
+    public $update_time;
 }

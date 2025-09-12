@@ -1,19 +1,55 @@
 {
     "name": "westng/doudian-sdk",
     "type": "library",
+    "description": "抖店（抖音电商）开放平台 PHP SDK",
+    "keywords": [
+        "doudian",
+        "douyin",
+        "ecommerce",
+        "sdk",
+        "api"
+    ],
     "authors": [
         {
             "name": "westng",
             "email": "457395070@qq.com"
         }
     ],
-    "license": "Apache-2.0",
+    "license": "MIT",
     "require": {
-        "php": ">=7.0.0"
+        "php": ">=7.0.0",
+        "guzzlehttp/guzzle": "^6.0|^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0|^7.0|^8.0|^9.0",
+        "phpstan/phpstan": "^0.12.0",
+        "squizlabs/php_codesniffer": "^3.0",
+        "friendsofphp/php-cs-fixer": "^2.19|^3.0"
     },
     "autoload": {
         "psr-4": {
             "DouDianSdk\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DouDianSdk\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit --testsuite=Unit Tests --testsuite=Demo Tests",
+        "test-unit": "phpunit --testsuite=Unit Tests",
+        "test-integration": "phpunit --testsuite=Integration Tests",
+        "test-demo": "phpunit --testsuite=Demo Tests",
+        "test-all": "phpunit --testsuite=All Tests",
+        "test-coverage": "phpunit --coverage-html coverage --testsuite=Unit Tests",
+        "phpstan": "phpstan analyse src tests",
+        "cs-check": "phpcs src tests",
+        "cs-fix": "phpcbf src tests",
+        "cs-fixer-check": "php-cs-fixer fix --dry-run --diff",
+        "cs-fixer-fix": "php-cs-fixer fix"
+    },
+    "config": {
+        "sort-packages": true
     }
 }

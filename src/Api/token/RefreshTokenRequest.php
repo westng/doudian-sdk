@@ -1,10 +1,19 @@
 <?php
 
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\token;
 
 class RefreshTokenRequest
 {
-    //通用变量
+    // 通用变量
     private $param;
 
     private $config;
@@ -19,10 +28,10 @@ class RefreshTokenRequest
         $this->param = $param;
     }
 
-    //通用方法
+    // 通用方法
     public function getUrlPath()
     {
-        return "/token/refresh";
+        return '/token/refresh';
     }
 
     public function setConfig($config)
@@ -37,12 +46,12 @@ class RefreshTokenRequest
 
     public function execute($accessToken)
     {
-        return \DouDianSdk\Core\DouDianOpClient::getInstance()->request($this, $accessToken);
+        return \DouDianSdk\Core\Client\DouDianOpClient::getInstance()->request($this, $accessToken);
     }
 
     public function __construct()
     {
-        $this->config = \DouDianSdk\Core\GlobalConfig::getGlobalConfig();
-        $this->param = new \DouDianSdk\Api\token\param\CreateTokenParam();
+        $this->config = \DouDianSdk\Core\Config\GlobalConfig::getGlobalConfig();
+        $this->param  = new param\CreateTokenParam();
     }
 }

@@ -1,30 +1,38 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\sms_sendResult\param;
 
-//auto generated code
+// auto generated code
 class SmsSendResultParam
 {
+    public $from_time;
 
-	public $from_time;
+    public $to_time;
 
-	public $to_time;
+    public $sms_account;
 
-	public $sms_account;
+    public $template_id;
 
-	public $template_id;
+    public $status;
 
-	public $status;
+    public $size;
 
-	public $size;
+    public $page;
 
-	public $page;
+    public $sign;
 
-	public $sign;
+    public $post_tel;
 
-	public $post_tel;
+    public $message_id;
 
-	public $message_id;
-
-	public $tpl_type;
-
+    public $tpl_type;
 }

@@ -1,47 +1,55 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\logistics_trackNoRouteDetail;
 
-//auto generated code
+// auto generated code
 class LogisticsTrackNoRouteDetailRequest
 {
+    private $param;
 
-	private $param;
+    private $config;
 
-	private $config;
+    public function setParam($param)
+    {
+        $this->param = $param;
+    }
 
+    public function getParam()
+    {
+        return $this->param;
+    }
 
-	public function setParam($param)
-	{
-		$this->param = $param;
-	}
+    public function setConfig($config)
+    {
+        $this->config = $config;
+    }
 
-	public function getParam()
-	{
-		return $this->param;
-	}
+    public function getConfig()
+    {
+        return $this->config;
+    }
 
-	public function setConfig($config)
-	{
-		$this->config = $config;
-	}
+    public function getUrlPath()
+    {
+        return '/logistics/trackNoRouteDetail';
+    }
 
-	public function getConfig()
-	{
-		return $this->config;
-	}
+    public function execute($accessToken)
+    {
+        return \DouDianSdk\Core\Client\DouDianOpClient::getInstance()->request($this, $accessToken);
+    }
 
-	public function getUrlPath()
-	{
-		return "/logistics/trackNoRouteDetail";
-	}
-
-	public function execute($accessToken)
-	{
-		return \DouDianSdk\Core\DouDianOpClient::getInstance()->request($this, $accessToken);
-	}
-
-	public function __construct()
-	{
-		$this->config = \DouDianSdk\Core\GlobalConfig::getGlobalConfig();
-	}
+    public function __construct()
+    {
+        $this->config = \DouDianSdk\Core\Config\GlobalConfig::getGlobalConfig();
+    }
 }

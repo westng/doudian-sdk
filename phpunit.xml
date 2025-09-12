@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Unit Tests">
+            <directory>tests/Core</directory>
+            <directory>tests/Http</directory>
+            <directory>tests/Utils</directory>
+        </testsuite>
+        
+        <testsuite name="Integration Tests">
+            <directory>tests/Integration</directory>
+        </testsuite>
+        
+        <testsuite name="Demo Tests">
+            <directory>tests/Demo</directory>
+        </testsuite>
+        
+        <testsuite name="All Tests">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="DOUDIAN_INTEGRATION_TEST" value="false"/>
+    </php>
+
+    <logging>
+        <log type="coverage-html" target="coverage"/>
+        <log type="coverage-clover" target="coverage.xml"/>
+    </logging>
+</phpunit>

@@ -1,14 +1,22 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\product_editV2\param;
 
-//auto generated code
+// auto generated code
 class MultiTimeStocks
 {
+    public $stock_num;
 
-	public $stock_num;
+    public $time_desc;
 
-	public $time_desc;
-
-	public $time_type;
-
+    public $time_type;
 }

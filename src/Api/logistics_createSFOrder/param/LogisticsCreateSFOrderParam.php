@@ -1,42 +1,50 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\logistics_createSFOrder\param;
 
-//auto generated code
+// auto generated code
 class LogisticsCreateSFOrderParam
 {
+    public $order_id;
 
-	public $order_id;
+    public $pack_id;
 
-	public $pack_id;
+    public $cargo_details;
 
-	public $cargo_details;
+    public $service_list;
 
-	public $service_list;
+    public $contact_info_list;
 
-	public $contact_info_list;
+    public $pay_method;
 
-	public $pay_method;
+    public $express_type_id;
 
-	public $express_type_id;
+    public $parcel_qty;
 
-	public $parcel_qty;
+    public $total_weight;
 
-	public $total_weight;
+    public $is_sign_back;
 
-	public $is_sign_back;
+    public $remark;
 
-	public $remark;
+    public $total_length;
 
-	public $total_length;
+    public $total_width;
 
-	public $total_width;
+    public $total_height;
 
-	public $total_height;
+    public $volume;
 
-	public $volume;
+    public $user_id;
 
-	public $user_id;
-
-	public $order_channel;
-
+    public $order_channel;
 }

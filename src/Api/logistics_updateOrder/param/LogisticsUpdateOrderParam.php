@@ -1,30 +1,38 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\logistics_updateOrder\param;
 
-//auto generated code
+// auto generated code
 class LogisticsUpdateOrderParam
 {
+    public $sender_info;
 
-	public $sender_info;
+    public $receiver_info;
 
-	public $receiver_info;
+    public $logistics_code;
 
-	public $logistics_code;
+    public $track_no;
 
-	public $track_no;
+    public $items;
 
-	public $items;
+    public $remark;
 
-	public $remark;
+    public $extra;
 
-	public $extra;
+    public $user_id;
 
-	public $user_id;
+    public $volume;
 
-	public $volume;
+    public $weight;
 
-	public $weight;
-
-	public $warehouse;
-
+    public $warehouse;
 }

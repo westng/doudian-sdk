@@ -1,24 +1,32 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\warehouse_list\param;
 
-//auto generated code
+// auto generated code
 class WarehouseListParam
 {
+    public $out_warehouse_id;
 
-	public $out_warehouse_id;
+    public $warehouse_name;
 
-	public $warehouse_name;
+    public $addr;
 
-	public $addr;
+    public $out_warehouse_ids;
 
-	public $out_warehouse_ids;
+    public $order_by;
 
-	public $order_by;
+    public $rank;
 
-	public $rank;
+    public $page;
 
-	public $page;
-
-	public $size;
-
+    public $size;
 }

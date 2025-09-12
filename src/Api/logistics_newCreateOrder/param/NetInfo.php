@@ -1,16 +1,24 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\logistics_newCreateOrder\param;
 
-//auto generated code
+// auto generated code
 class NetInfo
 {
+    public $category;
 
-	public $category;
+    public $net_code;
 
-	public $net_code;
+    public $monthly_account;
 
-	public $monthly_account;
-
-	public $secret_key;
-
+    public $secret_key;
 }

@@ -1,30 +1,38 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\product_editV2\param;
 
-//auto generated code
+// auto generated code
 class CustomsReportInfo
 {
+    public $bar_code;
 
-	public $bar_code;
+    public $g_model;
 
-	public $g_model;
+    public $usage;
 
-	public $usage;
+    public $report_brand_name;
 
-	public $report_brand_name;
+    public $report_name;
 
-	public $report_name;
+    public $unit;
 
-	public $unit;
+    public $second_measure_unit;
 
-	public $second_measure_unit;
+    public $first_measure_unit;
 
-	public $first_measure_unit;
+    public $second_measure_qty;
 
-	public $second_measure_qty;
+    public $first_measure_qty;
 
-	public $first_measure_qty;
-
-	public $hs_code;
-
+    public $hs_code;
 }

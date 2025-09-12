@@ -1,12 +1,20 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\order_updateOrderAmount\param;
 
-//auto generated code
+// auto generated code
 class UpdateDetail
 {
+    public $order_id;
 
-	public $order_id;
-
-	public $discount_amount;
-
+    public $discount_amount;
 }

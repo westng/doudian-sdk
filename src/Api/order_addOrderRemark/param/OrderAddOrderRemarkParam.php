@@ -1,16 +1,24 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\order_addOrderRemark\param;
 
-//auto generated code
+// auto generated code
 class OrderAddOrderRemarkParam
 {
+    public $order_id;
 
-	public $order_id;
+    public $remark;
 
-	public $remark;
+    public $is_add_star;
 
-	public $is_add_star;
-
-	public $star;
-
+    public $star;
 }

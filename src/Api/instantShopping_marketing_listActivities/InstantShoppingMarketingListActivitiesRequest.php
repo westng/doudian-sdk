@@ -1,14 +1,22 @@
 <?php
 
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\instantShopping_marketing_listActivities;
 
-//auto generated code
+// auto generated code
 class InstantShoppingMarketingListActivitiesRequest
 {
     private $param;
 
     private $config;
-
 
     public function setParam($param)
     {
@@ -32,16 +40,16 @@ class InstantShoppingMarketingListActivitiesRequest
 
     public function getUrlPath()
     {
-        return "/instantShopping/marketing/listActivities";
+        return '/instantShopping/marketing/listActivities';
     }
 
     public function execute($accessToken)
     {
-        return \DouDianSdk\Core\DouDianOpClient::getInstance()->request($this, $accessToken);
+        return \DouDianSdk\Core\Client\DouDianOpClient::getInstance()->request($this, $accessToken);
     }
 
     public function __construct()
     {
-        $this->config = \DouDianSdk\Core\GlobalConfig::getGlobalConfig();
+        $this->config = \DouDianSdk\Core\Config\GlobalConfig::getGlobalConfig();
     }
 }

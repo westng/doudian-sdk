@@ -1,6 +1,15 @@
 <?php
 
-namespace DouDianSdk\Core;
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
+namespace DouDianSdk\Core\Token;
 
 class AccessToken
 {
@@ -15,74 +24,84 @@ class AccessToken
     public static function wrap($resp): AccessToken
     {
         $accessToken = new AccessToken();
-        if (property_exists($resp, "err_no")) {
+
+        if (property_exists($resp, 'err_no')) {
             $accessToken->setErrNo($resp->err_no);
         }
-        if (property_exists($resp, "message")) {
+
+        if (property_exists($resp, 'message')) {
             $accessToken->setMessage($resp->message);
         }
-        if (property_exists($resp, "log_id")) {
+
+        if (property_exists($resp, 'log_id')) {
             $accessToken->setLogId($resp->log_id);
         }
-        if (property_exists($resp, "data")) {
+
+        if (property_exists($resp, 'data')) {
             $accessToken->setData($resp->data);
         }
+
         return $accessToken;
     }
 
     public function isSuccess(): bool
     {
-        return $this->errNo == 0;
+        return 0 == $this->errNo;
     }
 
     public function getAccessToken()
     {
-        if ($this->data != null && property_exists($this->data, "access_token")) {
+        if (null != $this->data && property_exists($this->data, 'access_token')) {
             return $this->data->access_token;
         }
+
         return null;
     }
 
     public function getExpireIn()
     {
-        if ($this->data != null && property_exists($this->data, "expires_in")) {
+        if (null != $this->data && property_exists($this->data, 'expires_in')) {
             return $this->data->expires_in;
         }
+
         return null;
     }
 
     public function getRefreshToken()
     {
-        if ($this->data != null && property_exists($this->data, "refresh_token")) {
+        if (null != $this->data && property_exists($this->data, 'refresh_token')) {
             return $this->data->refresh_token;
         }
+
         return null;
     }
 
     public function getScope()
     {
-        if ($this->data != null && property_exists($this->data, "scope")) {
+        if (null != $this->data && property_exists($this->data, 'scope')) {
             return $this->data->scope;
         }
+
         return null;
     }
 
     public function getShopId()
     {
-        if ($this->data != null && property_exists($this->data, "shop_id")) {
+        if (null != $this->data && property_exists($this->data, 'shop_id')) {
             return $this->data->shop_id;
         }
+
         return null;
     }
 
     public function getShopName()
     {
-        if ($this->data != null && property_exists($this->data, "shop_name")) {
+        if (null != $this->data && property_exists($this->data, 'shop_name')) {
             return $this->data->shop_name;
         }
+
         return null;
     }
-
 
     public function getErrNo()
     {
@@ -123,5 +142,4 @@ class AccessToken
     {
         return $this->data;
     }
-
 }

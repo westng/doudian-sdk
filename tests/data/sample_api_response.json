@@ -1,0 +1,13 @@
+{
+  "err_no": 0,
+  "message": "success",
+  "log_id": "20241014123456789",
+  "data": {
+    "access_token": "test_access_token_123456",
+    "expires_in": 7200,
+    "refresh_token": "test_refresh_token_123456",
+    "scope": "user_info,shop_info",
+    "shop_id": "123456789",
+    "shop_name": "测试店铺"
+  }
+}

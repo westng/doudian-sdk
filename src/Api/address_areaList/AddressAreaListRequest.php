@@ -1,14 +1,22 @@
 <?php
 
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\address_areaList;
 
-//auto generated code
+// auto generated code
 class AddressAreaListRequest
 {
     private $param;
 
     private $config;
-
 
     public function setParam($param)
     {
@@ -32,16 +40,16 @@ class AddressAreaListRequest
 
     public function getUrlPath()
     {
-        return "/address/areaList";
+        return '/address/areaList';
     }
 
     public function execute($accessToken)
     {
-        return \DouDianSdk\Core\DouDianOpClient::getInstance()->request($this, $accessToken);
+        return \DouDianSdk\Core\Client\DouDianOpClient::getInstance()->request($this, $accessToken);
     }
 
     public function __construct()
     {
-        $this->config = \DouDianSdk\Core\GlobalConfig::getGlobalConfig();
+        $this->config = \DouDianSdk\Core\Config\GlobalConfig::getGlobalConfig();
     }
 }

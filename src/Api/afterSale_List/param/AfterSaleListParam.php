@@ -1,64 +1,72 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\afterSale_List\param;
 
-//auto generated code
+// auto generated code
 class AfterSaleListParam
 {
+    public $order_id;
 
-	public $order_id;
+    public $aftersale_type;
 
-	public $aftersale_type;
+    public $aftersale_status;
 
-	public $aftersale_status;
+    public $reason;
 
-	public $reason;
+    public $logistics_status;
 
-	public $logistics_status;
+    public $pay_type;
 
-	public $pay_type;
+    public $refund_type;
 
-	public $refund_type;
+    public $arbitrate_status;
 
-	public $arbitrate_status;
+    public $order_flag;
 
-	public $order_flag;
+    public $start_time;
 
-	public $start_time;
+    public $end_time;
 
-	public $end_time;
+    public $amount_start;
 
-	public $amount_start;
+    public $amount_end;
 
-	public $amount_end;
+    public $risk_flag;
 
-	public $risk_flag;
+    public $order_by;
 
-	public $order_by;
+    public $page;
 
-	public $page;
+    public $size;
 
-	public $size;
+    public $aftersale_id;
 
-	public $aftersale_id;
+    public $standard_aftersale_status;
 
-	public $standard_aftersale_status;
+    public $need_special_type;
 
-	public $need_special_type;
+    public $update_start_time;
 
-	public $update_start_time;
+    public $update_end_time;
 
-	public $update_end_time;
+    public $order_logistics_tracking_no;
 
-	public $order_logistics_tracking_no;
+    public $order_logistics_state;
 
-	public $order_logistics_state;
+    public $agree_refuse_sign;
 
-	public $agree_refuse_sign;
+    public $aftersale_sub_type;
 
-	public $aftersale_sub_type;
+    public $aftersale_status_to_final_start_time;
 
-	public $aftersale_status_to_final_start_time;
-
-	public $aftersale_status_to_final_end_time;
-
+    public $aftersale_status_to_final_end_time;
 }

@@ -1,26 +1,34 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\order_getServiceList\param;
 
-//auto generated code
+// auto generated code
 class OrderGetServiceListParam
 {
+    public $start_time;
 
-	public $start_time;
+    public $end_time;
 
-	public $end_time;
+    public $status;
 
-	public $status;
+    public $order_id;
 
-	public $order_id;
+    public $service_id;
 
-	public $service_id;
+    public $order_by;
 
-	public $order_by;
+    public $page;
 
-	public $page;
+    public $size;
 
-	public $size;
-
-	public $order;
-
+    public $order;
 }

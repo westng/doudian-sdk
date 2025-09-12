@@ -1,28 +1,36 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\address_create\param;
 
-//auto generated code
+// auto generated code
 class Address
 {
+    public $user_name;
 
-	public $user_name;
+    public $mobile;
 
-	public $mobile;
+    public $province_id;
 
-	public $province_id;
+    public $city_id;
 
-	public $city_id;
+    public $town_id;
 
-	public $town_id;
+    public $detail;
 
-	public $detail;
+    public $street_id;
 
-	public $street_id;
+    public $link_type;
 
-	public $link_type;
+    public $fixed_phone;
 
-	public $fixed_phone;
-
-	public $remark;
-
+    public $remark;
 }

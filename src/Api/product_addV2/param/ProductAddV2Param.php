@@ -1,172 +1,180 @@
 <?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
 namespace DouDianSdk\Api\product_addV2\param;
 
-//auto generated code
+// auto generated code
 class ProductAddV2Param
 {
+    public $outer_product_id;
 
-	public $outer_product_id;
+    public $product_type;
 
-	public $product_type;
+    public $category_leaf_id;
 
-	public $category_leaf_id;
+    public $name;
 
-	public $name;
+    public $recommend_remark;
 
-	public $recommend_remark;
+    public $pic;
 
-	public $pic;
+    public $description;
 
-	public $description;
+    public $pay_type;
 
-	public $pay_type;
+    public $delivery_method;
 
-	public $delivery_method;
+    public $cdf_category;
 
-	public $cdf_category;
+    public $reduce_type;
 
-	public $reduce_type;
+    public $assoc_ids;
 
-	public $assoc_ids;
+    public $freight_id;
 
-	public $freight_id;
+    public $weight;
 
-	public $weight;
+    public $weight_unit;
 
-	public $weight_unit;
+    public $delivery_delay_day;
 
-	public $delivery_delay_day;
+    public $presell_type;
 
-	public $presell_type;
+    public $presell_delay;
 
-	public $presell_delay;
+    public $presell_end_time;
 
-	public $presell_end_time;
+    public $supply_7day_return;
 
-	public $supply_7day_return;
+    public $mobile;
 
-	public $mobile;
+    public $commit;
 
-	public $commit;
+    public $remark;
 
-	public $remark;
+    public $out_product_id;
 
-	public $out_product_id;
+    public $quality_list;
 
-	public $quality_list;
+    public $spec_name;
 
-	public $spec_name;
+    public $specs;
 
-	public $specs;
+    public $spec_prices;
 
-	public $spec_prices;
+    public $spec_pic;
 
-	public $spec_pic;
+    public $maximum_per_order;
 
-	public $maximum_per_order;
+    public $limit_per_buyer;
 
-	public $limit_per_buyer;
+    public $minimum_per_order;
 
-	public $minimum_per_order;
+    public $product_format_new;
 
-	public $product_format_new;
+    public $spu_id;
 
-	public $spu_id;
+    public $appoint_delivery_day;
 
-	public $appoint_delivery_day;
+    public $third_url;
 
-	public $third_url;
+    public $extra;
 
-	public $extra;
+    public $src;
 
-	public $src;
+    public $standard_brand_id;
 
-	public $standard_brand_id;
+    public $need_check_out;
 
-	public $need_check_out;
+    public $poi_resource;
 
-	public $poi_resource;
+    public $car_vin_code;
 
-	public $car_vin_code;
+    public $presell_config_level;
 
-	public $presell_config_level;
+    public $need_recharge_mode;
 
-	public $need_recharge_mode;
+    public $account_template_id;
 
-	public $account_template_id;
+    public $presell_delivery_type;
 
-	public $presell_delivery_type;
+    public $white_back_ground_pic_url;
 
-	public $white_back_ground_pic_url;
+    public $long_pic_url;
 
-	public $long_pic_url;
+    public $after_sale_service;
 
-	public $after_sale_service;
+    public $sell_channel;
 
-	public $sell_channel;
+    public $start_sale_type;
 
-	public $start_sale_type;
+    public $delay_rule;
 
-	public $delay_rule;
+    public $material_video_id;
 
-	public $material_video_id;
+    public $pickup_method;
 
-	public $pickup_method;
+    public $size_info_template_id;
 
-	public $size_info_template_id;
+    public $substitute_goods_url;
 
-	public $substitute_goods_url;
+    public $sale_channel_type;
 
-	public $sale_channel_type;
+    public $recruit_info;
 
-	public $recruit_info;
+    public $store_id;
 
-	public $store_id;
+    public $main_product_id;
 
-	public $main_product_id;
+    public $sale_limit_id;
 
-	public $sale_limit_id;
+    public $name_prefix;
 
-	public $name_prefix;
+    public $reference_price;
 
-	public $reference_price;
+    public $reference_price_certificate;
 
-	public $reference_price_certificate;
+    public $main_image_three_to_four;
 
-	public $main_image_three_to_four;
+    public $unit_price_info;
 
-	public $unit_price_info;
+    public $quality_inspection_info;
 
-	public $quality_inspection_info;
+    public $is_c2b_switch_on;
 
-	public $is_c2b_switch_on;
+    public $micro_app_id;
 
-	public $micro_app_id;
+    public $is_auto_charge;
 
-	public $is_auto_charge;
+    public $short_product_name;
 
-	public $short_product_name;
+    public $after_sale_service_v2;
 
-	public $after_sale_service_v2;
+    public $spec_info;
 
-	public $spec_info;
+    public $spec_prices_v2;
 
-	public $spec_prices_v2;
+    public $with_sku_type;
 
-	public $with_sku_type;
+    public $name_suffix;
 
-	public $name_suffix;
+    public $use_brand_name;
 
-	public $use_brand_name;
+    public $open_logistics_info;
 
-	public $open_logistics_info;
+    public $price_has_tax;
 
-	public $price_has_tax;
+    public $biz_kind;
 
-	public $biz_kind;
+    public $custom_property;
 
-	public $custom_property;
-
-	public $is_evaluate_opened;
-
+    public $is_evaluate_opened;
 }
