@@ -21,6 +21,8 @@ composer require westng/doudian-sdk
 
 ## 快速开始
 
+### 1. 基础用法
+
 ```php
 <?php
 use DouDianSdk\Core\Client\DouDianSdk;
@@ -45,6 +47,188 @@ $result = $sdk->callApi(
 );
 
 print_r($result);
+```
+
+### 2. 高级配置
+
+```php
+<?php
+use DouDianSdk\Core\Client\DouDianSdk;
+use DouDianSdk\Core\Logger\FileLogger;
+
+// 创建SDK实例
+$sdk = new DouDianSdk();
+
+// 设置应用凭证
+$sdk->setCredentials('your_app_key', 'your_app_secret');
+
+// 启用调试模式和日志记录
+$sdk->setDebug(true)
+    ->setLogger(new FileLogger('/path/to/logs/sdk.log'));
+
+// 设置HTTP客户端配置
+$sdk->setHttpConfig([
+    'timeout' => 30,
+    'connect_timeout' => 10,
+    'retry' => 3,
+    'retry_delay' => 1000
+]);
+
+// 获取访问令牌
+$accessToken = $sdk->getAccessToken('your_shop_id', ACCESS_TOKEN_SHOP_ID);
+
+// 调用API
+$result = $sdk->callApi(
+    'order_orderDetail\OrderOrderDetailRequest',
+    'order_orderDetail\param\OrderOrderDetailParam',
+    ['order_id' => '123456789'],
+    $accessToken
+);
+```
+
+### 3. 访问令牌管理
+
+```php
+<?php
+use DouDianSdk\Core\Token\AccessTokenBuilder;
+use DouDianSdk\Core\Token\ACCESS_TOKEN_CODE;
+use DouDianSdk\Core\Token\ACCESS_TOKEN_SHOP_ID;
+
+// 通过店铺ID获取访问令牌
+$accessToken = AccessTokenBuilder::build('your_shop_id', ACCESS_TOKEN_SHOP_ID);
+
+// 通过授权码获取访问令牌
+$accessToken = AccessTokenBuilder::build('authorization_code', ACCESS_TOKEN_CODE);
+
+// 检查令牌是否有效
+if ($accessToken->isSuccess()) {
+    echo "Token: " . $accessToken->getAccessToken();
+    echo "有效期: " . $accessToken->getExpireIn() . " 秒";
+} else {
+    echo "获取令牌失败: " . $accessToken->getErrMsg();
+}
+```
+
+### 4. 错误处理
+
+```php
+<?php
+use DouDianSdk\Core\Exception\DouDianException;
+use DouDianSdk\Core\Exception\ApiException;
+use DouDianSdk\Core\Exception\HttpException;
+
+try {
+    $result = $sdk->callApi($apiClass, $paramClass, $params, $accessToken);
+    
+    if ($result['code'] === 0) {
+        // 成功处理
+        $data = $result['data'];
+    } else {
+        // API 返回错误
+        echo "API 错误: " . $result['msg'];
+    }
+    
+} catch (HttpException $e) {
+    // HTTP 请求错误
+    echo "HTTP 错误: " . $e->getMessage();
+    
+} catch (ApiException $e) {
+    // API 调用错误
+    echo "API 错误: " . $e->getMessage();
+    
+} catch (DouDianException $e) {
+    // 其他 SDK 错误
+    echo "SDK 错误: " . $e->getMessage();
+}
+```
+
+### 5. 常用 API 示例
+
+#### 订单相关
+```php
+// 获取订单详情
+$result = $sdk->callApi(
+    'order_orderDetail\OrderOrderDetailRequest',
+    'order_orderDetail\param\OrderOrderDetailParam',
+    ['order_id' => '123456789'],
+    $accessToken
+);
+
+// 查询订单列表
+$result = $sdk->callApi(
+    'order_searchList\OrderSearchListRequest',
+    'order_searchList\param\OrderSearchListParam',
+    [
+        'page' => 1,
+        'size' => 20,
+        'start_time' => '2024-01-01 00:00:00',
+        'end_time' => '2024-01-31 23:59:59'
+    ],
+    $accessToken
+);
+```
+
+#### 商品相关
+```php
+// 获取商品详情
+$result = $sdk->callApi(
+    'product_detail\ProductDetailRequest',
+    'product_detail\param\ProductDetailParam',
+    ['product_id' => '123456789'],
+    $accessToken
+);
+
+// 查询商品列表
+$result = $sdk->callApi(
+    'product_listV2\ProductListV2Request',
+    'product_listV2\param\ProductListV2Param',
+    [
+        'page' => 1,
+        'size' => 20,
+        'status' => 1
+    ],
+    $accessToken
+);
+```
+
+#### 售后相关
+```php
+// 获取售后列表
+$result = $sdk->callApi(
+    'afterSale_List\AfterSaleListRequest',
+    'afterSale_List\param\AfterSaleListParam',
+    [
+        'page' => 1,
+        'size' => 20,
+        'start_time' => '2024-01-01 00:00:00',
+        'end_time' => '2024-01-31 23:59:59'
+    ],
+    $accessToken
+);
+```
+
+### 6. 传统用法（兼容旧版本）
+
+```php
+<?php
+use DouDianSdk\Core\Token\AccessTokenBuilder;
+use DouDianSdk\Core\Config\GlobalConfig;
+
+// 初始化配置
+$globalConfig = GlobalConfig::getGlobalConfig();
+$globalConfig->appKey = 'your_app_key';
+$globalConfig->appSecret = 'your_app_secret';
+
+// 获取访问令牌
+$accessToken = AccessTokenBuilder::build('your_shop_id', ACCESS_TOKEN_SHOP_ID);
+
+// 调用API（使用传统方式）
+$request = new \DouDianSdk\Api\afterSale_List\AfterSaleListRequest();
+$param = new \DouDianSdk\Api\afterSale_List\param\AfterSaleListParam();
+$param->page = 1;
+$param->size = 20;
+
+$result = $request->request($param, $accessToken);
 ```
 
 ## 项目结构
