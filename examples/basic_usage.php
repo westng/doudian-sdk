@@ -15,7 +15,6 @@ use DouDianSdk\Core\Client\DouDianSdk;
 use DouDianSdk\Core\Exception\ApiException;
 use DouDianSdk\Core\Exception\DouDianException;
 use DouDianSdk\Core\Exception\HttpException;
-use DouDianSdk\Core\Logger\FileLogger;
 
 // 配置信息（请替换为你的实际信息）
 $appKey    = 'your_app_key';
@@ -29,9 +28,8 @@ try {
     echo "1. 初始化SDK...\n";
     $sdk = new DouDianSdk($appKey, $appSecret);
 
-    // 启用调试模式和日志记录
-    $sdk->setDebug(true)
-        ->setLogger(new FileLogger(__DIR__ . '/logs/doudian-sdk.log'));
+    // 启用调试模式
+    $sdk->setDebug(true);
 
     echo "✓ SDK初始化完成\n\n";
 

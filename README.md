@@ -19,31 +19,49 @@
 composer require westng/doudian-sdk
 ```
 
+## SDK架构说明
+
+本SDK采用分层架构设计，主要组件：
+
+- **DouDianSdk** - 门面类，提供简化的API调用接口
+- **DouDianOpClient** - 操作客户端，负责处理API请求
+- **HttpClient** - HTTP通信层，基于GuzzleHttp
+- **GlobalConfig/DouDianOpConfig** - 配置管理，支持单例模式
+- **AccessTokenBuilder** - 令牌构建器，支持授权码和店铺ID两种模式
+- **Exception** - 完善的异常处理体系
+
 ## 快速开始
 
-### 1. 基础用法
+### 1. 基础用法（推荐）
 
 ```php
 <?php
+require_once 'vendor/autoload.php';
+
 use DouDianSdk\Core\Client\DouDianSdk;
 
 // 初始化SDK
 $sdk = new DouDianSdk('your_app_key', 'your_app_secret');
 
-// 获取访问令牌
-$accessToken = $sdk->getAccessToken('your_shop_id', ACCESS_TOKEN_SHOP_ID);
+// 获取访问令牌 (通过店铺ID)
+$accessToken = $sdk->getAccessToken('your_shop_id', 2); // 2 = 店铺ID模式
+
+// 检查令牌是否获取成功
+if (!$accessToken->isSuccess()) {
+    throw new Exception('获取访问令牌失败: ' . $accessToken->getErrMsg());
+}
 
 // 调用API
 $result = $sdk->callApi(
-    'afterSale_List\AfterSaleListRequest',
-    'afterSale_List\param\AfterSaleListParam',
+    'afterSale_List\\AfterSaleListRequest',
+    'afterSale_List\\param\\AfterSaleListParam',
     [
         'page' => 1,
         'size' => 20,
         'start_time' => '2024-01-01 00:00:00',
         'end_time' => '2024-01-31 23:59:59'
     ],
-    $accessToken
+    $accessToken->getAccessToken()
 );
 
 print_r($result);
@@ -53,59 +71,82 @@ print_r($result);
 
 ```php
 <?php
+require_once 'vendor/autoload.php';
+
 use DouDianSdk\Core\Client\DouDianSdk;
-use DouDianSdk\Core\Logger\FileLogger;
 
-// 创建SDK实例
-$sdk = new DouDianSdk();
-
-// 设置应用凭证
-$sdk->setCredentials('your_app_key', 'your_app_secret');
-
-// 启用调试模式和日志记录
-$sdk->setDebug(true)
-    ->setLogger(new FileLogger('/path/to/logs/sdk.log'));
-
-// 设置HTTP客户端配置
-$sdk->setHttpConfig([
-    'timeout' => 30,
-    'connect_timeout' => 10,
-    'retry' => 3,
-    'retry_delay' => 1000
+// 创建SDK实例并设置高级配置
+$sdk = new DouDianSdk('your_app_key', 'your_app_secret', [
+    'debug' => true,
+    'timeout' => [
+        'connect' => 2000,  // 连接超时2秒
+        'read' => 10000     // 读取超时10秒
+    ],
+    'retry' => [
+        'enable' => true,
+        'max_times' => 3,
+        'interval' => 1000  // 重试间隔1秒
+    ]
 ]);
 
-// 获取访问令牌
-$accessToken = $sdk->getAccessToken('your_shop_id', ACCESS_TOKEN_SHOP_ID);
+// 或者分步设置
+$sdk->setDebug(true);
 
-// 调用API
-$result = $sdk->callApi(
-    'order_orderDetail\OrderOrderDetailRequest',
-    'order_orderDetail\param\OrderOrderDetailParam',
-    ['order_id' => '123456789'],
-    $accessToken
-);
+// 获取访问令牌
+$accessToken = $sdk->getAccessToken('your_shop_id', 2);
+
+if ($accessToken->isSuccess()) {
+    // 调用API
+    $result = $sdk->callApi(
+        'order_orderDetail\\OrderOrderDetailRequest',
+        'order_orderDetail\\param\\OrderOrderDetailParam',
+        ['order_id' => '123456789'],
+        $accessToken->getAccessToken()
+    );
+    
+    print_r($result);
+} else {
+    echo '令牌获取失败: ' . $accessToken->getErrMsg();
+}
 ```
 
 ### 3. 访问令牌管理
 
 ```php
 <?php
+require_once 'vendor/autoload.php';
+
+use DouDianSdk\Core\Client\DouDianSdk;
 use DouDianSdk\Core\Token\AccessTokenBuilder;
-use DouDianSdk\Core\Token\ACCESS_TOKEN_CODE;
-use DouDianSdk\Core\Token\ACCESS_TOKEN_SHOP_ID;
 
-// 通过店铺ID获取访问令牌
-$accessToken = AccessTokenBuilder::build('your_shop_id', ACCESS_TOKEN_SHOP_ID);
+// 访问令牌类型常量
+// 1 = 通过授权码获取
+// 2 = 通过店铺ID获取
 
-// 通过授权码获取访问令牌
-$accessToken = AccessTokenBuilder::build('authorization_code', ACCESS_TOKEN_CODE);
+$sdk = new DouDianSdk('your_app_key', 'your_app_secret');
+
+// 方式1: 通过SDK获取令牌（推荐）
+$accessToken = $sdk->getAccessToken('your_shop_id', 2);
+
+// 方式2: 直接使用AccessTokenBuilder
+$accessToken = AccessTokenBuilder::build('your_shop_id', 2);
 
 // 检查令牌是否有效
 if ($accessToken->isSuccess()) {
-    echo "Token: " . $accessToken->getAccessToken();
-    echo "有效期: " . $accessToken->getExpireIn() . " 秒";
+    echo "访问令牌: " . $accessToken->getAccessToken() . "\n";
+    echo "有效期: " . $accessToken->getExpireIn() . " 秒\n";
+    echo "刷新令牌: " . $accessToken->getRefreshToken() . "\n";
 } else {
-    echo "获取令牌失败: " . $accessToken->getErrMsg();
+    echo "获取令牌失败: " . $accessToken->getErrMsg() . "\n";
+}
+
+// 刷新令牌
+if ($accessToken->isSuccess() && $accessToken->getRefreshToken()) {
+    $newToken = $sdk->refreshAccessToken($accessToken->getRefreshToken());
+    
+    if ($newToken->isSuccess()) {
+        echo "令牌刷新成功\n";
+    }
 }
 ```
 
@@ -113,45 +154,88 @@ if ($accessToken->isSuccess()) {
 
 ```php
 <?php
+require_once 'vendor/autoload.php';
+
+use DouDianSdk\Core\Client\DouDianSdk;
 use DouDianSdk\Core\Exception\DouDianException;
 use DouDianSdk\Core\Exception\ApiException;
 use DouDianSdk\Core\Exception\HttpException;
 
+$sdk = new DouDianSdk('your_app_key', 'your_app_secret');
+
 try {
-    $result = $sdk->callApi($apiClass, $paramClass, $params, $accessToken);
+    // 获取访问令牌
+    $accessToken = $sdk->getAccessToken('your_shop_id', 2);
     
-    if ($result['code'] === 0) {
-        // 成功处理
-        $data = $result['data'];
-    } else {
-        // API 返回错误
-        echo "API 错误: " . $result['msg'];
+    if (!$accessToken->isSuccess()) {
+        throw new DouDianException('获取访问令牌失败: ' . $accessToken->getErrMsg());
     }
     
+    // 调用API
+    $result = $sdk->callApi(
+        'order_orderList\\OrderOrderListRequest',
+        'order_orderList\\param\\OrderOrderListParam',
+        [
+            'page' => 1,
+            'size' => 20
+        ],
+        $accessToken->getAccessToken()
+    );
+
+    // 检查API返回结果
+    if (isset($result['code']) && $result['code'] === 0) {
+        // 成功处理
+        $data = $result['data'] ?? [];
+        echo "获取订单列表成功，共 " . count($data) . " 条记录\n";
+    } else {
+        // API 返回错误
+        $errorMsg = $result['msg'] ?? '未知错误';
+        echo "API 错误: " . $errorMsg . "\n";
+    }
+
 } catch (HttpException $e) {
-    // HTTP 请求错误
-    echo "HTTP 错误: " . $e->getMessage();
+    // HTTP 请求错误（网络问题、超时等）
+    echo "HTTP 错误: " . $e->getMessage() . "\n";
     
 } catch (ApiException $e) {
-    // API 调用错误
-    echo "API 错误: " . $e->getMessage();
+    // API 调用错误（参数错误、签名错误等）
+    echo "API 错误: " . $e->getMessage() . "\n";
     
 } catch (DouDianException $e) {
     // 其他 SDK 错误
-    echo "SDK 错误: " . $e->getMessage();
+    echo "SDK 错误: " . $e->getMessage() . "\n";
+    
+} catch (\Exception $e) {
+    // 通用错误处理
+    echo "系统错误: " . $e->getMessage() . "\n";
 }
 ```
 
 ### 5. 常用 API 示例
 
 #### 订单相关
+
 ```php
+<?php
+// 获取订单列表
+$orderList = $sdk->callApi(
+    'order_orderList\\OrderOrderListRequest',
+    'order_orderList\\param\\OrderOrderListParam',
+    [
+        'page' => 1,
+        'size' => 20,
+        'order_by' => 'create_time',
+        'is_desc' => 1
+    ],
+    $accessToken->getAccessToken()
+);
+
 // 获取订单详情
-$result = $sdk->callApi(
-    'order_orderDetail\OrderOrderDetailRequest',
-    'order_orderDetail\param\OrderOrderDetailParam',
+$orderDetail = $sdk->callApi(
+    'order_orderDetail\\OrderOrderDetailRequest',
+    'order_orderDetail\\param\\OrderOrderDetailParam',
     ['order_id' => '123456789'],
-    $accessToken
+    $accessToken->getAccessToken()
 );
 
 // 查询订单列表
@@ -166,70 +250,110 @@ $result = $sdk->callApi(
     ],
     $accessToken
 );
-```
 
-#### 商品相关
-```php
-// 获取商品详情
-$result = $sdk->callApi(
-    'product_detail\ProductDetailRequest',
-    'product_detail\param\ProductDetailParam',
-    ['product_id' => '123456789'],
-    $accessToken
+// 更新订单物流信息
+$updateLogistics = $sdk->callApi(
+    'order_logisticsEdit\\OrderLogisticsEditRequest',
+    'order_logisticsEdit\\param\\OrderLogisticsEditParam',
+    [
+        'order_id' => '123456789',
+        'logistics_id' => 'SF1234567890',
+        'company_name' => '顺丰速运'
+    ],
+    $accessToken->getAccessToken()
 );
 
-// 查询商品列表
-$result = $sdk->callApi(
-    'product_listV2\ProductListV2Request',
-    'product_listV2\param\ProductListV2Param',
+#### 商品相关
+
+```php
+// 获取商品列表
+$productList = $sdk->callApi(
+    'product_list\\ProductListRequest',
+    'product_list\\param\\ProductListParam',
     [
         'page' => 1,
         'size' => 20,
-        'status' => 1
+        'status' => 1  // 1=在售
     ],
-    $accessToken
+    $accessToken->getAccessToken()
 );
-```
+
+// 获取商品详情
+$productDetail = $sdk->callApi(
+    'product_detail\\ProductDetailRequest',
+    'product_detail\\param\\ProductDetailParam',
+    ['product_id' => '123456789'],
+    $accessToken->getAccessToken()
+);
 
 #### 售后相关
+
 ```php
 // 获取售后列表
-$result = $sdk->callApi(
-    'afterSale_List\AfterSaleListRequest',
-    'afterSale_List\param\AfterSaleListParam',
+$afterSaleList = $sdk->callApi(
+    'afterSale_List\\AfterSaleListRequest',
+    'afterSale_List\\param\\AfterSaleListParam',
     [
         'page' => 1,
         'size' => 20,
         'start_time' => '2024-01-01 00:00:00',
         'end_time' => '2024-01-31 23:59:59'
     ],
-    $accessToken
+    $accessToken->getAccessToken()
 );
-```
 
-### 6. 传统用法（兼容旧版本）
+// 处理售后申请
+$handleAfterSale = $sdk->callApi(
+    'afterSale_refundProcessNotify\\AfterSaleRefundProcessNotifyRequest',
+    'afterSale_refundProcessNotify\\param\\AfterSaleRefundProcessNotifyParam',
+    [
+        'aftersale_id' => '123456789',
+        'status' => 1,  // 1=同意，2=拒绝
+        'desc' => '处理说明'
+    ],
+    $accessToken->getAccessToken()
+);
+
+### 6. 底层组件直接使用
 
 ```php
 <?php
+require_once 'vendor/autoload.php';
+
 use DouDianSdk\Core\Token\AccessTokenBuilder;
 use DouDianSdk\Core\Config\GlobalConfig;
+use DouDianSdk\Core\Client\DouDianOpClient;
 
-// 初始化配置
+// 方式1: 使用全局配置
 $globalConfig = GlobalConfig::getGlobalConfig();
-$globalConfig->appKey = 'your_app_key';
-$globalConfig->appSecret = 'your_app_secret';
+$globalConfig->setCredentials('your_app_key', 'your_app_secret');
 
 // 获取访问令牌
-$accessToken = AccessTokenBuilder::build('your_shop_id', ACCESS_TOKEN_SHOP_ID);
+$accessToken = AccessTokenBuilder::build('your_shop_id', 2);
 
-// 调用API（使用传统方式）
-$request = new \DouDianSdk\Api\afterSale_List\AfterSaleListRequest();
-$param = new \DouDianSdk\Api\afterSale_List\param\AfterSaleListParam();
-$param->page = 1;
-$param->size = 20;
-
-$result = $request->request($param, $accessToken);
+if ($accessToken->isSuccess()) {
+    // 直接使用API类
+    $request = new \DouDianSdk\Api\afterSale_List\AfterSaleListRequest();
+    $param = new \DouDianSdk\Api\afterSale_List\param\AfterSaleListParam();
+    $param->page = 1;
+    $param->size = 20;
+    $request->setParam($param);
+    
+    $result = $request->execute($accessToken->getAccessToken());
+    print_r($result);
+}
 ```
+
+## 实际项目集成
+
+详细的项目集成指南请参考：[README_INTEGRATION.md](README_INTEGRATION.md)
+
+包含以下框架的完整示例：
+- Laravel 项目集成
+- Hyperf/MineAdmin 项目集成  
+- 通用最佳实践
+- 错误处理和重试机制
+- 令牌管理和缓存策略
 
 ## 项目结构
 
@@ -243,7 +367,6 @@ src/
 │   ├── Response/                # 响应处理
 │   ├── Exception/               # 异常处理
 │   ├── Http/                    # HTTP 客户端
-│   ├── Logger/                  # 日志记录
 │   └── Validator/               # 参数验证
 └── Utils/                       # 工具类
 ```
@@ -277,21 +400,56 @@ composer phpstan
 
 ## 支持的 API 模块
 
+SDK 支持抖店开放平台的 **710+ 个 API 接口**，涵盖：
+
 - **订单管理**: 订单查询、物流管理、售后服务等
-- **商品管理**: 商品发布、库存管理、价格设置等
+- **商品管理**: 商品发布、库存管理、价格设置等  
 - **店铺管理**: 店铺信息、资质管理等
 - **营销工具**: 优惠券、满减活动等
 - **数据统计**: 销售数据、流量分析等
-- **更多模块**: 查看 `src/Api/` 目录了解完整列表
+- **物流服务**: 运费模板、物流公司等
+- **财务管理**: 结算单据、账单查询等
+- **客服工具**: 消息推送、客服会话等
+
+## 注意事项
+
+1. **访问令牌管理**: 建议使用缓存存储访问令牌，避免频繁请求
+2. **错误处理**: 务必处理网络异常和API错误，实现适当的重试机制
+3. **频率限制**: 遵守抖店开放平台的API调用频率限制
+4. **数据安全**: 妥善保管应用密钥，不要在客户端代码中暴露
+5. **版本兼容**: 关注抖店开放平台API版本更新，及时升级SDK
+
+## 许可证
+
+MIT License. 详见 [LICENSE](LICENSE) 文件。
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request 来完善这个项目。
+
+## 联系方式
+
+- **作者**: westng
+- **邮箱**: 457395070@qq.com
+- **GitHub**: https://github.com/westng/doudian-sdk-php
 
 ## 更新日志
 
-### v1.3.0 (2024-12-19)
+### v1.3.0 (2024-12-01)
+- 📚 **文档重构**: 完全重写README文档，修正所有错误示例
+- 🏗️ **架构说明**: 添加详细的SDK分层架构说明
+- 🔧 **修复引用**: 修正命名空间引用和常量使用错误
+- 📖 **集成指南**: 新增详细的项目集成指南和最佳实践
+- ⚠️ **错误处理**: 完善错误处理示例和重试机制
+- 🎯 **实用示例**: 提供更多实际项目中的使用示例
+- 🧹 **移除Logger**: 从SDK核心移除Logger功能，简化架构，Logger移至tests目录
 
-- 🗂️ **目录结构优化**: 重新组织 Core 目录结构，按功能模块分类
-- 🔧 **命名空间重构**: 更新所有相关类的命名空间，提高代码组织性
-- 📚 **文档更新**: 更新 README 文档以反映新的目录结构
-- 🧹 **清理冗余文件**: 删除不必要的开发脚本文件
+### v1.0.0 (2024-01-01)
+- 🚀 **首次发布**: 支持 710+ 个抖店开放平台 API 接口
+- 🏛️ **分层架构**: 采用分层架构设计，职责分离
+- 🛡️ **异常处理**: 完善的错误处理机制
+- 🔑 **令牌管理**: 支持访问令牌自动管理和刷新
+- 📦 **易于集成**: 提供多种框架集成示例
 
 ### v1.2.0 (2024-10-14)
 

@@ -16,7 +16,6 @@ use DouDianSdk\Core\Exception\ApiException;
 use DouDianSdk\Core\Exception\DouDianException;
 use DouDianSdk\Core\Exception\HttpException;
 use DouDianSdk\Core\Http\HttpClient;
-use DouDianSdk\Core\Logger\FileLogger;
 
 // 配置信息（请替换为你的实际信息）
 $appKey    = 'your_app_key';
@@ -56,12 +55,8 @@ try {
         ],
     ]);
 
-    // 设置自定义日志记录器
-    $logFile = __DIR__ . '/logs/doudian-sdk-' . date('Y-m-d') . '.log';
-    $logger  = new FileLogger($logFile, FileLogger::DEBUG);
-    $sdk->setLogger($logger);
-    echo "✓ SDK初始化和日志配置完成\n";
-    echo "  - 日志文件: {$logFile}\n\n";
+    // SDK初始化完成
+    echo "✓ SDK初始化完成\n\n";
 
     // 3. 获取访问令牌
     echo "3. 获取访问令牌...\n";

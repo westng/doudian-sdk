@@ -13,9 +13,6 @@ namespace DouDianSdk\Core\Client;
 
 use DouDianSdk\Core\Config\GlobalConfig;
 use DouDianSdk\Core\Exception\DouDianException;
-use DouDianSdk\Core\Logger\FileLogger;
-use DouDianSdk\Core\Logger\LoggerInterface;
-use DouDianSdk\Core\Logger\NullLogger;
 use DouDianSdk\Core\Token\AccessTokenBuilder;
 
 /**
@@ -33,10 +30,6 @@ class DouDianSdk
      */
     private $client;
 
-    /**
-     * @var LoggerInterface 日志记录器
-     */
-    private $logger;
 
     /**
      * 构造函数.
@@ -58,8 +51,6 @@ class DouDianSdk
         // 应用选项配置
         $this->applyOptions($options);
 
-        // 设置日志记录器
-        $this->setupLogger();
     }
 
     /**
@@ -99,20 +90,6 @@ class DouDianSdk
         }
     }
 
-    /**
-     * 设置日志记录器.
-     */
-    private function setupLogger(): void
-    {
-        if ($this->config->debug) {
-            $logFile      = sys_get_temp_dir() . '/doudian-sdk-' . date('Y-m-d') . '.log';
-            $this->logger = new FileLogger($logFile, FileLogger::DEBUG);
-        } else {
-            $this->logger = new NullLogger();
-        }
-
-        $this->config->setLogger($this->logger);
-    }
 
     /**
      * 设置应用凭证
@@ -127,18 +104,6 @@ class DouDianSdk
         return $this;
     }
 
-    /**
-     * 设置日志记录器.
-     *
-     * @param LoggerInterface $logger 日志记录器
-     */
-    public function setLogger(LoggerInterface $logger): self
-    {
-        $this->logger = $logger;
-        $this->config->setLogger($logger);
-
-        return $this;
-    }
 
     /**
      * 设置调试模式.
@@ -148,7 +113,6 @@ class DouDianSdk
     public function setDebug($debug): self
     {
         $this->config->setDebug($debug);
-        $this->setupLogger(); // 重新设置日志记录器
 
         return $this;
     }
@@ -267,11 +231,4 @@ class DouDianSdk
         return $this->config;
     }
 
-    /**
-     * 获取日志记录器.
-     */
-    public function getLogger(): LoggerInterface
-    {
-        return $this->logger;
-    }
 }

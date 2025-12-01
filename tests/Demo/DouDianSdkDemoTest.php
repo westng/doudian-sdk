@@ -15,7 +15,7 @@ use DouDianSdk\Core\Client\DouDianSdk;
 use DouDianSdk\Core\Exception\ApiException;
 use DouDianSdk\Core\Exception\DouDianException;
 use DouDianSdk\Core\Exception\HttpException;
-use DouDianSdk\Core\Logger\FileLogger;
+use DouDianSdk\Tests\Logger\FileLogger;
 use DouDianSdk\Core\Token\AccessToken;
 use DouDianSdk\Core\Token\AccessTokenBuilder;
 use DouDianSdk\Tests\TestCase;
@@ -48,10 +48,10 @@ class DouDianSdkDemoTest extends TestCase
         echo "\n2️⃣ 配置SDK\n";
         $sdk->setDebug(true);
 
-        // 设置日志记录器
+        // 设置日志记录器（仅演示，SDK核心已移除Logger功能）
         $logFile = sys_get_temp_dir() . '/doudian-sdk-demo.log';
         $logger  = new FileLogger($logFile, FileLogger::DEBUG);
-        $sdk->setLogger($logger);
+        // $sdk->setLogger($logger); // Logger功能已从SDK核心移除
 
         echo "✅ SDK配置完成\n";
         echo "   - 调试模式: 开启\n";
@@ -329,7 +329,7 @@ class DouDianSdkDemoTest extends TestCase
         echo "\n2️⃣ 日志记录功能\n";
         $logFile = sys_get_temp_dir() . '/doudian-sdk-advanced-demo.log';
         $logger  = new FileLogger($logFile, FileLogger::DEBUG);
-        $sdk->setLogger($logger);
+        // $sdk->setLogger($logger); // Logger功能已从SDK核心移除
 
         echo "✅ 日志记录器设置完成\n";
         echo "   - 日志文件: {$logFile}\n";
@@ -386,7 +386,7 @@ class DouDianSdkDemoTest extends TestCase
             echo "\n3️⃣ 设置日志记录\n";
             $logFile = sys_get_temp_dir() . '/doudian-sdk-workflow-demo.log';
             $logger  = new FileLogger($logFile, FileLogger::INFO);
-            $sdk->setLogger($logger);
+            // Logger功能已移除，仅用于演示
             echo "✅ 日志记录设置完成\n";
 
             // 4. 获取访问令牌（模拟）

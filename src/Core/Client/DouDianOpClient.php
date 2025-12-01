@@ -56,11 +56,7 @@ class DouDianOpClient
             throw new ApiException('Configuration error: ' . $e->getMessage(), '', '', 1001, $e);
         }
 
-        // 记录请求开始
-        $config->logger->info('API request started', [
-            'url_path'     => $request->getUrlPath(),
-            'access_token' => $this->maskToken($accessToken),
-        ]);
+        // Logger功能已移除
 
         $retryCount = 0;
         $maxRetries = $config->enableRetry ? $config->maxRetryTimes : 0;
@@ -72,21 +68,13 @@ class DouDianOpClient
                 // 检查API响应错误
                 $this->checkApiResponse($response, $config);
 
-                $config->logger->info('API request completed successfully', [
-                    'url_path'    => $request->getUrlPath(),
-                    'retry_count' => $retryCount,
-                ]);
+                // Logger功能已移除
 
                 return $response;
             } catch (HttpException $e) {
                 ++$retryCount;
 
-                $config->logger->warning('HTTP request failed, retrying', [
-                    'error'       => $e->getMessage(),
-                    'http_status' => $e->getHttpStatusCode(),
-                    'retry_count' => $retryCount,
-                    'max_retries' => $maxRetries,
-                ]);
+                // Logger功能已移除
 
                 if ($retryCount > $maxRetries) {
                     throw $e;
@@ -98,11 +86,7 @@ class DouDianOpClient
                 }
             } catch (ApiException $e) {
                 // API错误通常不需要重试
-                $config->logger->error('API request failed', [
-                    'error'          => $e->getMessage(),
-                    'api_error_code' => $e->getApiErrorCode(),
-                    'log_id'         => $e->getLogId(),
-                ]);
+                // Logger功能已移除
 
                 throw $e;
             }
@@ -141,15 +125,7 @@ class DouDianOpClient
         // 构建请求URL
         $requestUrl = $this->buildRequestUrl($config, $urlPath, $method, $appKey, $sign, $timestamp, $accessTokenStr);
 
-        // 记录请求详情（调试模式）
-        if ($config->debug) {
-            $config->logger->debug('Request details', [
-                'url'       => $requestUrl,
-                'method'    => $method,
-                'params'    => $paramJson,
-                'timestamp' => $timestamp,
-            ]);
-        }
+        // Logger功能已移除，调试信息可通过其他方式记录
 
         // 发送HTTP请求
         $httpRequest                 = new HttpRequest();

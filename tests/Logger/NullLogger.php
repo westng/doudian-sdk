@@ -9,7 +9,7 @@
  * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
  */
 
-namespace DouDianSdk\Core\Logger;
+namespace DouDianSdk\Tests\Logger;
 
 /**
  * 空日志记录器（不记录任何日志）.

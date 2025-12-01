@@ -12,7 +12,6 @@
 namespace DouDianSdk\Tests\Core;
 
 use DouDianSdk\Core\Client\DouDianSdk;
-use DouDianSdk\Core\Logger\NullLogger;
 use DouDianSdk\Tests\TestCase;
 
 class DouDianSdkTest extends TestCase
@@ -57,13 +56,7 @@ class DouDianSdkTest extends TestCase
         $this->assertFalse($this->sdk->getConfig()->debug);
     }
 
-    public function testSetLogger(): void
-    {
-        $logger = new NullLogger();
-        $this->sdk->setLogger($logger);
-
-        $this->assertSame($logger, $this->sdk->getLogger());
-    }
+    // Logger功能已从 SDK 核心移除
 
     public function testGetConfig(): void
     {
@@ -72,10 +65,5 @@ class DouDianSdkTest extends TestCase
         $this->assertInstanceOf(\DouDianSdk\Core\Config\GlobalConfig::class, $config);
     }
 
-    public function testGetLogger(): void
-    {
-        $logger = $this->sdk->getLogger();
-
-        $this->assertInstanceOf(\DouDianSdk\Core\Logger\LoggerInterface::class, $logger);
-    }
+    // Logger功能已从 SDK 核心移除
 }

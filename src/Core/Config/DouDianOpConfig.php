@@ -11,8 +11,6 @@
 
 namespace DouDianSdk\Core\Config;
 
-use DouDianSdk\Core\Logger\LoggerInterface;
-use DouDianSdk\Core\Logger\NullLogger;
 
 class DouDianOpConfig
 {
@@ -41,10 +39,6 @@ class DouDianOpConfig
      */
     public $openRequestUrl = 'https://openapi-fxg.jinritemai.com';
 
-    /**
-     * @var LoggerInterface 日志记录器
-     */
-    public $logger;
 
     /**
      * @var bool 是否启用调试模式
@@ -76,25 +70,7 @@ class DouDianOpConfig
      */
     public $retryInterval = 1000;
 
-    /**
-     * 构造函数.
-     */
-    public function __construct()
-    {
-        $this->logger = new NullLogger();
-    }
 
-    /**
-     * 设置日志记录器.
-     *
-     * @param LoggerInterface $logger 日志记录器
-     */
-    public function setLogger(LoggerInterface $logger): self
-    {
-        $this->logger = $logger;
-
-        return $this;
-    }
 
     /**
      * 设置应用凭证
