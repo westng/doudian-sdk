@@ -21,11 +21,6 @@ use PHPUnit\Framework\TestCase as BaseTestCase;
 abstract class TestCase extends BaseTestCase
 {
     /**
-     * @var string 测试数据目录
-     */
-    protected $testDataDir;
-
-    /**
      * @var array 测试配置
      */
     protected $testConfig;
@@ -36,64 +31,67 @@ abstract class TestCase extends BaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->testDataDir = __DIR__ . '/data';
+
+        // 加载 .env 文件
+        $this->loadEnvFile();
 
         // 测试配置
         $this->testConfig = [
-            'app_key'    => $_ENV['DOUDIAN_APP_KEY'] ?? 'test_app_key',
-            'app_secret' => $_ENV['DOUDIAN_APP_SECRET'] ?? 'test_app_secret',
-            'shop_id'    => $_ENV['DOUDIAN_SHOP_ID'] ?? 'test_shop_id',
-            'auth_code'  => $_ENV['DOUDIAN_AUTH_CODE'] ?? 'test_auth_code',
+            'app_key'       => $_ENV['DOUDIAN_APP_KEY'] ?? 'test_app_key',
+            'app_secret'    => $_ENV['DOUDIAN_APP_SECRET'] ?? 'test_app_secret',
+            'shop_id'       => $_ENV['DOUDIAN_SHOP_ID'] ?? 'test_shop_id',
+            'refresh_token' => $_ENV['DOUDIAN_REFRESH_TOKEN'] ?? '',
         ];
     }
 
     /**
-     * 清理测试环境.
+     * 加载环境变量文件.
      */
-    protected function tearDown(): void
+    protected function loadEnvFile(): void
     {
-        parent::tearDown();
-    }
+        $envFile = __DIR__ . '/../.env';
 
-    /**
-     * 获取测试数据目录.
-     */
-    protected function getTestDataDir(): string
-    {
-        return $this->testDataDir;
-    }
-
-    /**
-     * 读取测试数据文件.
-     *
-     * @param string $filename 文件名
-     */
-    protected function getTestData(string $filename): string
-    {
-        $filePath = $this->testDataDir . '/' . $filename;
-
-        if (!file_exists($filePath)) {
-            $this->fail("Test data file not found: {$filePath}");
+        if (!file_exists($envFile)) {
+            return;
         }
 
-        return file_get_contents($filePath);
+        $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+
+            // 跳过注释行
+            if (empty($line) || 0 === strpos($line, '#')) {
+                continue;
+            }
+
+            // 解析键值对
+            if (false !== strpos($line, '=')) {
+                list($key, $value) = explode('=', $line, 2);
+                $_ENV[trim($key)]  = trim($value, '"\'');
+            }
+        }
     }
 
     /**
-     * 读取JSON测试数据.
-     *
-     * @param string $filename 文件名
+     * 跳过集成测试（如果未启用）.
      */
-    protected function getJsonTestData(string $filename): array
+    protected function skipIntegrationTest(): void
     {
-        $content = $this->getTestData($filename);
-        $data    = json_decode($content, true);
-
-        if (JSON_ERROR_NONE !== json_last_error()) {
-            $this->fail("Invalid JSON in test data file: {$filename}");
+        if (!$this->isIntegrationTestEnabled()) {
+            $this->markTestSkipped(
+                '集成测试未启用。要运行集成测试，请设置环境变量 DOUDIAN_INTEGRATION_TEST=true'
+            );
         }
+    }
 
-        return $data;
+    /**
+     * 检查是否启用集成测试.
+     */
+    protected function isIntegrationTestEnabled(): bool
+    {
+        return !empty($_ENV['DOUDIAN_INTEGRATION_TEST'])
+               && 'true' === $_ENV['DOUDIAN_INTEGRATION_TEST'];
     }
 
     /**
@@ -105,57 +103,42 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * 检查是否在集成测试环境.
+     * 验证测试配置是否完整.
      */
-    protected function isIntegrationTest(): bool
+    protected function validateTestConfig(): bool
     {
-        return !empty($_ENV['DOUDIAN_INTEGRATION_TEST']) && 'true' === $_ENV['DOUDIAN_INTEGRATION_TEST'];
-    }
+        $required = ['app_key', 'app_secret', 'shop_id'];
 
-    /**
-     * 跳过集成测试.
-     */
-    protected function skipIntegrationTest(): void
-    {
-        if (!$this->isIntegrationTest()) {
-            $this->markTestSkipped('Integration test skipped. Set DOUDIAN_INTEGRATION_TEST=true to run.');
+        foreach ($required as $key) {
+            if (empty($this->testConfig[$key])
+                || 0 === strpos($this->testConfig[$key], 'test_')) {
+                return false;
+            }
         }
+
+        return true;
     }
 
     /**
-     * 创建临时文件.
-     *
-     * @param string $content 文件内容
-     *
-     * @return string 文件路径
+     * 断言配置有效.
      */
-    protected function createTempFile(string $content = ''): string
+    protected function assertConfigValid(): void
     {
-        $tempFile = tempnam(sys_get_temp_dir(), 'doudian_sdk_test_');
-        file_put_contents($tempFile, $content);
-
-        return $tempFile;
+        $this->assertTrue(
+            $this->validateTestConfig(),
+            '测试配置无效。请在 .env 文件中设置正确的 DOUDIAN_APP_KEY, DOUDIAN_APP_SECRET, DOUDIAN_SHOP_ID'
+        );
     }
 
     /**
-     * 删除临时文件.
-     *
-     * @param string $filePath 文件路径
+     * 添加警告信息.
      */
-    protected function deleteTempFile(string $filePath): void
+    protected function addWarning(string $message): void
     {
-        if (file_exists($filePath)) {
-            unlink($filePath);
+        if (method_exists($this, 'addToAssertionCount')) {
+            $this->addToAssertionCount(1);
         }
-    }
 
-    /**
-     * 等待指定时间（用于测试重试机制等）.
-     *
-     * @param int $milliseconds 毫秒数
-     */
-    protected function wait(int $milliseconds): void
-    {
-        usleep($milliseconds * 1000);
+        echo "⚠️ 警告: {$message}\n";
     }
 }

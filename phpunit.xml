@@ -8,16 +8,14 @@
     <testsuites>
         <testsuite name="Unit Tests">
             <directory>tests/Core</directory>
-            <directory>tests/Http</directory>
-            <directory>tests/Utils</directory>
+        </testsuite>
+        
+        <testsuite name="API Tests">
+            <directory>tests/Api</directory>
         </testsuite>
         
         <testsuite name="Integration Tests">
             <directory>tests/Integration</directory>
-        </testsuite>
-        
-        <testsuite name="Demo Tests">
-            <directory>tests/Demo</directory>
         </testsuite>
         
         <testsuite name="All Tests">

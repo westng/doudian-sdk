@@ -13,6 +13,7 @@ namespace DouDianSdk\Core\Client;
 
 use DouDianSdk\Core\Config\GlobalConfig;
 use DouDianSdk\Core\Exception\DouDianException;
+use DouDianSdk\Core\Token\AccessToken;
 use DouDianSdk\Core\Token\AccessTokenBuilder;
 
 /**
@@ -29,7 +30,6 @@ class DouDianSdk
      * @var DouDianOpClient API客户端
      */
     private $client;
-
 
     /**
      * 构造函数.
@@ -50,7 +50,6 @@ class DouDianSdk
 
         // 应用选项配置
         $this->applyOptions($options);
-
     }
 
     /**
@@ -90,7 +89,6 @@ class DouDianSdk
         }
     }
 
-
     /**
      * 设置应用凭证
      *
@@ -103,7 +101,6 @@ class DouDianSdk
 
         return $this;
     }
-
 
     /**
      * 设置调试模式.
@@ -230,5 +227,4 @@ class DouDianSdk
     {
         return $this->config;
     }
-
 }

@@ -2,6 +2,20 @@ composer.phar
 /vendor/
 .idea
 .DS_Store
+
+# Environment files - 包含敏感信息，不应提交到版本控制
+.env
+.env.local
+.env.*.local
+
+# Test and coverage reports
+coverage/
+coverage.xml
+test-report.html
+coverage-report.html
+.phpunit.result.cache
+.php-cs-fixer.cache
+
 # Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
 # You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
 # composer.lock

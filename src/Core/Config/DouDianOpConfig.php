@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Core\Config;
 
-
 class DouDianOpConfig
 {
     /**
@@ -27,18 +26,17 @@ class DouDianOpConfig
     /**
      * @var int HTTP连接超时时间（毫秒）
      */
-    public $httpConnectTimeout = 1000;
+    public $httpConnectTimeout = 5000;
 
     /**
      * @var int HTTP读取超时时间（毫秒）
      */
-    public $httpReadTimeout = 5000;
+    public $httpReadTimeout = 10000;
 
     /**
      * @var string 开放平台请求URL
      */
     public $openRequestUrl = 'https://openapi-fxg.jinritemai.com';
-
 
     /**
      * @var bool 是否启用调试模式
@@ -69,8 +67,6 @@ class DouDianOpConfig
      * @var int 重试间隔（毫秒）
      */
     public $retryInterval = 1000;
-
-
 
     /**
      * 设置应用凭证
