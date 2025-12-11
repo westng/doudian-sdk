@@ -39,10 +39,11 @@ class AccessTokenTest extends TestCase
         $this->loadEnvFile();
 
         $this->testConfig = [
-            'app_key'       => $_ENV['DOUDIAN_APP_KEY'] ?? 'test_app_key',
-            'app_secret'    => $_ENV['DOUDIAN_APP_SECRET'] ?? 'test_app_secret',
-            'shop_id'       => $_ENV['DOUDIAN_SHOP_ID'] ?? 'test_shop_id',
-            'refresh_token' => $_ENV['DOUDIAN_REFRESH_TOKEN'] ?? '',
+            'app_key'                => $_ENV['DOUDIAN_APP_KEY'] ?? 'test_app_key',
+            'app_secret'             => $_ENV['DOUDIAN_APP_SECRET'] ?? 'test_app_secret',
+            'shop_id'                => $_ENV['DOUDIAN_SHOP_ID'] ?? 'test_shop_id',
+            'refresh_token'          => $_ENV['DOUDIAN_REFRESH_TOKEN'] ?? '',
+            'access_token_shop_id'   => (int)($_ENV['DOUDIAN_ACCESS_TOKEN_SHOP_ID'] ?? 2),
         ];
 
         $this->sdk = new DouDianSdk(
@@ -104,7 +105,7 @@ class AccessTokenTest extends TestCase
 
         $accessToken = $this->sdk->getAccessToken(
             $this->testConfig['shop_id'],
-            2  // ACCESS_TOKEN_SHOP_ID
+            $this->testConfig['access_token_shop_id']
         );
 
         // 验证返回对象类型
@@ -118,7 +119,10 @@ class AccessTokenTest extends TestCase
         echo "调试信息:\n";
         echo '  - 错误码: ' . $accessToken->getErrNo() . "\n";
         echo '  - 消息: ' . $accessToken->getMessage() . "\n";
+        echo '  - 子错误码: ' . $accessToken->getSubCode() . "\n";
+        echo '  - 详细错误: ' . $accessToken->getSubMsg() . "\n";
         echo '  - 日志ID: ' . $accessToken->getLogId() . "\n";
+        echo '  - isSuccess: ' . ($accessToken->isSuccess() ? 'true' : 'false') . "\n";
 
         if ($accessToken->isSuccess()) {
             echo "✅ 访问令牌获取成功\n";
@@ -134,6 +138,8 @@ class AccessTokenTest extends TestCase
             echo "❌ 访问令牌获取失败\n";
             echo '  - 错误码: ' . $accessToken->getErrNo() . "\n";
             echo '  - 错误消息: ' . $accessToken->getMessage() . "\n";
+            echo '  - 子错误码: ' . $accessToken->getSubCode() . "\n";
+            echo '  - 详细错误: ' . $accessToken->getSubMsg() . "\n";
 
             $this->fail('获取访问令牌失败: ' . $accessToken->getMessage());
         }
@@ -200,7 +206,7 @@ class AccessTokenTest extends TestCase
 
         $accessToken = AccessTokenBuilder::build(
             $this->testConfig['shop_id'],
-            2  // ACCESS_TOKEN_SHOP_ID
+            $this->testConfig['access_token_shop_id']
         );
 
         $this->assertInstanceOf(

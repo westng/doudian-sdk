@@ -22,6 +22,11 @@ use DouDianSdk\Core\Token\AccessTokenBuilder;
 class DouDianSdk
 {
     /**
+     * SDK版本号
+     */
+    const VERSION = '2.0.0';
+
+    /**
      * @var GlobalConfig 全局配置
      */
     private $config;
@@ -226,5 +231,15 @@ class DouDianSdk
     public function getConfig(): GlobalConfig
     {
         return $this->config;
+    }
+
+    /**
+     * 获取SDK版本号
+     *
+     * @return string
+     */
+    public function getVersion()
+    {
+        return self::VERSION;
     }
 }

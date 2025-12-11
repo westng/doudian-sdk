@@ -85,11 +85,11 @@ $result = $sdk->callApi(
 );
 
 // 处理结果
-if (isset($result['err_no']) && $result['err_no'] == 0) {
+if (isset($result['code']) && $result['code'] === 10000) {
     echo "获取订单成功，共 " . count($result['data']['order_list'] ?? []) . " 条订单\n";
     print_r($result['data']);
 } else {
-    echo "API调用失败: " . ($result['message'] ?? 'Unknown error') . "\n";
+    echo "API调用失败: " . ($result['msg'] ?? 'Unknown error') . "\n";
 }
 ```
 
@@ -160,9 +160,59 @@ if ($accessToken->isSuccess()) {
         }
     }
 } else {
-    echo "❌ 获取令牌失败: " . $accessToken->getMessage() . "\n";
+    // 详细的错误信息
+    echo "❌ 获取令牌失败\n";
     echo "错误码: " . $accessToken->getErrNo() . "\n";
+    echo "错误消息: " . $accessToken->getMessage() . "\n";
+    echo "子错误码: " . $accessToken->getSubCode() . "\n";
+    echo "详细错误: " . $accessToken->getSubMsg() . "\n";
+    
+    // 常见错误处理
+    if ($accessToken->getSubCode() === 'isv.invalid_ip') {
+        echo "⚠️ 提示: 请在抖店开放平台添加服务器IP到白名单\n";
+    }
 }
+```
+
+#### AccessToken 响应字段说明
+
+抖店API返回标准响应格式：
+
+```json
+{
+  "code": 10000,           // 10000表示成功，其他值表示失败
+  "msg": "success",        // 响应消息
+  "sub_code": "",          // 子错误码（失败时提供详细错误类型）
+  "sub_msg": "",           // 详细错误信息
+  "data": {                // 业务数据
+    "access_token": "...", // 访问令牌
+    "expires_in": 86400,   // 有效期（秒）
+    "refresh_token": "...",// 刷新令牌
+    "shop_id": 123456,     // 店铺ID
+    "shop_name": "店铺名称" // 店铺名称
+  },
+  "log_id": "..."          // 日志ID（用于问题追踪）
+}
+```
+
+**AccessToken 对象提供的方法：**
+
+```php
+// 基础信息
+$accessToken->isSuccess()           // 是否成功 (code === 10000)
+$accessToken->getErrNo()            // 错误码 (code)
+$accessToken->getMessage()          // 错误消息 (msg)
+$accessToken->getSubCode()          // 子错误码 (sub_code)
+$accessToken->getSubMsg()           // 详细错误信息 (sub_msg)
+$accessToken->getLogId()            // 日志ID (log_id)
+
+// 令牌数据
+$accessToken->getAccessToken()      // 访问令牌
+$accessToken->getExpireIn()         // 有效期（秒）
+$accessToken->getRefreshToken()     // 刷新令牌
+$accessToken->getShopId()           // 店铺ID
+$accessToken->getShopName()         // 店铺名称
+$accessToken->getScope()            // 授权范围
 ```
 
 ### 4. 错误处理
@@ -183,7 +233,7 @@ try {
     $accessToken = $sdk->getAccessToken('your_shop_id', 2);
     
     if (!$accessToken->isSuccess()) {
-        throw new DouDianException('获取访问令牌失败: ' . $accessToken->getErrMsg());
+        throw new DouDianException('获取访问令牌失败: ' . $accessToken->getMessage());
     }
     
     // 调用API
@@ -198,7 +248,7 @@ try {
     );
 
     // 检查API返回结果
-    if (isset($result['code']) && $result['code'] === 0) {
+    if (isset($result['code']) && $result['code'] === 10000) {
         // 成功处理
         $data = $result['data'] ?? [];
         echo "获取订单列表成功，共 " . count($data) . " 条记录\n";
@@ -488,27 +538,51 @@ SDK 支持抖店开放平台的 **710+ 个 API 接口**，涵盖：
 - **财务管理**: 结算单据、账单查询等
 - **客服工具**: 消息推送、客服会话等
 
+## 📝 更新日志
+
+### v2.0.0 (2024-12-11)
+
+**重要更新：完善错误处理和响应解析**
+
+#### 新增功能
+- ✨ **完整的错误信息支持**：新增 `sub_code` 和 `sub_msg` 字段解析
+  - `getSubCode()` - 获取子错误码（如：`isv.invalid_ip`）
+  - `getSubMsg()` - 获取详细错误信息
+  
+- ✨ **标准化响应格式**：统一支持抖店API标准响应格式
+  - `code: 10000` 表示成功
+  - 完整解析 `code`、`msg`、`sub_code`、`sub_msg`、`data`、`log_id` 字段
+
+#### 优化改进
+- 🔧 **严格的成功判断**：`isSuccess()` 方法使用严格比较（`code === 10000`）
+- 🔧 **调试模式增强**：在调试模式下输出完整的API原始响应
+- 📚 **测试完善**：所有测试通过，包含完整的错误场景测试
+
+#### 破坏性变更
+- ⚠️ **响应格式变更**：不再支持旧的 `err_no`/`message` 格式，统一使用 `code`/`msg`
+- ⚠️ **成功判断变更**：`isSuccess()` 现在只在 `code === 10000` 时返回 true
+
+#### 迁移指南
+如果你使用的是旧版本，请注意：
+```php
+// 旧版本
+if ($accessToken->getErrNo() == 0) { ... }
+
+// 新版本
+if ($accessToken->isSuccess()) { ... }  // 推荐
+// 或
+if ($accessToken->getErrNo() === 10000) { ... }
+```
+
 ## 注意事项
 
 1. **访问令牌管理**: 建议使用缓存存储访问令牌，避免频繁请求
 2. **错误处理**: 务必处理网络异常和API错误，实现适当的重试机制
-3. **频率限制**: 遵守抖店开放平台的API调用频率限制
-4. **数据安全**: 妥善保管应用密钥，不要在客户端代码中暴露
-5. **版本兼容**: 关注抖店开放平台API版本更新，及时升级SDK
-
-## 许可证
-
-MIT License. 详见 [LICENSE](LICENSE) 文件。
-
-## 贡献
-
-欢迎提交 Issue 和 Pull Request 来完善这个项目。
-
-## 联系方式
-
-- **作者**: westng
-- **邮箱**: 457395070@qq.com
-- **GitHub**: https://github.com/westng/doudian-sdk-php
+3. **IP白名单**: 确保服务器IP已添加到抖店开放平台的IP白名单中
+4. **频率限制**: 遵守抖店开放平台的API调用频率限制
+5. **数据安全**: 妥善保管应用密钥，不要在客户端代码中暴露
+6. **版本兼容**: 关注抖店开放平台API版本更新，及时升级SDK
+7. **错误码处理**: 使用 `sub_code` 进行精确的错误类型判断
 
 ## 许可证
 
@@ -520,6 +594,7 @@ MIT License. 详见 [LICENSE](LICENSE) 文件。
 
 ## 联系方式
 
-- 项目地址: [https://github.com/westng/doudian-sdk](https://github.com/westng/doudian-sdk)
-- 问题反馈: [Issues](https://github.com/westng/doudian-sdk/issues)
-- 邮箱: 457395070@qq.com
+- **作者**: westng
+- **邮箱**: 457395070@qq.com
+- **项目地址**: [https://github.com/westng/doudian-sdk-php](https://github.com/westng/doudian-sdk-php)
+- **问题反馈**: [Issues](https://github.com/westng/doudian-sdk-php/issues)

@@ -15,9 +15,8 @@ use DouDianSdk\Core\Client\DouDianSdk;
 use DouDianSdk\Core\Exception\ApiException;
 use DouDianSdk\Core\Exception\DouDianException;
 use DouDianSdk\Core\Exception\HttpException;
+use DouDianSdk\Core\Token\AccessTokenBuilder;
 use DouDianSdk\Tests\TestCase;
-
-use const DouDianSdk\Core\Token\ACCESS_TOKEN_SHOP_ID;
 
 /**
  * SDK集成测试类.
@@ -34,6 +33,9 @@ class SdkIntegrationTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        // 触发常量加载
+        class_exists(AccessTokenBuilder::class);
 
         $this->sdk = new DouDianSdk(
             $this->testConfig['app_key'],
@@ -55,7 +57,7 @@ class SdkIntegrationTest extends TestCase
         echo "步骤1: 获取访问令牌...\n";
         $accessToken = $this->sdk->getAccessToken(
             $this->testConfig['shop_id'],
-            ACCESS_TOKEN_SHOP_ID
+            $this->testConfig['access_token_shop_id']
         );
 
         $this->assertInstanceOf(
@@ -205,7 +207,7 @@ class SdkIntegrationTest extends TestCase
         $invalidSdk = new DouDianSdk('invalid_key', 'invalid_secret');
 
         try {
-            $accessToken = $invalidSdk->getAccessToken('invalid_shop_id', ACCESS_TOKEN_SHOP_ID);
+            $accessToken = $invalidSdk->getAccessToken('invalid_shop_id', $this->testConfig['access_token_shop_id']);
 
             if (!$accessToken->isSuccess()) {
                 echo "✅ 无效凭证正确返回错误\n";

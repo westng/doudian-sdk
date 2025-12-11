@@ -1,21 +1,30 @@
 {
     "name": "westng/doudian-sdk",
+    "version": "2.0.0",
     "type": "library",
-    "description": "抖店（抖音电商）开放平台 PHP SDK",
+    "description": "抖店（抖音电商）开放平台 PHP SDK，支持710+个API接口",
     "keywords": [
         "doudian",
         "douyin",
         "ecommerce",
         "sdk",
-        "api"
+        "api",
+        "jinritemai"
     ],
+    "homepage": "https://github.com/westng/doudian-sdk-php",
+    "license": "MIT",
     "authors": [
         {
             "name": "westng",
-            "email": "457395070@qq.com"
+            "email": "457395070@qq.com",
+            "role": "Developer"
         }
     ],
-    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/westng/doudian-sdk-php/issues",
+        "source": "https://github.com/westng/doudian-sdk-php",
+        "docs": "https://github.com/westng/doudian-sdk-php/blob/main/README.md"
+    },
     "require": {
         "php": ">=7.0.0",
         "guzzlehttp/guzzle": "^6.0|^7.0"
@@ -50,6 +59,10 @@
         "cs-fixer-fix": "php-cs-fixer fix"
     },
     "config": {
-        "sort-packages": true
-    }
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

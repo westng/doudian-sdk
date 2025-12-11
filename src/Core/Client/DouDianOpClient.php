@@ -136,7 +136,15 @@ class DouDianOpClient
 
         $httpResponse = $this->httpClient->post($httpRequest);
 
-        return json_decode($httpResponse->body, false, 512, JSON_UNESCAPED_UNICODE);
+        $response = json_decode($httpResponse->body, false, 512, JSON_UNESCAPED_UNICODE);
+        
+        // 调试输出
+        if ($config->debug) {
+            echo "\n[DEBUG] API响应原始数据:\n";
+            echo $httpResponse->body . "\n\n";
+        }
+        
+        return $response;
     }
 
     /**

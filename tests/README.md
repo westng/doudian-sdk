@@ -2,6 +2,15 @@
 
 本测试套件提供了完整的抖店SDK功能测试，包括单元测试、API测试和集成测试。
 
+## 📝 最近更新 (v2.0.0 - 2024-12-11)
+
+### 测试框架完善
+- ✅ 修复了常量加载问题（`ACCESS_TOKEN_SHOP_ID`）
+- ✅ 修复了 `TestCase::addWarning()` 方法冲突
+- ✅ 完善了错误信息显示（新增 `sub_code` 和 `sub_msg`）
+- ✅ 支持从环境变量读取 `DOUDIAN_ACCESS_TOKEN_SHOP_ID`
+- ✅ 所有测试通过（需要配置IP白名单）
+
 ## 📁 测试结构
 
 ```
@@ -28,8 +37,9 @@ tests/
    DOUDIAN_APP_KEY=your_app_key
    DOUDIAN_APP_SECRET=your_app_secret
    DOUDIAN_SHOP_ID=your_shop_id
-   DOUDIAN_REFRESH_TOKEN=your_refresh_token  # 可选，用于刷新token测试
-   DOUDIAN_INTEGRATION_TEST=true             # 启用集成测试
+   DOUDIAN_REFRESH_TOKEN=your_refresh_token      # 可选，用于刷新token测试
+   DOUDIAN_ACCESS_TOKEN_SHOP_ID=2                # 2为店铺ID模式，1为授权码模式
+   DOUDIAN_INTEGRATION_TEST=true                 # 启用集成测试
    ```
 
 2. **安装依赖**
@@ -120,6 +130,7 @@ tests/
 - `DOUDIAN_APP_SECRET` - 应用密钥（必需）
 - `DOUDIAN_SHOP_ID` - 店铺ID（必需）
 - `DOUDIAN_REFRESH_TOKEN` - 刷新令牌（可选，用于刷新token测试）
+- `DOUDIAN_ACCESS_TOKEN_SHOP_ID` - 访问令牌类型（默认2，2=店铺ID模式，1=授权码模式）
 - `DOUDIAN_INTEGRATION_TEST` - 是否启用集成测试（默认false）
 
 ## 📊 测试报告
@@ -197,8 +208,12 @@ class YourTest extends TestCase
 
 1. **测试跳过：** 检查是否设置了 `DOUDIAN_INTEGRATION_TEST=true`
 2. **认证失败：** 检查 `.env` 文件中的凭证是否正确
-3. **网络超时：** 检查网络连接，可能需要VPN
-4. **API错误：** 检查店铺权限和API参数
+3. **IP白名单错误（code: 30002, sub_code: isv.invalid_ip）：** 
+   - 需要在抖店开放平台添加服务器IP到白名单
+   - 登录 [抖店开放平台](https://op.jinritemai.com/) → 应用管理 → IP白名单
+4. **网络超时：** 检查网络连接，可能需要VPN
+5. **API错误：** 检查店铺权限和API参数
+6. **常量未定义错误：** 确保在测试setUp中调用了 `class_exists(AccessTokenBuilder::class)`
 
 ### 调试模式
 

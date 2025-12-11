@@ -17,6 +17,10 @@ class AccessToken
 
     private $message;
 
+    private $subCode;
+
+    private $subMsg;
+
     private $logId;
 
     private $data;
@@ -25,12 +29,21 @@ class AccessToken
     {
         $accessToken = new AccessToken();
 
-        if (property_exists($resp, 'err_no')) {
-            $accessToken->setErrNo($resp->err_no);
+        // 抖店API响应格式：code/msg/sub_code/sub_msg/data/log_id
+        if (property_exists($resp, 'code')) {
+            $accessToken->setErrNo($resp->code);
         }
 
-        if (property_exists($resp, 'message')) {
-            $accessToken->setMessage($resp->message);
+        if (property_exists($resp, 'msg')) {
+            $accessToken->setMessage($resp->msg);
+        }
+
+        if (property_exists($resp, 'sub_code')) {
+            $accessToken->setSubCode($resp->sub_code);
+        }
+
+        if (property_exists($resp, 'sub_msg')) {
+            $accessToken->setSubMsg($resp->sub_msg);
         }
 
         if (property_exists($resp, 'log_id')) {
@@ -46,7 +59,8 @@ class AccessToken
 
     public function isSuccess(): bool
     {
-        return 0 == $this->errNo;
+        // 抖店API：code=10000表示成功
+        return 10000 === $this->errNo;
     }
 
     public function getAccessToken()
@@ -121,6 +135,26 @@ class AccessToken
     public function setMessage($message)
     {
         $this->message = $message;
+    }
+
+    public function getSubCode()
+    {
+        return $this->subCode;
+    }
+
+    public function setSubCode($subCode)
+    {
+        $this->subCode = $subCode;
+    }
+
+    public function getSubMsg()
+    {
+        return $this->subMsg;
+    }
+
+    public function setSubMsg($subMsg)
+    {
+        $this->subMsg = $subMsg;
     }
 
     public function getLogId()
