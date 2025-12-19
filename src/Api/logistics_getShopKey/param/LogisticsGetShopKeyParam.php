@@ -17,4 +17,6 @@ class LogisticsGetShopKeyParam
     public $cipher_text;
 
     public $deviceInfo;
+
+    public $store_id;
 }

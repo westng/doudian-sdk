@@ -15,4 +15,6 @@ namespace DouDianSdk\Api\freightTemplate_detail\param;
 class FreightTemplateDetailParam
 {
     public $freight_id;
+
+    public $query_option;
 }

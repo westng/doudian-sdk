@@ -11,6 +11,7 @@
 
 namespace DouDianSdk\Api\materialgw;
 
+// auto generated code
 class BinaryMaterialUploadAddressAuthRequest
 {
     private $param;

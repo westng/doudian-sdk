@@ -14,6 +14,8 @@ namespace DouDianSdk\Api\product_addV2\param;
 // auto generated code
 class SpecPricesV2
 {
+    public $batch_stocks;
+
     public $multi_time_stocks;
 
     public $sku_status;

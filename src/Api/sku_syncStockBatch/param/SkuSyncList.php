@@ -14,6 +14,8 @@ namespace DouDianSdk\Api\sku_syncStockBatch\param;
 // auto generated code
 class SkuSyncList
 {
+    public $batch_stock_items;
+
     public $multi_time_stocks;
 
     public $outer_sku_id;

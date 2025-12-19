@@ -21,4 +21,8 @@ class SkuSyncStockBatchMultiProductsParam
     public $incremental;
 
     public $source;
+
+    public $allow_partial_success;
+
+    public $inventory_loss;
 }

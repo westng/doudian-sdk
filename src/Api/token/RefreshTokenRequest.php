@@ -11,6 +11,7 @@
 
 namespace DouDianSdk\Api\token;
 
+// auto generated code
 class RefreshTokenRequest
 {
     // 通用变量
@@ -52,6 +53,6 @@ class RefreshTokenRequest
     public function __construct()
     {
         $this->config = \DouDianSdk\Core\Config\GlobalConfig::getGlobalConfig();
-        $this->param  = new param\CreateTokenParam();
+        $this->param  = new param\RefreshTokenParam();
     }
 }

@@ -11,6 +11,7 @@
 
 namespace DouDianSdk\Api\token\param;
 
+// auto generated code
 class CreateTokenParam
 {
     // 业务参数

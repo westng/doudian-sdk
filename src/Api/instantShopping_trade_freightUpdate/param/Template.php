@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
+ */
+
+namespace DouDianSdk\Api\instantShopping_trade_freightUpdate\param;
+
+// auto generated code
+class Template
+{
+    public $template_name;
+
+    public $calculate_type;
+
+    public $product_city;
+
+    public $product_province;
+
+    public $fixed_amount;
+
+    public $rule_type;
+
+    public $id;
+
+    public $transfer_type;
+}

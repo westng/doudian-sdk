@@ -39,4 +39,6 @@ class SkuSyncStockParam
     public $store_id;
 
     public $multi_time_stocks;
+
+    public $batch_stock_items;
 }

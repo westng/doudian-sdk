@@ -14,6 +14,16 @@ namespace DouDianSdk\Api\freightTemplate_update\param;
 // auto generated code
 class Columns
 {
+    public $rule_type;
+
+    public $fixed_amount;
+
+    public $delivery_fulfillment_mode;
+
+    public $end_time;
+
+    public $reason;
+
     public $first_weight;
 
     public $first_weight_price;

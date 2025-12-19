@@ -21,4 +21,8 @@ class SmsTemplateApplyParam
     public $template_name;
 
     public $template_content;
+
+    public $is_public;
+
+    public $version;
 }

@@ -45,4 +45,12 @@ class ProductListV2Param
     public $can_combine_product;
 
     public $lookup_option;
+
+    public $need_rectification_info;
+
+    public $query_options;
+
+    public $need_check_out;
+
+    public $sku_codes;
 }

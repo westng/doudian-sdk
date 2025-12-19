@@ -35,4 +35,8 @@ class OrderLogisticsAddParam
     public $store_id;
 
     public $after_sale_address_id;
+
+    public $product_orders;
+
+    public $trace_info_list;
 }

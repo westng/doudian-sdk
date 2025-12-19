@@ -69,4 +69,6 @@ class AfterSaleListParam
     public $aftersale_status_to_final_start_time;
 
     public $aftersale_status_to_final_end_time;
+
+    public $store_id_list;
 }

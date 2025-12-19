@@ -11,6 +11,7 @@
 
 namespace DouDianSdk\Api\token;
 
+// auto generated code
 class CreateTokenRequest
 {
     // 通用变量

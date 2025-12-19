@@ -25,4 +25,10 @@ class TopupResultParam
     public $err_code;
 
     public $err_desc;
+
+    public $url;
+
+    public $url_type;
+
+    public $topup_failure_reason_code;
 }

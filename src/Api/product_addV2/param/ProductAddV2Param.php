@@ -177,4 +177,16 @@ class ProductAddV2Param
     public $custom_property;
 
     public $is_evaluate_opened;
+
+    public $default_process_time;
+
+    public $company_id;
+
+    public $is_second_hand_digital;
+
+    public $recommend_ids;
+
+    public $show_checkout_entry;
+
+    public $pickup_prepare_time;
 }

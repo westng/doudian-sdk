@@ -21,4 +21,6 @@ class ProductEditSchemaParam
     public $token;
 
     public $model;
+
+    public $recommend_ids;
 }

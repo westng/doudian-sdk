@@ -35,4 +35,6 @@ class SmsSendParam
     public $mini_app_link_id;
 
     public $douyin_open_id;
+
+    public $sms_test_verification;
 }

@@ -23,4 +23,6 @@ class ProductAddSchemaParam
     public $product_id;
 
     public $recruit_info;
+
+    public $recommend_ids;
 }

@@ -21,4 +21,6 @@ class ProductRecommendPropertiesParam
     public $img_urls;
 
     public $name;
+
+    public $product_format;
 }

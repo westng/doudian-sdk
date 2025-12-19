@@ -11,6 +11,7 @@
 
 namespace DouDianSdk\Api\token\param;
 
+// auto generated code
 class RefreshTokenParam
 {
     public $grant_type;

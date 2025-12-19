@@ -35,4 +35,6 @@ class Items
     public $stock_num;
 
     public $step_stock_num;
+
+    public $uniq_id;
 }

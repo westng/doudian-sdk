@@ -25,4 +25,6 @@ class AddressListParam
     public $order_field;
 
     public $store_id;
+
+    public $is_send_home_open_req;
 }

@@ -25,4 +25,6 @@ class SmsTemplateApplyListParam
     public $page;
 
     public $status;
+
+    public $version;
 }

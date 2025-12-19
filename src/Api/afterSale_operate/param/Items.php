@@ -14,6 +14,8 @@ namespace DouDianSdk\Api\afterSale_operate\param;
 // auto generated code
 class Items
 {
+    public $repair_type;
+
     public $aftersale_id;
 
     public $reason;

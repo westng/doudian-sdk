@@ -175,4 +175,12 @@ class ProductEditV2Param
     public $custom_property;
 
     public $is_evaluate_opened;
+
+    public $default_process_time;
+
+    public $recommend_ids;
+
+    public $show_checkout_entry;
+
+    public $pickup_prepare_time;
 }

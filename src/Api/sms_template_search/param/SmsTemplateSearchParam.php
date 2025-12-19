@@ -25,4 +25,8 @@ class SmsTemplateSearchParam
     public $size;
 
     public $template_name;
+
+    public $is_public;
+
+    public $version;
 }

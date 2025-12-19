@@ -29,4 +29,8 @@ class CouponsVerifyV2Param
     public $store_id;
 
     public $verify_order_id;
+
+    public $check_verify_order_id;
+
+    public $vehicle_identity;
 }

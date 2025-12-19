@@ -45,4 +45,8 @@ class ProductUpdateChannelProductParam
     public $sku_code_follow_main;
 
     public $detail_brief_follow_main;
+
+    public $name_prefix;
+
+    public $name_subject;
 }

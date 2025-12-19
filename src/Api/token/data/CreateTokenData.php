@@ -11,6 +11,7 @@
 
 namespace DouDianSdk\Api\token\data;
 
+// auto generated code
 class CreateTokenData
 {
     public $access_token;

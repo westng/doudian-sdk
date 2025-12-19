@@ -17,4 +17,6 @@ class ProductGetSchemaParam
     public $category_id;
 
     public $product_id;
+
+    public $spu_id;
 }
