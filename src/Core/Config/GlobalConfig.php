@@ -11,22 +11,97 @@
 
 namespace DouDianSdk\Core\Config;
 
-use DouDianSdk\Core\SingletonTrait;
+use DouDianSdk\Core\Swoole\CoroutineContext;
+use DouDianSdk\Core\Swoole\RuntimeDetector;
 
 /**
  * 全局配置类.
  *
  * 继承自 DouDianOpConfig，提供单例模式的全局配置管理
+ * 支持 Swoole 协程环境下的配置隔离
  */
 class GlobalConfig extends DouDianOpConfig
 {
-    use SingletonTrait;
+    /**
+     * @var static|null FPM 环境下的单例实例
+     */
+    private static $instance;
+
+    /**
+     * 协程上下文键
+     */
+    private const CONTEXT_KEY = 'doudian.global_config';
 
     /**
      * 获取全局配置实例.
+     *
+     * @return GlobalConfig
      */
     public static function getGlobalConfig(): GlobalConfig
     {
         return self::getInstance();
+    }
+
+    /**
+     * 获取单例实例
+     *
+     * @return static
+     */
+    public static function getInstance(): self
+    {
+        // Swoole 协程环境：使用协程上下文
+        if (RuntimeDetector::inCoroutine()) {
+            return self::getCoroutineInstance();
+        }
+
+        // FPM 环境：使用静态单例
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    /**
+     * 获取协程级别的实例
+     *
+     * @return self
+     */
+    private static function getCoroutineInstance(): self
+    {
+        $config = CoroutineContext::get(self::CONTEXT_KEY);
+
+        if ($config === null) {
+            $config = new self();
+            CoroutineContext::set(self::CONTEXT_KEY, $config);
+        }
+
+        return $config;
+    }
+
+    /**
+     * 重置单例实例（主要用于测试）
+     */
+    public static function resetInstance(): void
+    {
+        self::$instance = null;
+
+        if (RuntimeDetector::inCoroutine()) {
+            CoroutineContext::delete(self::CONTEXT_KEY);
+        }
+    }
+
+    /**
+     * 设置单例实例（主要用于测试）
+     *
+     * @param static $instance 实例
+     */
+    public static function setInstance($instance): void
+    {
+        if (RuntimeDetector::inCoroutine()) {
+            CoroutineContext::set(self::CONTEXT_KEY, $instance);
+        } else {
+            self::$instance = $instance;
+        }
     }
 }

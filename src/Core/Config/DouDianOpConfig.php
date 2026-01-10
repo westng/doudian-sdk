@@ -69,6 +69,21 @@ class DouDianOpConfig
     public $retryInterval = 1000;
 
     /**
+     * @var int 连接池最大连接数
+     */
+    public $poolMaxConnections = 50;
+
+    /**
+     * @var int 连接池最大空闲时间（秒）
+     */
+    public $poolMaxIdleTime = 60;
+
+    /**
+     * @var float 连接池等待超时（秒）
+     */
+    public $poolWaitTimeout = 3.0;
+
+    /**
      * 设置应用凭证
      *
      * @param string $appKey 应用Key
@@ -122,6 +137,36 @@ class DouDianOpConfig
         $this->retryInterval = $retryInterval;
 
         return $this;
+    }
+
+    /**
+     * 设置连接池配置（Swoole 环境有效）
+     *
+     * @param int $maxConnections 最大连接数
+     * @param int $maxIdleTime 最大空闲时间（秒）
+     * @param float $waitTimeout 等待超时（秒）
+     */
+    public function setPoolConfig($maxConnections = 50, $maxIdleTime = 60, $waitTimeout = 3.0): self
+    {
+        $this->poolMaxConnections = $maxConnections;
+        $this->poolMaxIdleTime = $maxIdleTime;
+        $this->poolWaitTimeout = $waitTimeout;
+
+        return $this;
+    }
+
+    /**
+     * 获取连接池配置数组
+     *
+     * @return array
+     */
+    public function getPoolConfigArray(): array
+    {
+        return [
+            'max_connections' => $this->poolMaxConnections,
+            'max_idle_time' => $this->poolMaxIdleTime,
+            'wait_timeout' => $this->poolWaitTimeout,
+        ];
     }
 
     /**

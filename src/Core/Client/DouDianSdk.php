@@ -13,6 +13,9 @@ namespace DouDianSdk\Core\Client;
 
 use DouDianSdk\Core\Config\GlobalConfig;
 use DouDianSdk\Core\Exception\DouDianException;
+use DouDianSdk\Core\Http\HttpClientFactory;
+use DouDianSdk\Core\Swoole\PoolConfig;
+use DouDianSdk\Core\Swoole\RuntimeDetector;
 use DouDianSdk\Core\Token\AccessToken;
 use DouDianSdk\Core\Token\AccessTokenBuilder;
 
@@ -24,7 +27,7 @@ class DouDianSdk
     /**
      * SDK版本号
      */
-    const VERSION = '2.0.0';
+    const VERSION = '2.1.0';
 
     /**
      * @var GlobalConfig 全局配置
@@ -46,15 +49,17 @@ class DouDianSdk
     public function __construct($appKey = '', $appSecret = '', array $options = [])
     {
         $this->config = GlobalConfig::getGlobalConfig();
+
+        // 应用选项配置（需要在创建客户端之前）
+        $this->applyOptions($options);
+
+        // 创建客户端
         $this->client = DouDianOpClient::getInstance();
 
         // 设置基本配置
         if (!empty($appKey) && !empty($appSecret)) {
             $this->config->setCredentials($appKey, $appSecret);
         }
-
-        // 应用选项配置
-        $this->applyOptions($options);
     }
 
     /**
@@ -91,6 +96,24 @@ class DouDianSdk
 
         if (isset($options['api_version'])) {
             $this->config->apiVersion = $options['api_version'];
+        }
+
+        // 连接池配置（Swoole 环境有效）
+        if (isset($options['pool'])) {
+            $poolConfig = PoolConfig::fromArray($options['pool']);
+            $poolConfig->validate();
+            
+            $this->config->setPoolConfig(
+                $poolConfig->maxConnections,
+                $poolConfig->maxIdleTime,
+                $poolConfig->waitTimeout
+            );
+
+            // 设置到 DouDianOpClient
+            DouDianOpClient::setPoolConfig($poolConfig);
+            
+            // 配置 HttpClientFactory
+            HttpClientFactory::configure([], $poolConfig);
         }
     }
 
@@ -241,5 +264,69 @@ class DouDianSdk
     public function getVersion()
     {
         return self::VERSION;
+    }
+
+    /**
+     * 设置连接池配置（Swoole 环境有效）
+     *
+     * @param int $maxConnections 最大连接数
+     * @param int $maxIdleTime 最大空闲时间（秒）
+     * @param float $waitTimeout 等待超时（秒）
+     * @return self
+     */
+    public function setPoolConfig($maxConnections = 50, $maxIdleTime = 60, $waitTimeout = 3.0): self
+    {
+        $this->config->setPoolConfig($maxConnections, $maxIdleTime, $waitTimeout);
+
+        $poolConfig = PoolConfig::fromArray([
+            'max_connections' => $maxConnections,
+            'max_idle_time' => $maxIdleTime,
+            'wait_timeout' => $waitTimeout,
+        ]);
+
+        DouDianOpClient::setPoolConfig($poolConfig);
+        HttpClientFactory::configure([], $poolConfig);
+
+        return $this;
+    }
+
+    /**
+     * 获取连接池统计信息
+     *
+     * @return array
+     */
+    public function getPoolStats(): array
+    {
+        return HttpClientFactory::getPoolStats();
+    }
+
+    /**
+     * 获取当前运行环境
+     *
+     * @return string 'swoole-coroutine', 'swoole-sync', 或 'fpm'
+     */
+    public function getEnvironment(): string
+    {
+        return HttpClientFactory::getEnvironment();
+    }
+
+    /**
+     * 检查是否在 Swoole 协程环境
+     *
+     * @return bool
+     */
+    public function isSwooleCoroutine(): bool
+    {
+        return RuntimeDetector::inCoroutine();
+    }
+
+    /**
+     * 关闭所有连接并释放资源
+     * 
+     * 在长时间运行的进程中（如队列消费者），建议在适当时机调用此方法
+     */
+    public function shutdown(): void
+    {
+        HttpClientFactory::shutdown();
     }
 }

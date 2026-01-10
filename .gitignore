@@ -2,6 +2,7 @@ composer.phar
 /vendor/
 .idea
 .DS_Store
+.kiro
 
 # Environment files - 包含敏感信息，不应提交到版本控制
 .env

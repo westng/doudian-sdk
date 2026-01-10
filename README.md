@@ -1,27 +1,39 @@
 # 抖店 SDK
 
-[![PHP Version](https://img.shields.io/badge/php-%3E%3D7.0-blue.svg)](https://php.net)
+[![PHP Version](https://img.shields.io/badge/php-%3E%3D7.2-blue.svg)](https://php.net)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)](#测试)
 [![Coverage](https://img.shields.io/badge/coverage-85%25-green.svg)](#测试覆盖率)
+[![Swoole](https://img.shields.io/badge/swoole-supported-orange.svg)](#swoole-协程支持)
 
-抖店（抖音电商）开放平台 PHP SDK，支持 710+ 个 API 接口，经过完整测试验证。
+抖店（抖音电商）开放平台 PHP SDK，支持 710+ 个 API 接口，**原生支持 Swoole 协程环境和连接池**。
 
 ## ✨ 特性
 
 - 🚀 **完整的 API 覆盖**: 支持 710+ 个抖店开放平台接口
 - 🔒 **安全的签名机制**: 内置 HMAC-SHA256 签名算法  
 - ⚡ **高性能**: 基于 GuzzleHttp 实现，支持并发请求
+- 🌊 **Swoole 协程支持**: 原生支持 Swoole 协程环境，Worker 级别连接池
+- 🔗 **连接池**: HTTP 连接复用，避免 "Too many open files" 问题
 - 🛡️ **异常处理**: 完善的错误处理和重试机制
 - 📦 **易于使用**: 简洁的 API 设计，支持链式调用
 - 🧪 **测试覆盖**: 85% 测试覆盖率，核心功能全面验证
-- 🔧 **配置灵活**: 支持超时、重试、调试等多种配置
+- 🔧 **配置灵活**: 支持超时、重试、调试、连接池等多种配置
 - 🔄 **令牌管理**: 自动令牌刷新和缓存机制
 
 ## 安装
 
 ```bash
 composer require westng/doudian-sdk
+```
+
+### Swoole 环境（可选）
+
+如果在 Swoole 协程环境下使用，推荐安装协程 HTTP 客户端：
+
+```bash
+# 推荐：安装 hyperf/guzzle 获得最佳连接池支持
+composer require hyperf/guzzle
 ```
 
 ## 🏗️ SDK架构说明
@@ -34,8 +46,12 @@ composer require westng/doudian-sdk
 ├─────────────────────────────────────────┤
 │           DouDianOpClient               │  ← 业务层：处理API请求
 ├─────────────────────────────────────────┤
-│             HttpClient                  │  ← 传输层：HTTP通信
-├─────────────────────────────────────────┤
+│         HttpClientFactory               │  ← 工厂层：环境自适应
+├──────────────────┬──────────────────────┤
+│   HttpClient     │   SwooleHttpClient   │  ← 传输层：HTTP通信
+│   (FPM环境)      │   + ConnectionPool   │
+│                  │   (Swoole协程环境)    │
+├──────────────────┴──────────────────────┤
 │      GlobalConfig/DouDianOpConfig       │  ← 配置层：统一配置管理
 └─────────────────────────────────────────┘
 ```
@@ -44,10 +60,12 @@ composer require westng/doudian-sdk
 
 - **DouDianSdk** - 门面类，提供简化的API调用接口
 - **DouDianOpClient** - 操作客户端，负责处理API请求和签名
-- **HttpClient** - HTTP通信层，基于GuzzleHttp，支持重试和超时
-- **GlobalConfig/DouDianOpConfig** - 配置管理，支持单例模式
+- **HttpClientFactory** - HTTP客户端工厂，自动检测环境选择合适的客户端
+- **ConnectionPool** - Worker 级别共享的连接池，避免连接泄漏
+- **HttpClient** - 标准HTTP客户端，适用于 PHP-FPM 环境
+- **SwooleHttpClient** - 协程安全HTTP客户端，使用共享连接池
+- **GlobalConfig/DouDianOpConfig** - 配置管理
 - **AccessTokenBuilder** - 令牌构建器，支持授权码和店铺ID两种模式
-- **Exception** - 完善的异常处理体系（HttpException、ApiException等）
 
 ## 🚀 快速开始
 
@@ -77,7 +95,7 @@ $result = $sdk->callApi(
     [
         'page' => 1,
         'size' => 20,
-        'order_status' => 1, // 待发货
+        'order_status' => 1,
         'start_time' => date('Y-m-d H:i:s', strtotime('-7 days')),
         'end_time' => date('Y-m-d H:i:s'),
     ],
@@ -86,10 +104,8 @@ $result = $sdk->callApi(
 
 // 处理结果
 if (isset($result['code']) && $result['code'] === 10000) {
-    echo "获取订单成功，共 " . count($result['data']['order_list'] ?? []) . " 条订单\n";
+    echo "获取订单成功\n";
     print_r($result['data']);
-} else {
-    echo "API调用失败: " . ($result['msg'] ?? 'Unknown error') . "\n";
 }
 ```
 
@@ -97,504 +113,384 @@ if (isset($result['code']) && $result['code'] === 10000) {
 
 ```php
 <?php
-require_once 'vendor/autoload.php';
-
 use DouDianSdk\Core\Client\DouDianSdk;
 
-// 创建SDK实例并设置高级配置
 $sdk = new DouDianSdk('your_app_key', 'your_app_secret', [
     'debug' => true,
     'timeout' => [
-        'connect' => 5000,  // 连接超时5秒（默认）
-        'read' => 10000     // 读取超时10秒（默认）
+        'connect' => 5000,  // 连接超时5秒
+        'read' => 10000     // 读取超时10秒
     ],
     'retry' => [
-        'enable' => true,   // 启用重试
-        'max_times' => 3,   // 最大重试3次
-        'interval' => 1000  // 重试间隔1秒
+        'enable' => true,
+        'max_times' => 3,
+        'interval' => 1000
+    ],
+    // Swoole 环境连接池配置
+    'pool' => [
+        'max_connections' => 50,  // 最大连接数
+        'max_idle_time' => 60,    // 空闲超时（秒）
+        'wait_timeout' => 3.0     // 等待超时（秒）
+    ]
+]);
+```
+
+## 🌊 Swoole 协程支持
+
+SDK 从 v2.1.0 开始原生支持 Swoole 协程环境，**智能适配**不同的运行环境。
+
+### 连接池策略
+
+SDK 会自动检测环境，选择最优方案：
+
+| 优先级 | 环境 | 策略 | 说明 |
+|-------|------|------|------|
+| 1 | Hyperf + PoolHandler | 直接使用 Hyperf 连接池 | 最优方案，充分利用 Hyperf |
+| 2 | Hyperf + CoroutineHandler | SDK 连接池 + Hyperf 协程 | 兼容方案 |
+| 3 | 原生 Swoole | SDK 连接池 | 兜底方案 |
+| 4 | PHP-FPM | 进程级单例 | 传统模式 |
+
+### 解决的问题
+
+| 问题 | 之前 | 现在 |
+|------|------|------|
+| Too many open files | 每个协程创建独立连接，连接数无限增长 | 连接池限制最大连接数 |
+| 连接泄漏 | 协程结束时连接未正确释放 | 请求完成立即归还，finally 保证 |
+| TCP 握手开销 | 每次请求都要握手 | 连接复用，减少握手 |
+| 资源不可控 | 无法限制连接数 | 可配置最大连接数 |
+
+### 连接池架构
+
+```
+┌─────────────────────────────────────────┐
+│              Worker Process              │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐   │
+│  │Coroutine│ │Coroutine│ │Coroutine│   │
+│  │   #1    │ │   #2    │ │   #3    │   │
+│  └────┬────┘ └────┬────┘ └────┬────┘   │
+│       │           │           │         │
+│       └───────────┼───────────┘         │
+│                   ▼                     │
+│    ┌───────────────────────────────┐    │
+│    │      ConnectionPool           │    │
+│    │  ┌─────┐ ┌─────┐ ┌─────┐     │    │
+│    │  │Conn1│ │Conn2│ │Conn3│ ... │    │  ← Worker 级别共享
+│    │  └─────┘ └─────┘ └─────┘     │    │
+│    │      (max: 50 connections)    │    │
+│    └───────────────────────────────┘    │
+└─────────────────────────────────────────┘
+```
+
+### 连接池工作流程
+
+```php
+// 每次 HTTP 请求
+$client = $pool->get();      // 1. 从池获取连接（或等待）
+try {
+    $response = $client->request(...);  // 2. 发送请求
+    return $response;
+} finally {
+    $pool->put($client);     // 3. 归还连接（无论成功失败）
+}
+```
+
+### Swoole 环境配置
+
+```php
+<?php
+use DouDianSdk\Core\Client\DouDianSdk;
+
+// 方式1：构造函数配置
+$sdk = new DouDianSdk('your_app_key', 'your_app_secret', [
+    'pool' => [
+        'max_connections' => 50,   // 最大连接数（默认50）
+        'max_idle_time' => 60,     // 空闲超时秒数（默认60）
+        'wait_timeout' => 3.0      // 等待超时秒数（默认3.0）
     ]
 ]);
 
-// 或者分步设置
-$sdk->setDebug(true);
-
-// 获取配置信息
-$config = $sdk->getConfig();
-echo "连接超时: " . $config->httpConnectTimeout . "ms\n";
-echo "读取超时: " . $config->httpReadTimeout . "ms\n";
+// 方式2：运行时配置
+$sdk->setPoolConfig(100, 120, 5.0);
 ```
 
-### 3. 令牌管理（重要）
+### 队列消费者示例
 
 ```php
 <?php
-require_once 'vendor/autoload.php';
-
 use DouDianSdk\Core\Client\DouDianSdk;
-use DouDianSdk\Core\Token\AccessTokenBuilder;
+
+// 初始化 SDK（在 Worker 启动时）
+$sdk = new DouDianSdk('your_app_key', 'your_app_secret', [
+    'pool' => ['max_connections' => 50]
+]);
+
+$count = 0;
+
+while (true) {
+    $job = $queue->pop();
+    
+    // 每个协程共享同一个连接池
+    go(function() use ($sdk, $job) {
+        $accessToken = getAccessTokenFromCache($job['shop_id']);
+        
+        $result = $sdk->callApi(
+            'order_orderDetail\OrderOrderDetailRequest',
+            'order_orderDetail\param\OrderOrderDetailParam',
+            ['order_id' => $job['order_id']],
+            $accessToken
+        );
+        
+        // 处理结果...
+        // 请求完成，连接自动归还到池中
+    });
+    
+    $count++;
+    
+    // 定期查看连接池状态
+    if ($count % 1000 === 0) {
+        $stats = $sdk->getPoolStats();
+        echo sprintf(
+            "连接池: 活跃=%d, 空闲=%d, 等待=%d, 总请求=%d\n",
+            $stats['active_connections'],
+            $stats['idle_connections'],
+            $stats['wait_queue_size'],
+            $stats['total_requests']
+        );
+    }
+}
+```
+
+### 连接池监控
+
+```php
+$stats = $sdk->getPoolStats();
+
+// 返回结构：
+// [
+//     'pool_size' => 50,           // 池大小配置
+//     'total_created' => 50,       // 总创建连接数
+//     'active_connections' => 30,  // 正在使用的连接
+//     'idle_connections' => 20,    // 空闲可用的连接
+//     'wait_queue_size' => 5,      // 等待获取连接的协程数
+//     'total_requests' => 10000,   // 总请求数
+// ]
+
+// 调优建议：
+// - wait_queue_size 经常 > 0 → 增加 max_connections
+// - idle_connections 经常很高 → 减少 max_connections
+```
+
+### 资源释放
+
+```php
+// 在长时间运行的进程中，可以主动释放资源
+$sdk->shutdown();
+
+// 或者在 Worker 退出时调用
+Swoole\Process::signal(SIGTERM, function() use ($sdk) {
+    $sdk->shutdown();
+    exit(0);
+});
+```
+
+### Hyperf 框架集成（推荐）
+
+Hyperf 用户可以获得最佳性能，SDK 会自动使用 Hyperf 的 PoolHandler：
+
+```php
+<?php
+// 1. 安装 hyperf/guzzle（如果还没安装）
+// composer require hyperf/guzzle
+
+// 2. config/autoload/dependencies.php
+return [
+    \DouDianSdk\Core\Client\DouDianSdk::class => function() {
+        return new \DouDianSdk\Core\Client\DouDianSdk(
+            env('DOUDIAN_APP_KEY'),
+            env('DOUDIAN_APP_SECRET'),
+            [
+                'pool' => [
+                    'max_connections' => 50,  // Hyperf PoolHandler 会使用这个配置
+                    'max_idle_time' => 60,
+                ]
+            ]
+        );
+    },
+];
+
+// 3. 在 Controller 或 Service 中使用
+class OrderService
+{
+    public function __construct(
+        private \DouDianSdk\Core\Client\DouDianSdk $sdk
+    ) {}
+    
+    public function getOrder(string $orderId, string $accessToken)
+    {
+        return $this->sdk->callApi(...);
+        // SDK 自动使用 Hyperf PoolHandler，无需额外配置
+    }
+}
+```
+
+检查是否使用了 Hyperf PoolHandler：
+
+```php
+$stats = $sdk->getPoolStats();
+echo $stats['mode'];  
+// 'hyperf-pool-handler' - 使用 Hyperf 内置连接池（最优）
+// 'sdk-pool-with-hyperf-handler' - SDK 连接池 + Hyperf 协程
+// 'sdk-pool-native' - SDK 连接池 + 原生 Swoole
+```
+
+### 环境检测
+
+```php
+// 检查当前环境
+echo $sdk->getEnvironment();  
+// 'swoole-coroutine' - Swoole 协程环境
+// 'swoole-sync' - Swoole 同步环境
+// 'fpm' - PHP-FPM 环境
+
+echo $sdk->isSwooleCoroutine() ? '协程环境' : '非协程环境';
+```
+
+## 🔑 令牌管理
+
+```php
+<?php
+use DouDianSdk\Core\Client\DouDianSdk;
 
 $sdk = new DouDianSdk('your_app_key', 'your_app_secret');
 
-// 方式1: 通过SDK获取令牌（推荐）
-$accessToken = $sdk->getAccessToken('your_shop_id', 2); // 2 = 店铺ID模式
+// 获取令牌
+$accessToken = $sdk->getAccessToken('your_shop_id', 2);
 
-// 方式2: 直接使用AccessTokenBuilder
-$accessToken = AccessTokenBuilder::build('your_shop_id', 2);
-
-// 检查令牌是否有效
 if ($accessToken->isSuccess()) {
-    echo "✅ 令牌获取成功\n";
-    echo "访问令牌: " . substr($accessToken->getAccessToken(), 0, 30) . "...\n";
+    echo "访问令牌: " . $accessToken->getAccessToken() . "\n";
     echo "有效期: " . $accessToken->getExpireIn() . " 秒\n";
     echo "店铺ID: " . $accessToken->getShopId() . "\n";
-    echo "店铺名称: " . $accessToken->getShopName() . "\n";
     
-    // 如果有刷新令牌，保存它用于后续刷新
+    // 刷新令牌
     if ($refreshToken = $accessToken->getRefreshToken()) {
-        echo "刷新令牌: " . substr($refreshToken, 0, 30) . "...\n";
-        
-        // 刷新令牌示例
         $newToken = $sdk->refreshAccessToken($refreshToken);
-        if ($newToken->isSuccess()) {
-            echo "✅ 令牌刷新成功\n";
-        }
     }
 } else {
-    // 详细的错误信息
-    echo "❌ 获取令牌失败\n";
-    echo "错误码: " . $accessToken->getErrNo() . "\n";
-    echo "错误消息: " . $accessToken->getMessage() . "\n";
+    echo "错误: " . $accessToken->getMessage() . "\n";
     echo "子错误码: " . $accessToken->getSubCode() . "\n";
-    echo "详细错误: " . $accessToken->getSubMsg() . "\n";
-    
-    // 常见错误处理
-    if ($accessToken->getSubCode() === 'isv.invalid_ip') {
-        echo "⚠️ 提示: 请在抖店开放平台添加服务器IP到白名单\n";
-    }
 }
 ```
 
-#### AccessToken 响应字段说明
-
-抖店API返回标准响应格式：
-
-```json
-{
-  "code": 10000,           // 10000表示成功，其他值表示失败
-  "msg": "success",        // 响应消息
-  "sub_code": "",          // 子错误码（失败时提供详细错误类型）
-  "sub_msg": "",           // 详细错误信息
-  "data": {                // 业务数据
-    "access_token": "...", // 访问令牌
-    "expires_in": 86400,   // 有效期（秒）
-    "refresh_token": "...",// 刷新令牌
-    "shop_id": 123456,     // 店铺ID
-    "shop_name": "店铺名称" // 店铺名称
-  },
-  "log_id": "..."          // 日志ID（用于问题追踪）
-}
-```
-
-**AccessToken 对象提供的方法：**
-
-```php
-// 基础信息
-$accessToken->isSuccess()           // 是否成功 (code === 10000)
-$accessToken->getErrNo()            // 错误码 (code)
-$accessToken->getMessage()          // 错误消息 (msg)
-$accessToken->getSubCode()          // 子错误码 (sub_code)
-$accessToken->getSubMsg()           // 详细错误信息 (sub_msg)
-$accessToken->getLogId()            // 日志ID (log_id)
-
-// 令牌数据
-$accessToken->getAccessToken()      // 访问令牌
-$accessToken->getExpireIn()         // 有效期（秒）
-$accessToken->getRefreshToken()     // 刷新令牌
-$accessToken->getShopId()           // 店铺ID
-$accessToken->getShopName()         // 店铺名称
-$accessToken->getScope()            // 授权范围
-```
-
-### 4. 错误处理
+## 🛡️ 错误处理
 
 ```php
 <?php
-require_once 'vendor/autoload.php';
-
 use DouDianSdk\Core\Client\DouDianSdk;
 use DouDianSdk\Core\Exception\DouDianException;
 use DouDianSdk\Core\Exception\ApiException;
 use DouDianSdk\Core\Exception\HttpException;
 
-$sdk = new DouDianSdk('your_app_key', 'your_app_secret');
-
 try {
-    // 获取访问令牌
-    $accessToken = $sdk->getAccessToken('your_shop_id', 2);
-    
-    if (!$accessToken->isSuccess()) {
-        throw new DouDianException('获取访问令牌失败: ' . $accessToken->getMessage());
-    }
-    
-    // 调用API
-    $result = $sdk->callApi(
-        'order_orderList\\OrderOrderListRequest',
-        'order_orderList\\param\\OrderOrderListParam',
-        [
-            'page' => 1,
-            'size' => 20
-        ],
-        $accessToken->getAccessToken()
-    );
-
-    // 检查API返回结果
-    if (isset($result['code']) && $result['code'] === 10000) {
-        // 成功处理
-        $data = $result['data'] ?? [];
-        echo "获取订单列表成功，共 " . count($data) . " 条记录\n";
-    } else {
-        // API 返回错误
-        $errorMsg = $result['msg'] ?? '未知错误';
-        echo "API 错误: " . $errorMsg . "\n";
-    }
-
+    $result = $sdk->callApi(...);
 } catch (HttpException $e) {
-    // HTTP 请求错误（网络问题、超时等）
+    // HTTP 错误（网络问题、超时、连接池耗尽等）
     echo "HTTP 错误: " . $e->getMessage() . "\n";
-    
 } catch (ApiException $e) {
-    // API 调用错误（参数错误、签名错误等）
+    // API 错误（参数错误、签名错误等）
     echo "API 错误: " . $e->getMessage() . "\n";
-    
 } catch (DouDianException $e) {
     // 其他 SDK 错误
     echo "SDK 错误: " . $e->getMessage() . "\n";
-    
-} catch (\Exception $e) {
-    // 通用错误处理
-    echo "系统错误: " . $e->getMessage() . "\n";
 }
 ```
-
-### 5. 常用 API 示例
-
-#### 订单相关
-
-```php
-<?php
-// 获取订单列表
-$orderList = $sdk->callApi(
-    'order_orderList\\OrderOrderListRequest',
-    'order_orderList\\param\\OrderOrderListParam',
-    [
-        'page' => 1,
-        'size' => 20,
-        'order_by' => 'create_time',
-        'is_desc' => 1
-    ],
-    $accessToken->getAccessToken()
-);
-
-// 获取订单详情
-$orderDetail = $sdk->callApi(
-    'order_orderDetail\\OrderOrderDetailRequest',
-    'order_orderDetail\\param\\OrderOrderDetailParam',
-    ['order_id' => '123456789'],
-    $accessToken->getAccessToken()
-);
-
-// 查询订单列表
-$result = $sdk->callApi(
-    'order_searchList\OrderSearchListRequest',
-    'order_searchList\param\OrderSearchListParam',
-    [
-        'page' => 1,
-        'size' => 20,
-        'start_time' => '2024-01-01 00:00:00',
-        'end_time' => '2024-01-31 23:59:59'
-    ],
-    $accessToken
-);
-
-// 更新订单物流信息
-$updateLogistics = $sdk->callApi(
-    'order_logisticsEdit\\OrderLogisticsEditRequest',
-    'order_logisticsEdit\\param\\OrderLogisticsEditParam',
-    [
-        'order_id' => '123456789',
-        'logistics_id' => 'SF1234567890',
-        'company_name' => '顺丰速运'
-    ],
-    $accessToken->getAccessToken()
-);
-
-#### 商品相关
-
-```php
-// 获取商品列表
-$productList = $sdk->callApi(
-    'product_list\\ProductListRequest',
-    'product_list\\param\\ProductListParam',
-    [
-        'page' => 1,
-        'size' => 20,
-        'status' => 1  // 1=在售
-    ],
-    $accessToken->getAccessToken()
-);
-
-// 获取商品详情
-$productDetail = $sdk->callApi(
-    'product_detail\\ProductDetailRequest',
-    'product_detail\\param\\ProductDetailParam',
-    ['product_id' => '123456789'],
-    $accessToken->getAccessToken()
-);
-
-#### 售后相关
-
-```php
-// 获取售后列表
-$afterSaleList = $sdk->callApi(
-    'afterSale_List\\AfterSaleListRequest',
-    'afterSale_List\\param\\AfterSaleListParam',
-    [
-        'page' => 1,
-        'size' => 20,
-        'start_time' => '2024-01-01 00:00:00',
-        'end_time' => '2024-01-31 23:59:59'
-    ],
-    $accessToken->getAccessToken()
-);
-
-// 处理售后申请
-$handleAfterSale = $sdk->callApi(
-    'afterSale_refundProcessNotify\\AfterSaleRefundProcessNotifyRequest',
-    'afterSale_refundProcessNotify\\param\\AfterSaleRefundProcessNotifyParam',
-    [
-        'aftersale_id' => '123456789',
-        'status' => 1,  // 1=同意，2=拒绝
-        'desc' => '处理说明'
-    ],
-    $accessToken->getAccessToken()
-);
-
-### 6. 底层组件直接使用
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use DouDianSdk\Core\Token\AccessTokenBuilder;
-use DouDianSdk\Core\Config\GlobalConfig;
-use DouDianSdk\Core\Client\DouDianOpClient;
-
-// 方式1: 使用全局配置
-$globalConfig = GlobalConfig::getGlobalConfig();
-$globalConfig->setCredentials('your_app_key', 'your_app_secret');
-
-// 获取访问令牌
-$accessToken = AccessTokenBuilder::build('your_shop_id', 2);
-
-if ($accessToken->isSuccess()) {
-    // 直接使用API类
-    $request = new \DouDianSdk\Api\afterSale_List\AfterSaleListRequest();
-    $param = new \DouDianSdk\Api\afterSale_List\param\AfterSaleListParam();
-    $param->page = 1;
-    $param->size = 20;
-    $request->setParam($param);
-    
-    $result = $request->execute($accessToken->getAccessToken());
-    print_r($result);
-}
-```
-
-## 实际项目集成
-
-详细的项目集成指南请参考：[README_INTEGRATION.md](README_INTEGRATION.md)
-
-包含以下框架的完整示例：
-- Laravel 项目集成
-- Hyperf/MineAdmin 项目集成  
-- 通用最佳实践
-- 错误处理和重试机制
-- 令牌管理和缓存策略
 
 ## 📁 项目结构
 
 ```
 src/
 ├── Api/                         # API 接口类 (710+ 个接口)
-│   ├── order_searchList/        # 订单搜索接口
-│   ├── product_listV2/          # 商品列表接口
-│   ├── afterSale_List/          # 售后列表接口
-│   └── ...                      # 其他710+个接口
-├── Core/                        # 核心功能模块
-│   ├── Client/                  # 客户端相关类
+├── Core/
+│   ├── Client/                  # 客户端
 │   │   ├── DouDianSdk.php       # SDK门面类
 │   │   └── DouDianOpClient.php  # API操作客户端
-│   ├── Config/                  # 配置管理类
-│   │   ├── GlobalConfig.php     # 全局配置（单例）
-│   │   └── DouDianOpConfig.php  # 操作配置
+│   ├── Config/                  # 配置管理
 │   ├── Token/                   # 访问令牌管理
-│   │   ├── AccessToken.php      # 令牌数据类
-│   │   └── AccessTokenBuilder.php # 令牌构建器
 │   ├── Http/                    # HTTP 客户端
-│   │   ├── HttpClient.php       # HTTP客户端
-│   │   └── HttpRequest.php      # HTTP请求
+│   │   ├── HttpClient.php       # 标准HTTP客户端
+│   │   ├── SwooleHttpClient.php # Swoole协程客户端
+│   │   ├── HttpClientFactory.php# 客户端工厂
+│   │   └── HttpClientInterface.php
+│   ├── Swoole/                  # Swoole 支持
+│   │   ├── ConnectionPool.php   # 连接池（核心）
+│   │   ├── RuntimeDetector.php  # 环境检测
+│   │   ├── PoolConfig.php       # 连接池配置
+│   │   └── CoroutineContext.php # 协程上下文
 │   ├── Exception/               # 异常处理
-│   │   ├── DouDianException.php # SDK基础异常
-│   │   ├── ApiException.php     # API异常
-│   │   └── HttpException.php    # HTTP异常
 │   └── Response/                # 响应处理
 └── Utils/                       # 工具类
-    └── SignUtil.php             # 签名工具
-
-tests/                           # 测试套件
-├── Core/                        # 核心功能测试
-│   ├── Token/AccessTokenTest.php # 令牌测试
-│   └── ConfigTest.php           # 配置测试
-├── Api/OrderApiTest.php         # API测试
-├── Integration/                 # 集成测试
-└── TestCase.php                 # 测试基类
 ```
 
 ## 🧪 测试
-
-### 运行测试
 
 ```bash
 # 运行所有测试
 ./vendor/bin/phpunit
 
-# 运行核心功能测试
-./vendor/bin/phpunit tests/Core/
+# 运行连接池测试
+./vendor/bin/phpunit tests/Core/ConnectionPoolTest.php
 
-# 运行集成测试（需要真实API凭证）
-DOUDIAN_INTEGRATION_TEST=true ./vendor/bin/phpunit tests/Core/Token/AccessTokenTest.php
-
-# 生成测试报告
-./vendor/bin/phpunit --testdox-html test-report.html
+# 运行 Swoole 兼容性测试
+./vendor/bin/phpunit tests/Core/SwooleCompatibilityTest.php
 ```
-
-### 测试覆盖率
-
-当前测试覆盖率：**85%**
-
-- ✅ **令牌管理**: 100% 覆盖（获取、刷新、验证）
-- ✅ **配置管理**: 100% 覆盖（超时、重试、调试）
-- ✅ **SDK核心**: 83.3% 覆盖（实例化、API调用）
-- ⚠️ **API接口**: 部分覆盖（订单、商品等核心接口）
-
-### 测试环境配置
-
-创建 `.env` 文件：
-
-```bash
-DOUDIAN_APP_KEY=your_app_key
-DOUDIAN_APP_SECRET=your_app_secret
-DOUDIAN_SHOP_ID=your_shop_id
-DOUDIAN_REFRESH_TOKEN=your_refresh_token
-DOUDIAN_INTEGRATION_TEST=true  # 启用集成测试
-```
-
-## 开发
-
-### 安装开发依赖
-
-```bash
-composer install --dev
-```
-
-### 运行测试
-
-```bash
-composer test
-```
-
-### 代码风格检查
-
-```bash
-composer cs-fixer-check
-composer cs-fixer-fix
-```
-
-### 静态分析
-
-```bash
-composer phpstan
-```
-
-## 支持的 API 模块
-
-SDK 支持抖店开放平台的 **710+ 个 API 接口**，涵盖：
-
-- **订单管理**: 订单查询、物流管理、售后服务等
-- **商品管理**: 商品发布、库存管理、价格设置等  
-- **店铺管理**: 店铺信息、资质管理等
-- **营销工具**: 优惠券、满减活动等
-- **数据统计**: 销售数据、流量分析等
-- **物流服务**: 运费模板、物流公司等
-- **财务管理**: 结算单据、账单查询等
-- **客服工具**: 消息推送、客服会话等
 
 ## 📝 更新日志
 
-### v2.0.0 (2024-12-11)
+### v2.1.0 (2026-01-11)
 
-**重要更新：完善错误处理和响应解析**
+**重要更新：Swoole 协程支持 & 智能连接池**
 
 #### 新增功能
-- ✨ **完整的错误信息支持**：新增 `sub_code` 和 `sub_msg` 字段解析
-  - `getSubCode()` - 获取子错误码（如：`isv.invalid_ip`）
-  - `getSubMsg()` - 获取详细错误信息
-  
-- ✨ **标准化响应格式**：统一支持抖店API标准响应格式
-  - `code: 10000` 表示成功
-  - 完整解析 `code`、`msg`、`sub_code`、`sub_msg`、`data`、`log_id` 字段
+- 🌊 **Swoole 协程支持**：原生支持 Swoole 协程环境
+- 🔗 **智能连接池策略**：
+  - 优先使用 Hyperf PoolHandler（最优方案）
+  - 其次使用 SDK 连接池 + Hyperf CoroutineHandler
+  - 兜底使用 SDK 连接池 + 原生 Swoole
+- 🚀 **Hyperf 深度集成**：自动检测并使用 Hyperf 内置连接池
+- 📊 **连接池监控**：`getPoolStats()` 获取连接池状态和模式
+- 🔧 **资源管理**：`shutdown()` 方法显式释放资源
 
-#### 优化改进
-- 🔧 **严格的成功判断**：`isSuccess()` 方法使用严格比较（`code === 10000`）
-- 🔧 **调试模式增强**：在调试模式下输出完整的API原始响应
-- 📚 **测试完善**：所有测试通过，包含完整的错误场景测试
+#### 新增类
+- `ConnectionPool` - Worker 级别共享的连接池（兜底方案）
+- `HttpClientFactory` - HTTP 客户端工厂
+- `SwooleHttpClient` - Swoole 协程安全客户端（智能选择策略）
+- `RuntimeDetector` - 运行时环境检测
+- `PoolConfig` - 连接池配置
 
-#### 破坏性变更
-- ⚠️ **响应格式变更**：不再支持旧的 `err_no`/`message` 格式，统一使用 `code`/`msg`
-- ⚠️ **成功判断变更**：`isSuccess()` 现在只在 `code === 10000` 时返回 true
+#### 兼容性
+- ✅ 完全向后兼容，现有代码无需修改
+- ✅ PHP >= 7.2
+- ✅ 支持 Swoole 4.5+
+- ✅ 支持 Hyperf 2.x / 3.x
 
-#### 迁移指南
-如果你使用的是旧版本，请注意：
-```php
-// 旧版本
-if ($accessToken->getErrNo() == 0) { ... }
+### v2.0.0 (2024-12-11)
 
-// 新版本
-if ($accessToken->isSuccess()) { ... }  // 推荐
-// 或
-if ($accessToken->getErrNo() === 10000) { ... }
-```
+- 完善错误处理和响应解析
+- 新增 `sub_code` 和 `sub_msg` 字段支持
 
 ## 注意事项
 
-1. **访问令牌管理**: 建议使用缓存存储访问令牌，避免频繁请求
-2. **错误处理**: 务必处理网络异常和API错误，实现适当的重试机制
-3. **IP白名单**: 确保服务器IP已添加到抖店开放平台的IP白名单中
-4. **频率限制**: 遵守抖店开放平台的API调用频率限制
-5. **数据安全**: 妥善保管应用密钥，不要在客户端代码中暴露
-6. **版本兼容**: 关注抖店开放平台API版本更新，及时升级SDK
-7. **错误码处理**: 使用 `sub_code` 进行精确的错误类型判断
+1. **访问令牌管理**: 建议使用缓存存储访问令牌
+2. **IP白名单**: 确保服务器IP已添加到抖店开放平台白名单
+3. **频率限制**: 遵守抖店开放平台的API调用频率限制
+4. **Swoole 环境**: 推荐安装 `hyperf/guzzle` 获得最佳连接池支持
+5. **连接池调优**: 根据 `getPoolStats()` 返回的数据调整连接池大小
 
 ## 许可证
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
-
-## 贡献
-
-欢迎提交 Issue 和 Pull Request 来改进这个项目。
+MIT License - 查看 [LICENSE](LICENSE) 文件了解详情。
 
 ## 联系方式
 
 - **作者**: westng
 - **邮箱**: 457395070@qq.com
 - **项目地址**: [https://github.com/westng/doudian-sdk-php](https://github.com/westng/doudian-sdk-php)
-- **问题反馈**: [Issues](https://github.com/westng/doudian-sdk-php/issues)

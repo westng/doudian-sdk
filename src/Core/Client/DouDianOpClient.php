@@ -14,25 +14,74 @@ namespace DouDianSdk\Core\Client;
 use DouDianSdk\Core\Config\DouDianOpConfig;
 use DouDianSdk\Core\Exception\ApiException;
 use DouDianSdk\Core\Exception\HttpException;
-use DouDianSdk\Core\Http\HttpClient;
+use DouDianSdk\Core\Http\HttpClientFactory;
+use DouDianSdk\Core\Http\HttpClientInterface;
 use DouDianSdk\Core\Http\HttpRequest;
-use DouDianSdk\Core\SingletonTrait;
+use DouDianSdk\Core\Swoole\PoolConfig;
 
 class DouDianOpClient
 {
-    use SingletonTrait;
+    /**
+     * @var static|null FPM 环境下的单例实例
+     */
+    private static $instance;
 
     /**
-     * @var HttpClient HTTP客户端
+     * @var HttpClientInterface HTTP 客户端
      */
     private $httpClient;
 
     /**
-     * 构造函数.
+     * @var PoolConfig|null 连接池配置
      */
-    private function __construct()
+    private static $poolConfig;
+
+    /**
+     * 构造函数.
+     *
+     * @param HttpClientInterface|null $httpClient HTTP 客户端
+     */
+    public function __construct(?HttpClientInterface $httpClient = null)
     {
-        $this->httpClient = HttpClient::getInstance();
+        $this->httpClient = $httpClient ?? HttpClientFactory::getInstance([], self::$poolConfig);
+    }
+
+    /**
+     * 获取单例实例（保持向后兼容）
+     * 
+     * 注意：在 Swoole 环境下，DouDianOpClient 使用 Worker 级别共享的 HttpClient
+     * 不需要为每个协程创建独立的 DouDianOpClient 实例
+     *
+     * @return static
+     */
+    public static function getInstance(): self
+    {
+        // 统一使用 Worker 级别单例
+        // HttpClient 内部已经是协程安全的（使用共享连接池）
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    /**
+     * 设置连接池配置
+     *
+     * @param PoolConfig $config 连接池配置
+     */
+    public static function setPoolConfig(PoolConfig $config): void
+    {
+        self::$poolConfig = $config;
+    }
+
+    /**
+     * 重置单例实例（主要用于测试）
+     */
+    public static function resetInstance(): void
+    {
+        self::$instance = null;
+        self::$poolConfig = null;
     }
 
     /**

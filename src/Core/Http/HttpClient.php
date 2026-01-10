@@ -12,15 +12,17 @@
 namespace DouDianSdk\Core\Http;
 
 use DouDianSdk\Core\Exception\HttpException;
-use DouDianSdk\Core\SingletonTrait;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 
-class HttpClient
+class HttpClient implements HttpClientInterface
 {
-    use SingletonTrait;
+    /**
+     * @var static|null 单例实例（FPM 环境兼容）
+     */
+    private static $instance;
 
     /**
      * @var Client Guzzle HTTP 客户端
@@ -33,7 +35,7 @@ class HttpClient
     private $defaultHeaders = [
         'Content-Type' => 'application/json; charset=utf-8',
         'Accept'       => 'application/json',
-        'User-Agent'   => 'DouDianSDK-PHP/1.1.0',
+        'User-Agent'   => 'DouDianSDK-PHP/2.1.0',
         'from'         => 'sdk',
         'sdk-type'     => 'php',
     ];
@@ -43,7 +45,7 @@ class HttpClient
      *
      * @param array $config Guzzle 客户端配置
      */
-    private function __construct(array $config = [])
+    public function __construct(array $config = [])
     {
         $defaultConfig = [
             'timeout'         => 30,
@@ -221,17 +223,36 @@ class HttpClient
     }
 
     /**
-     * 获取默认实例（单例模式）.
+     * 获取默认实例（单例模式，保持向后兼容）.
      *
      * @param array $config 客户端配置
+     * @return HttpClientInterface
+     * @deprecated 使用 HttpClientFactory::getInstance() 代替
      */
-    public static function getInstance(array $config = []): HttpClient
+    public static function getInstance(array $config = []): HttpClientInterface
     {
-        if (!(self::$instance instanceof self)) {
-            self::$instance = new self($config);
-        }
+        // 优先使用工厂方法
+        return HttpClientFactory::getInstance($config);
+    }
 
-        return self::$instance;
+    /**
+     * 创建新实例（内部使用）
+     *
+     * @param array $config 客户端配置
+     * @return HttpClient
+     */
+    public static function createInstance(array $config = []): HttpClient
+    {
+        return new self($config);
+    }
+
+    /**
+     * 重置单例实例（主要用于测试）
+     */
+    public static function resetInstance(): void
+    {
+        self::$instance = null;
+        HttpClientFactory::reset();
     }
 
     /**
@@ -247,7 +268,7 @@ class HttpClient
      *
      * @param array $headers 请求头
      */
-    public function setDefaultHeaders(array $headers): self
+    public function setDefaultHeaders(array $headers): HttpClientInterface
     {
         $this->defaultHeaders = array_merge($this->defaultHeaders, $headers);
 
