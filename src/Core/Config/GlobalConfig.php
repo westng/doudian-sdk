@@ -44,17 +44,21 @@ class GlobalConfig extends DouDianOpConfig
 
     /**
      * 获取单例实例
+     * 
+     * 注意：只有在真正处于协程环境中才使用协程上下文
+     * 避免在框架启动早期触发 Swoole 相关操作
      *
      * @return static
      */
     public static function getInstance(): self
     {
-        // Swoole 协程环境：使用协程上下文
+        // 只有在真正处于协程中时才使用协程上下文
+        // 这避免了在框架启动早期（路由注册等阶段）触发问题
         if (RuntimeDetector::inCoroutine()) {
             return self::getCoroutineInstance();
         }
 
-        // FPM 环境：使用静态单例
+        // FPM 环境或 Swoole 非协程环境：使用静态单例
         if (self::$instance === null) {
             self::$instance = new self();
         }

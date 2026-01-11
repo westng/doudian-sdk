@@ -27,7 +27,7 @@ class DouDianSdk
     /**
      * SDK版本号
      */
-    const VERSION = '2.1.0';
+    const VERSION = '2.1.2';
 
     /**
      * @var GlobalConfig 全局配置

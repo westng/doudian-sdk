@@ -78,10 +78,24 @@ class ConnectionPool
         $this->clientConfig = $clientConfig;
         $this->idle = new \SplQueue();
 
-        // 如果在 Swoole 环境，创建等待通道
-        if (RuntimeDetector::inCoroutine() && class_exists('\Swoole\Coroutine\Channel')) {
-            $this->waitChannel = new \Swoole\Coroutine\Channel($config->maxConnections);
+        // 延迟创建等待通道，只在真正需要时创建
+        // 避免在框架启动早期触发 Swoole 相关操作
+        $this->waitChannel = null;
+    }
+
+    /**
+     * 获取或创建等待通道（延迟初始化）
+     *
+     * @return \Swoole\Coroutine\Channel|null
+     */
+    private function getWaitChannel()
+    {
+        if ($this->waitChannel === null 
+            && RuntimeDetector::inCoroutine() 
+            && class_exists('\Swoole\Coroutine\Channel')) {
+            $this->waitChannel = new \Swoole\Coroutine\Channel($this->config->maxConnections);
         }
+        return $this->waitChannel;
     }
 
     /**
@@ -159,8 +173,9 @@ class ConnectionPool
         $this->activeCount--;
 
         // 如果有协程在等待，直接唤醒
-        if ($this->waitChannel !== null && $this->waitChannel->stats()['consumer_num'] > 0) {
-            $this->waitChannel->push($client, 0.001);
+        $channel = $this->getWaitChannel();
+        if ($channel !== null && $channel->stats()['consumer_num'] > 0) {
+            $channel->push($client, 0.001);
             return;
         }
 
@@ -233,8 +248,9 @@ class ConnectionPool
     private function waitForClient(): Client
     {
         // Swoole 环境使用 Channel 等待
-        if ($this->waitChannel !== null) {
-            $client = $this->waitChannel->pop($this->config->waitTimeout);
+        $channel = $this->getWaitChannel();
+        if ($channel !== null) {
+            $client = $channel->pop($this->config->waitTimeout);
             
             if ($client === false) {
                 throw new \RuntimeException(
@@ -282,12 +298,13 @@ class ConnectionPool
      */
     public function getStats(): array
     {
+        $channel = $this->getWaitChannel();
         return [
             'pool_size'          => $this->config->maxConnections,
             'total_created'      => $this->totalCreated,
             'active_connections' => $this->activeCount,
             'idle_connections'   => $this->idle->count(),
-            'wait_queue_size'    => $this->waitChannel ? $this->waitChannel->stats()['consumer_num'] : 0,
+            'wait_queue_size'    => $channel ? $channel->stats()['consumer_num'] : 0,
             'total_requests'     => $this->totalRequests,
             'closed'             => $this->closed,
         ];

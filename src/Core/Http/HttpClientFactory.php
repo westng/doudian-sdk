@@ -79,6 +79,9 @@ class HttpClientFactory
      * 
      * 关键：Swoole 环境下返回 Worker 级别共享的实例，而不是协程级别
      * 这样所有协程共享同一个连接池，避免连接泄漏
+     * 
+     * 注意：只有在协程环境中才使用 SwooleHttpClient，避免在框架启动早期
+     * （如路由注册阶段）触发容器获取导致的问题
      *
      * @param array $config Guzzle 配置
      * @param PoolConfig|null $poolConfig 连接池配置
@@ -94,12 +97,14 @@ class HttpClientFactory
             self::$poolConfig = $poolConfig;
         }
 
-        // Swoole 环境：使用 Worker 级别共享的实例
-        if (RuntimeDetector::inCoroutine() || RuntimeDetector::swooleLoaded()) {
+        // 只有在协程环境中才使用 SwooleHttpClient
+        // 仅加载 Swoole 扩展但不在协程中时，使用标准 FPM 客户端
+        // 这避免了在框架启动早期（路由注册等阶段）触发容器获取
+        if (RuntimeDetector::inCoroutine()) {
             return self::getSwooleInstance();
         }
 
-        // FPM 环境：使用进程级单例
+        // FPM 环境或 Swoole 非协程环境：使用进程级单例
         return self::getFpmInstance();
     }
 

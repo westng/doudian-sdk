@@ -46,9 +46,9 @@ class SwooleHttpClient implements HttpClientInterface
     private $poolConfig;
 
     /**
-     * @var bool 是否使用 Hyperf PoolHandler
+     * @var bool|null 是否使用 Hyperf PoolHandler（延迟检测）
      */
-    private $useHyperfPool = false;
+    private $useHyperfPool = null;
 
     /**
      * @var array 默认 HTTP 头
@@ -70,6 +70,16 @@ class SwooleHttpClient implements HttpClientInterface
     ];
 
     /**
+     * @var array Guzzle 配置（保存用于延迟初始化）
+     */
+    private $guzzleConfig = [];
+
+    /**
+     * @var bool 是否已初始化
+     */
+    private $initialized = false;
+
+    /**
      * 构造函数
      *
      * @param array $config Guzzle 配置
@@ -79,8 +89,23 @@ class SwooleHttpClient implements HttpClientInterface
     {
         $this->poolConfig = $poolConfig ?? new PoolConfig();
         $this->poolConfig->validate();
+        $this->guzzleConfig = $config;
+        
+        // 延迟初始化，避免在框架启动早期触发容器获取
+        // 实际初始化在第一次请求时进行
+    }
 
-        $this->initializeClient($config);
+    /**
+     * 确保客户端已初始化（延迟初始化）
+     */
+    private function ensureInitialized(): void
+    {
+        if ($this->initialized) {
+            return;
+        }
+        
+        $this->initialized = true;
+        $this->initializeClient($this->guzzleConfig);
     }
 
     /**
@@ -147,11 +172,19 @@ class SwooleHttpClient implements HttpClientInterface
         ];
 
         // Hyperf 3.x: 需要 PoolFactory 实例
+        // 安全检查：确保容器已初始化且可用
         if (class_exists('\Hyperf\Guzzle\ClientFactory') && class_exists('\Hyperf\Pool\SimplePool\PoolFactory')) {
             try {
-                $container = \Hyperf\Context\ApplicationContext::getContainer();
-                $poolFactory = $container->get(\Hyperf\Pool\SimplePool\PoolFactory::class);
-                return new \Hyperf\Guzzle\PoolHandler($poolFactory, $poolOptions);
+                // 检查 ApplicationContext 是否存在且容器已设置
+                if (class_exists('\Hyperf\Context\ApplicationContext') 
+                    && method_exists('\Hyperf\Context\ApplicationContext', 'hasContainer')
+                    && \Hyperf\Context\ApplicationContext::hasContainer()) {
+                    $container = \Hyperf\Context\ApplicationContext::getContainer();
+                    if ($container->has(\Hyperf\Pool\SimplePool\PoolFactory::class)) {
+                        $poolFactory = $container->get(\Hyperf\Pool\SimplePool\PoolFactory::class);
+                        return new \Hyperf\Guzzle\PoolHandler($poolFactory, $poolOptions);
+                    }
+                }
             } catch (\Throwable $e) {
                 // 容器未初始化或获取失败，回退到 2.x 方式
             }
@@ -198,6 +231,9 @@ class SwooleHttpClient implements HttpClientInterface
      */
     private function request(string $method, HttpRequest $httpRequest): HttpResponse
     {
+        // 延迟初始化
+        $this->ensureInitialized();
+        
         $this->stats['total_requests']++;
 
         // Hyperf PoolHandler 模式：直接使用客户端
@@ -348,7 +384,8 @@ class SwooleHttpClient implements HttpClientInterface
     public function getStats(): array
     {
         $stats = $this->stats;
-        $stats['use_hyperf_pool'] = $this->useHyperfPool;
+        $stats['use_hyperf_pool'] = $this->useHyperfPool ?? false;
+        $stats['initialized'] = $this->initialized;
         $stats['pool_config'] = [
             'max_connections' => $this->poolConfig->maxConnections,
             'max_idle_time'   => $this->poolConfig->maxIdleTime,
@@ -356,7 +393,7 @@ class SwooleHttpClient implements HttpClientInterface
         ];
 
         // 如果使用 SDK Pool，添加连接池统计
-        if (!$this->useHyperfPool && $this->pool !== null) {
+        if ($this->initialized && !$this->useHyperfPool && $this->pool !== null) {
             $poolStats = $this->pool->getStats();
             $stats['pool_size'] = $poolStats['pool_size'];
             $stats['active_connections'] = $poolStats['active_connections'];
@@ -377,6 +414,8 @@ class SwooleHttpClient implements HttpClientInterface
             $this->pool->close();
         }
         $this->client = null;
+        $this->initialized = false;
+        $this->useHyperfPool = null;
     }
 
     /**
@@ -392,6 +431,6 @@ class SwooleHttpClient implements HttpClientInterface
      */
     public function isUsingHyperfPool(): bool
     {
-        return $this->useHyperfPool;
+        return $this->useHyperfPool ?? false;
     }
 }
