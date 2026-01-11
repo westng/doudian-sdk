@@ -56,7 +56,7 @@ class SwooleHttpClient implements HttpClientInterface
     private $defaultHeaders = [
         'Content-Type' => 'application/json; charset=utf-8',
         'Accept'       => 'application/json',
-        'User-Agent'   => 'DouDianSDK-PHP/2.1.0-Swoole',
+        'User-Agent'   => 'DouDianSDK-PHP/2.1.1-Swoole',
         'from'         => 'sdk',
         'sdk-type'     => 'php',
     ];
@@ -111,15 +111,14 @@ class SwooleHttpClient implements HttpClientInterface
 
     /**
      * 创建使用 Hyperf PoolHandler 的客户端
+     * 
+     * 兼容 Hyperf 2.x 和 3.x：
+     * - Hyperf 2.x: PoolHandler 构造函数接受配置数组
+     * - Hyperf 3.x: PoolHandler 构造函数需要 PoolFactory 实例
      */
     private function createHyperfPoolClient(array $config): Client
     {
-        $handler = new \Hyperf\Guzzle\PoolHandler([
-            'min_connections' => 1,
-            'max_connections' => $this->poolConfig->maxConnections,
-            'wait_timeout'    => $this->poolConfig->waitTimeout,
-            'max_idle_time'   => $this->poolConfig->maxIdleTime,
-        ]);
+        $handler = $this->createPoolHandler();
 
         $stack = HandlerStack::create($handler);
 
@@ -131,6 +130,35 @@ class SwooleHttpClient implements HttpClientInterface
             'http_errors'     => false,
             'headers'         => $this->defaultHeaders,
         ], $config));
+    }
+
+    /**
+     * 创建 PoolHandler 实例（兼容 Hyperf 2.x 和 3.x）
+     * 
+     * @return \Hyperf\Guzzle\PoolHandler
+     */
+    private function createPoolHandler()
+    {
+        $poolOptions = [
+            'min_connections' => 1,
+            'max_connections' => $this->poolConfig->maxConnections,
+            'wait_timeout'    => $this->poolConfig->waitTimeout,
+            'max_idle_time'   => $this->poolConfig->maxIdleTime,
+        ];
+
+        // Hyperf 3.x: 需要 PoolFactory 实例
+        if (class_exists('\Hyperf\Guzzle\ClientFactory') && class_exists('\Hyperf\Pool\SimplePool\PoolFactory')) {
+            try {
+                $container = \Hyperf\Context\ApplicationContext::getContainer();
+                $poolFactory = $container->get(\Hyperf\Pool\SimplePool\PoolFactory::class);
+                return new \Hyperf\Guzzle\PoolHandler($poolFactory, $poolOptions);
+            } catch (\Throwable $e) {
+                // 容器未初始化或获取失败，回退到 2.x 方式
+            }
+        }
+
+        // Hyperf 2.x: 直接传配置数组
+        return new \Hyperf\Guzzle\PoolHandler($poolOptions);
     }
 
     /**
