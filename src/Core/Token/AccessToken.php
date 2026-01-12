@@ -30,28 +30,28 @@ class AccessToken
         $accessToken = new AccessToken();
 
         // 抖店API响应格式：code/msg/sub_code/sub_msg/data/log_id
-        if (property_exists($resp, 'code')) {
-            $accessToken->setErrNo($resp->code);
+        if (isset($resp['code'])) {
+            $accessToken->setErrNo($resp['code']);
         }
 
-        if (property_exists($resp, 'msg')) {
-            $accessToken->setMessage($resp->msg);
+        if (isset($resp['msg'])) {
+            $accessToken->setMessage($resp['msg']);
         }
 
-        if (property_exists($resp, 'sub_code')) {
-            $accessToken->setSubCode($resp->sub_code);
+        if (isset($resp['sub_code'])) {
+            $accessToken->setSubCode($resp['sub_code']);
         }
 
-        if (property_exists($resp, 'sub_msg')) {
-            $accessToken->setSubMsg($resp->sub_msg);
+        if (isset($resp['sub_msg'])) {
+            $accessToken->setSubMsg($resp['sub_msg']);
         }
 
-        if (property_exists($resp, 'log_id')) {
-            $accessToken->setLogId($resp->log_id);
+        if (isset($resp['log_id'])) {
+            $accessToken->setLogId($resp['log_id']);
         }
 
-        if (property_exists($resp, 'data')) {
-            $accessToken->setData($resp->data);
+        if (isset($resp['data'])) {
+            $accessToken->setData($resp['data']);
         }
 
         return $accessToken;
@@ -65,56 +65,32 @@ class AccessToken
 
     public function getAccessToken()
     {
-        if (null != $this->data && property_exists($this->data, 'access_token')) {
-            return $this->data->access_token;
-        }
-
-        return null;
+        return $this->data['access_token'] ?? null;
     }
 
     public function getExpireIn()
     {
-        if (null != $this->data && property_exists($this->data, 'expires_in')) {
-            return $this->data->expires_in;
-        }
-
-        return null;
+        return $this->data['expires_in'] ?? null;
     }
 
     public function getRefreshToken()
     {
-        if (null != $this->data && property_exists($this->data, 'refresh_token')) {
-            return $this->data->refresh_token;
-        }
-
-        return null;
+        return $this->data['refresh_token'] ?? null;
     }
 
     public function getScope()
     {
-        if (null != $this->data && property_exists($this->data, 'scope')) {
-            return $this->data->scope;
-        }
-
-        return null;
+        return $this->data['scope'] ?? null;
     }
 
     public function getShopId()
     {
-        if (null != $this->data && property_exists($this->data, 'shop_id')) {
-            return $this->data->shop_id;
-        }
-
-        return null;
+        return $this->data['shop_id'] ?? null;
     }
 
     public function getShopName()
     {
-        if (null != $this->data && property_exists($this->data, 'shop_name')) {
-            return $this->data->shop_name;
-        }
-
-        return null;
+        return $this->data['shop_name'] ?? null;
     }
 
     public function getErrNo()

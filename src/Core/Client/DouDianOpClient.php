@@ -185,7 +185,7 @@ class DouDianOpClient
 
         $httpResponse = $this->httpClient->post($httpRequest);
 
-        $response = json_decode($httpResponse->body, false, 512, JSON_UNESCAPED_UNICODE);
+        $response = json_decode($httpResponse->body, true, 512, JSON_UNESCAPED_UNICODE);
         
         // 调试输出
         if ($config->debug) {
@@ -234,16 +234,16 @@ class DouDianOpClient
      */
     private function checkApiResponse($response, DouDianOpConfig $config)
     {
-        if (!is_object($response)) {
+        if (!is_array($response)) {
             throw new ApiException('Invalid response format', '', '', 1002);
         }
 
         // 检查是否有错误信息
-        if (isset($response->err_no) && 0 != $response->err_no) {
-            $message = $response->message ?? 'Unknown API error';
-            $logId   = $response->log_id ?? '';
+        if (isset($response['err_no']) && 0 != $response['err_no']) {
+            $message = $response['message'] ?? 'Unknown API error';
+            $logId   = $response['log_id'] ?? '';
 
-            throw new ApiException($message, (string) $response->err_no, $logId, 1003);
+            throw new ApiException($message, (string) $response['err_no'], $logId, 1003);
         }
     }
 
