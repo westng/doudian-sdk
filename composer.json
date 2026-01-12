@@ -1,6 +1,6 @@
 {
     "name": "westng/doudian-sdk",
-    "version": "2.1.2",
+    "version": "2.1.3",
     "type": "library",
     "description": "抖店（抖音电商）开放平台 PHP SDK，支持710+个API接口，支持 Swoole 协程环境",
     "keywords": [
