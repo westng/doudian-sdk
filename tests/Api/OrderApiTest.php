@@ -29,7 +29,7 @@ class OrderApiTest extends TestCase
     private $sdk;
 
     /**
-     * @var \DouDianSdk\Core\Token\AccessToken 访问令牌
+     * @var \DouDianSdk\Core\Token\AccessToken|string 访问令牌
      */
     private $accessToken;
 
@@ -43,14 +43,18 @@ class OrderApiTest extends TestCase
         );
         $this->sdk->setDebug(true);
 
-        // 获取访问令牌
-        $this->accessToken = $this->sdk->getAccessToken(
-            $this->testConfig['shop_id'],
-            ACCESS_TOKEN_SHOP_ID
-        );
+        if (!empty($this->testConfig['access_token'])) {
+            $this->accessToken = $this->testConfig['access_token'];
+        } else {
+            // 获取访问令牌
+            $this->accessToken = $this->sdk->getAccessToken(
+                $this->testConfig['shop_id'],
+                ACCESS_TOKEN_SHOP_ID
+            );
 
-        if (!$this->accessToken->isSuccess()) {
-            $this->markTestSkipped('无法获取访问令牌，跳过API测试');
+            if (!$this->accessToken->isSuccess()) {
+                $this->markTestSkipped('无法获取访问令牌，跳过API测试');
+            }
         }
     }
 
@@ -62,7 +66,10 @@ class OrderApiTest extends TestCase
         $this->skipIntegrationTest();
 
         echo "\n=== 测试获取订单列表 ===\n";
-        echo '使用访问令牌: ' . substr($this->accessToken->getAccessToken(), 0, 30) . "...\n\n";
+        $tokenPreview = is_object($this->accessToken)
+            ? $this->accessToken->getAccessToken()
+            : $this->accessToken;
+        echo '使用访问令牌: ' . substr((string) $tokenPreview, 0, 30) . "...\n\n";
 
         try {
             $result = $this->sdk->callApi(

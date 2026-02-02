@@ -62,6 +62,9 @@ class SignUtil
             return '{}';
         }
         $arr = self::objToArray($param);
+        if (is_object($param) && empty($arr)) {
+            return '{}';
+        }
         SignUtil::recKSort($arr); // 对关联数组中的kv，执行排序，需要递归
 
         return json_encode($arr, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); // 重新序列化，确保所有key按字典序排序

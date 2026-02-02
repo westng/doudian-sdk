@@ -25,7 +25,7 @@ use DouDianSdk\Core\Token\AccessTokenBuilder;
 class DouDianSdk
 {
     /**
-     * SDK版本号
+     * SDK版本号.
      */
     const VERSION = '2.1.2';
 
@@ -102,7 +102,7 @@ class DouDianSdk
         if (isset($options['pool'])) {
             $poolConfig = PoolConfig::fromArray($options['pool']);
             $poolConfig->validate();
-            
+
             $this->config->setPoolConfig(
                 $poolConfig->maxConnections,
                 $poolConfig->maxIdleTime,
@@ -111,7 +111,7 @@ class DouDianSdk
 
             // 设置到 DouDianOpClient
             DouDianOpClient::setPoolConfig($poolConfig);
-            
+
             // 配置 HttpClientFactory
             HttpClientFactory::configure([], $poolConfig);
         }
@@ -217,30 +217,53 @@ class DouDianSdk
      * 便捷的API调用方法.
      *
      * @param string $apiClass API类名（如：'afterSale_List\\AfterSaleListRequest'）
-     * @param string $paramClass 参数类名（如：'afterSale_List\\param\\AfterSaleListParam'）
-     * @param array $paramData 请求参数
+     * @param string|null $paramClass 参数类名（如：'afterSale_List\\param\\AfterSaleListParam'），可选
+     * @param array|null $paramData 请求参数
      * @param mixed $accessToken 访问令牌
      *
      * @return array 响应结果
      *
      * @throws DouDianException
      */
-    public function callApi($apiClass, $paramClass, array $paramData, $accessToken): array
+    public function callApi(string $apiClass, $paramClass = null, $paramData = [], $accessToken = null): array
     {
         try {
+            $argsCount = func_num_args();
+            if (2 === $argsCount) {
+                $accessToken = $paramClass;
+                $paramClass  = null;
+                $paramData   = [];
+            } elseif (3 === $argsCount) {
+                if (is_array($paramClass)) {
+                    $accessToken = $paramData;
+                    $paramData   = $paramClass;
+                    $paramClass  = null;
+                } elseif (!is_array($paramData)) {
+                    $accessToken = $paramData;
+                    $paramData   = [];
+                }
+            }
+
+            if (!is_array($paramData)) {
+                throw new DouDianException('Param data must be an array');
+            }
+
             $requestClass   = "\\DouDianSdk\\Api\\{$apiClass}";
-            $paramClassFull = "\\DouDianSdk\\Api\\{$paramClass}";
 
             if (!class_exists($requestClass)) {
                 throw new DouDianException("API class not found: {$requestClass}");
             }
 
-            if (!class_exists($paramClassFull)) {
-                throw new DouDianException("Param class not found: {$paramClassFull}");
-            }
-
             $request = new $requestClass();
-            $param   = new $paramClassFull();
+            if (!empty($paramClass)) {
+                $paramClassFull = "\\DouDianSdk\\Api\\{$paramClass}";
+                if (!class_exists($paramClassFull)) {
+                    throw new DouDianException("Param class not found: {$paramClassFull}");
+                }
+                $param = new $paramClassFull();
+            } else {
+                $param = new \stdClass();
+            }
 
             return $this->sendRequest($request, $param, $paramData, $accessToken);
         } catch (\Exception $e) {
@@ -257,7 +280,7 @@ class DouDianSdk
     }
 
     /**
-     * 获取SDK版本号
+     * 获取SDK版本号.
      *
      * @return string
      */
@@ -267,12 +290,11 @@ class DouDianSdk
     }
 
     /**
-     * 设置连接池配置（Swoole 环境有效）
+     * 设置连接池配置（Swoole 环境有效）.
      *
      * @param int $maxConnections 最大连接数
      * @param int $maxIdleTime 最大空闲时间（秒）
      * @param float $waitTimeout 等待超时（秒）
-     * @return self
      */
     public function setPoolConfig($maxConnections = 50, $maxIdleTime = 60, $waitTimeout = 3.0): self
     {
@@ -280,8 +302,8 @@ class DouDianSdk
 
         $poolConfig = PoolConfig::fromArray([
             'max_connections' => $maxConnections,
-            'max_idle_time' => $maxIdleTime,
-            'wait_timeout' => $waitTimeout,
+            'max_idle_time'   => $maxIdleTime,
+            'wait_timeout'    => $waitTimeout,
         ]);
 
         DouDianOpClient::setPoolConfig($poolConfig);
@@ -291,9 +313,7 @@ class DouDianSdk
     }
 
     /**
-     * 获取连接池统计信息
-     *
-     * @return array
+     * 获取连接池统计信息.
      */
     public function getPoolStats(): array
     {
@@ -301,7 +321,7 @@ class DouDianSdk
     }
 
     /**
-     * 获取当前运行环境
+     * 获取当前运行环境.
      *
      * @return string 'swoole-coroutine', 'swoole-sync', 或 'fpm'
      */
@@ -311,9 +331,7 @@ class DouDianSdk
     }
 
     /**
-     * 检查是否在 Swoole 协程环境
-     *
-     * @return bool
+     * 检查是否在 Swoole 协程环境.
      */
     public function isSwooleCoroutine(): bool
     {
@@ -321,8 +339,8 @@ class DouDianSdk
     }
 
     /**
-     * 关闭所有连接并释放资源
-     * 
+     * 关闭所有连接并释放资源.
+     *
      * 在长时间运行的进程中（如队列消费者），建议在适当时机调用此方法
      */
     public function shutdown(): void

@@ -47,8 +47,8 @@ class DouDianOpClient
     }
 
     /**
-     * 获取单例实例（保持向后兼容）
-     * 
+     * 获取单例实例（保持向后兼容）.
+     *
      * 注意：在 Swoole 环境下，DouDianOpClient 使用 Worker 级别共享的 HttpClient
      * 不需要为每个协程创建独立的 DouDianOpClient 实例
      *
@@ -58,7 +58,7 @@ class DouDianOpClient
     {
         // 统一使用 Worker 级别单例
         // HttpClient 内部已经是协程安全的（使用共享连接池）
-        if (self::$instance === null) {
+        if (null === self::$instance) {
             self::$instance = new self();
         }
 
@@ -66,7 +66,7 @@ class DouDianOpClient
     }
 
     /**
-     * 设置连接池配置
+     * 设置连接池配置.
      *
      * @param PoolConfig $config 连接池配置
      */
@@ -76,11 +76,11 @@ class DouDianOpClient
     }
 
     /**
-     * 重置单例实例（主要用于测试）
+     * 重置单例实例（主要用于测试）.
      */
     public static function resetInstance(): void
     {
-        self::$instance = null;
+        self::$instance   = null;
         self::$poolConfig = null;
     }
 
@@ -186,13 +186,13 @@ class DouDianOpClient
         $httpResponse = $this->httpClient->post($httpRequest);
 
         $response = json_decode($httpResponse->body, true, 512, JSON_UNESCAPED_UNICODE);
-        
+
         // 调试输出
         if ($config->debug) {
             echo "\n[DEBUG] API响应原始数据:\n";
             echo $httpResponse->body . "\n\n";
         }
-        
+
         return $response;
     }
 
