@@ -27,7 +27,7 @@ class DouDianSdk
     /**
      * SDK版本号.
      */
-    const VERSION = '2.1.2';
+    const VERSION = '2.1.5';
 
     /**
      * @var GlobalConfig 全局配置
@@ -229,6 +229,7 @@ class DouDianSdk
     {
         try {
             $argsCount = func_num_args();
+
             if (2 === $argsCount) {
                 $accessToken = $paramClass;
                 $paramClass  = null;
@@ -248,15 +249,17 @@ class DouDianSdk
                 throw new DouDianException('Param data must be an array');
             }
 
-            $requestClass   = "\\DouDianSdk\\Api\\{$apiClass}";
+            $requestClass = "\\DouDianSdk\\Api\\{$apiClass}";
 
             if (!class_exists($requestClass)) {
                 throw new DouDianException("API class not found: {$requestClass}");
             }
 
             $request = new $requestClass();
+
             if (!empty($paramClass)) {
                 $paramClassFull = "\\DouDianSdk\\Api\\{$paramClass}";
+
                 if (!class_exists($paramClassFull)) {
                     throw new DouDianException("Param class not found: {$paramClassFull}");
                 }

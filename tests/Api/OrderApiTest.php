@@ -197,6 +197,11 @@ class OrderApiTest extends TestCase
             if (isset($result['err_no']) && 0 != $result['err_no']) {
                 echo "✅ API正确返回参数错误\n";
                 $this->assertNotEquals(0, $result['err_no'], 'Should return parameter error');
+            } elseif (isset($result['code'])) {
+                echo "✅ API正确返回参数错误\n";
+                $this->assertNotEquals(10000, (int) $result['code'], 'Should return parameter error');
+            } else {
+                $this->fail('API参数校验测试未返回可识别的状态码字段');
             }
         } catch (ApiException $e) {
             echo '✅ API正确抛出参数验证异常: ' . $e->getMessage() . "\n";

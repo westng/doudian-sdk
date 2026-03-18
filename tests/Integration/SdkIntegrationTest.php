@@ -136,11 +136,14 @@ class SdkIntegrationTest extends TestCase
 
                 $this->assertIsArray($result);
 
-                if (isset($result['err_no']) && 0 == $result['err_no']) {
+                $isSuccess = (isset($result['err_no']) && 0 == $result['err_no'])
+                    || (isset($result['code']) && 10000 == (int) $result['code']);
+
+                if ($isSuccess) {
                     echo "    ✅ {$api['name']} API调用成功\n";
                     ++$successCount;
                 } else {
-                    echo "    ⚠️ {$api['name']} API返回业务错误: " . ($result['message'] ?? 'Unknown') . "\n";
+                    echo "    ⚠️ {$api['name']} API返回业务错误: " . ($result['message'] ?? $result['msg'] ?? 'Unknown') . "\n";
                 }
             } catch (ApiException $e) {
                 echo "    ⚠️ {$api['name']} API业务异常: " . $e->getMessage() . "\n";
