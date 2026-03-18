@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\promise_setSkuShipTime;
 
-// auto generated code
 class PromiseSetSkuShipTimeRequest
 {
     private $param;

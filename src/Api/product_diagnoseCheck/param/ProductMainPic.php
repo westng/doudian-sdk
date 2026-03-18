@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_diagnoseCheck\param;
 
-// auto generated code
 class ProductMainPic
 {
     public $url;

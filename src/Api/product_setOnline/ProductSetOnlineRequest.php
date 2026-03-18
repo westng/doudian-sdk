@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_setOnline;
 
-// auto generated code
 class ProductSetOnlineRequest
 {
     private $param;

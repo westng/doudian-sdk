@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_diagnoseCheck;
 
-// auto generated code
 class ProductDiagnoseCheckRequest
 {
     private $param;

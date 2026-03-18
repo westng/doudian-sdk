@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\instantShopping_trade_freightList\param;
 
-// auto generated code
 class InstantShoppingTradeFreightListParam
 {
     public $size;

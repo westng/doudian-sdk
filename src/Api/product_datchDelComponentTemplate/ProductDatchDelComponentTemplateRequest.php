@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_datchDelComponentTemplate;
 
-// auto generated code
 class ProductDatchDelComponentTemplateRequest
 {
     private $param;

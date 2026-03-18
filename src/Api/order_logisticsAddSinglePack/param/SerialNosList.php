@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_logisticsAddSinglePack\param;
 
-// auto generated code
 class SerialNosList
 {
     public $key;

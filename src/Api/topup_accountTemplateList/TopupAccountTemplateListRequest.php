@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\topup_accountTemplateList;
 
-// auto generated code
 class TopupAccountTemplateListRequest
 {
     private $param;

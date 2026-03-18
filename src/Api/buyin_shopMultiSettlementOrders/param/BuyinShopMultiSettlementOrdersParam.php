@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_shopMultiSettlementOrders\param;
 
-// auto generated code
 class BuyinShopMultiSettlementOrdersParam
 {
     public $size;

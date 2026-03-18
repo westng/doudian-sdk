@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\token_refresh;
 
-// auto generated code
 class TokenRefreshRequest
 {
     private $param;

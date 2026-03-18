@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_updateOrder\param;
 
-// auto generated code
 class Address
 {
     public $country_code;

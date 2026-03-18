@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\spu_getSpuRule;
 
-// auto generated code
 class SpuGetSpuRuleRequest
 {
     private $param;

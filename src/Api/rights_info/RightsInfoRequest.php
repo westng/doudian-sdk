@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\rights_info;
 
-// auto generated code
 class RightsInfoRequest
 {
     private $param;

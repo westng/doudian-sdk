@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\coupons_syncV2\param;
 
-// auto generated code
 class CertList
 {
     public $cert_link;

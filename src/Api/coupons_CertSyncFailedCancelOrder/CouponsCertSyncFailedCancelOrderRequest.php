@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\coupons_CertSyncFailedCancelOrder;
 
-// auto generated code
 class CouponsCertSyncFailedCancelOrderRequest
 {
     private $param;

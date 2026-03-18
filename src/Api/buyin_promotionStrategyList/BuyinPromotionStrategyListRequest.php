@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_promotionStrategyList;
 
-// auto generated code
 class BuyinPromotionStrategyListRequest
 {
     private $param;

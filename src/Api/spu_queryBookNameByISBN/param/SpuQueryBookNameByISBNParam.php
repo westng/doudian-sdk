@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\spu_queryBookNameByISBN\param;
 
-// auto generated code
 class SpuQueryBookNameByISBNParam
 {
     public $category_leaf_id;

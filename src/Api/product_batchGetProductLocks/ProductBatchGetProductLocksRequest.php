@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_batchGetProductLocks;
 
-// auto generated code
 class ProductBatchGetProductLocksRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_getCascadeValue\param;
 
-// auto generated code
 class ProductGetCascadeValueParam
 {
     public $category_id;

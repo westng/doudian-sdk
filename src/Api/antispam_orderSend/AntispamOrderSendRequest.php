@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\antispam_orderSend;
 
-// auto generated code
 class AntispamOrderSendRequest
 {
     private $param;

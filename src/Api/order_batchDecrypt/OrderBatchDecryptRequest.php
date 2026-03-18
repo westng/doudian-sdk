@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_batchDecrypt;
 
-// auto generated code
 class OrderBatchDecryptRequest
 {
     private $param;

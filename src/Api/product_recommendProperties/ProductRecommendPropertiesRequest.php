@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_recommendProperties;
 
-// auto generated code
 class ProductRecommendPropertiesRequest
 {
     private $param;

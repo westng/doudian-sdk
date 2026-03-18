@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_orderDetail;
 
-// auto generated code
 class OrderOrderDetailRequest
 {
     private $param;

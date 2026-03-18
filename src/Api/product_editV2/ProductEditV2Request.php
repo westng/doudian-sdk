@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_editV2;
 
-// auto generated code
 class ProductEditV2Request
 {
     private $param;

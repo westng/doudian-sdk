@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_applyMainPicVideo;
 
-// auto generated code
 class ProductApplyMainPicVideoRequest
 {
     private $param;

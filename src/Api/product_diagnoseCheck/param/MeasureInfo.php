@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_diagnoseCheck\param;
 
-// auto generated code
 class MeasureInfo
 {
     public $template_id;

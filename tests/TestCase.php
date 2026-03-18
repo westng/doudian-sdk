@@ -37,12 +37,12 @@ abstract class TestCase extends BaseTestCase
 
         // 测试配置
         $this->testConfig = [
-            'app_key'                => $_ENV['DOUDIAN_APP_KEY'] ?? 'test_app_key',
-            'app_secret'             => $_ENV['DOUDIAN_APP_SECRET'] ?? 'test_app_secret',
-            'shop_id'                => $_ENV['DOUDIAN_SHOP_ID'] ?? 'test_shop_id',
-            'refresh_token'          => $_ENV['DOUDIAN_REFRESH_TOKEN'] ?? '',
-            'access_token'           => $_ENV['DOUDIAN_TOKEN'] ?? '',
-            'access_token_shop_id'   => (int)($_ENV['DOUDIAN_ACCESS_TOKEN_SHOP_ID'] ?? 2),
+            'app_key'              => $_ENV['DOUDIAN_APP_KEY'] ?? 'test_app_key',
+            'app_secret'           => $_ENV['DOUDIAN_APP_SECRET'] ?? 'test_app_secret',
+            'shop_id'              => $_ENV['DOUDIAN_SHOP_ID'] ?? 'test_shop_id',
+            'refresh_token'        => $_ENV['DOUDIAN_REFRESH_TOKEN'] ?? '',
+            'access_token'         => $_ENV['DOUDIAN_TOKEN'] ?? '',
+            'access_token_shop_id' => (int) ($_ENV['DOUDIAN_ACCESS_TOKEN_SHOP_ID'] ?? 2),
         ];
     }
 

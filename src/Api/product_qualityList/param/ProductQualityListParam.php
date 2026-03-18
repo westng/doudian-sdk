@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_qualityList\param;
 
-// auto generated code
 class ProductQualityListParam
 {
     public $product_id;

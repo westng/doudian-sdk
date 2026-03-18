@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_merchant_confirmUpdateResult;
 
-// auto generated code
 class LogisticsMerchantConfirmUpdateResultRequest
 {
     private $param;

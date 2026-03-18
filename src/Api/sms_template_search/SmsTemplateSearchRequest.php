@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_template_search;
 
-// auto generated code
 class SmsTemplateSearchRequest
 {
     private $param;

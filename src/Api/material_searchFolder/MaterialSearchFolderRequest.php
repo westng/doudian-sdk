@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_searchFolder;
 
-// auto generated code
 class MaterialSearchFolderRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sku_stockNum;
 
-// auto generated code
 class SkuStockNumRequest
 {
     private $param;

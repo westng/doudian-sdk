@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\cpaypromotion_queryProductCpayPromotionAndShopStatus;
 
-// auto generated code
 class CpaypromotionQueryProductCpayPromotionAndShopStatusRequest
 {
     private $param;

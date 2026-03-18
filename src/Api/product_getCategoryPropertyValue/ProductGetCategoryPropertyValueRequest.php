@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_getCategoryPropertyValue;
 
-// auto generated code
 class ProductGetCategoryPropertyValueRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_getShopAccountItem;
 
-// auto generated code
 class OrderGetShopAccountItemRequest
 {
     private $param;

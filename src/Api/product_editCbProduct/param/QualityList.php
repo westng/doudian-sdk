@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_editCbProduct\param;
 
-// auto generated code
 class QualityList
 {
     public $quality_key;

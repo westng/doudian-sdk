@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\warehouse_setPriority;
 
-// auto generated code
 class WarehouseSetPriorityRequest
 {
     private $param;

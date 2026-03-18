@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_getOutRange;
 
-// auto generated code
 class LogisticsGetOutRangeRequest
 {
     private $param;

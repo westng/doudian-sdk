@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_sendResult;
 
-// auto generated code
 class SmsSendResultRequest
 {
     private $param;

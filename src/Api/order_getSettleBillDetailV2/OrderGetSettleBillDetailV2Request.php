@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_getSettleBillDetailV2;
 
-// auto generated code
 class OrderGetSettleBillDetailV2Request
 {
     private $param;

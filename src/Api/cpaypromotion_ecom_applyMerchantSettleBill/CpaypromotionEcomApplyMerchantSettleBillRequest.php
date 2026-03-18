@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\cpaypromotion_ecom_applyMerchantSettleBill;
 
-// auto generated code
 class CpaypromotionEcomApplyMerchantSettleBillRequest
 {
     private $param;

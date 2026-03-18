@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\shop_reputation;
 
-// auto generated code
 class ShopReputationRequest
 {
     private $param;

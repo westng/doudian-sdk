@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\promise_SaveTemplate;
 
-// auto generated code
 class PromiseSaveTemplateRequest
 {
     private $param;

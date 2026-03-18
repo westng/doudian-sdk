@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_addressModify;
 
-// auto generated code
 class OrderAddressModifyRequest
 {
     private $param;

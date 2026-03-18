@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_deliverTimeChangeTaskInfo;
 
-// auto generated code
 class OrderDeliverTimeChangeTaskInfoRequest
 {
     private $param;

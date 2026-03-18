@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\warehouse_list\param;
 
-// auto generated code
 class WarehouseListParam
 {
     public $out_warehouse_id;

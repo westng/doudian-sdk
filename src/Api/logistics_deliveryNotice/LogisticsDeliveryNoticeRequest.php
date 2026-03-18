@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_deliveryNotice;
 
-// auto generated code
 class LogisticsDeliveryNoticeRequest
 {
     private $param;

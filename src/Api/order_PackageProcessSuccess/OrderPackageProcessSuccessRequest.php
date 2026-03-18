@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_PackageProcessSuccess;
 
-// auto generated code
 class OrderPackageProcessSuccessRequest
 {
     private $param;

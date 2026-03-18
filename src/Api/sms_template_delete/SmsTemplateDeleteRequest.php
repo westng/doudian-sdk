@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_template_delete;
 
-// auto generated code
 class SmsTemplateDeleteRequest
 {
     private $param;

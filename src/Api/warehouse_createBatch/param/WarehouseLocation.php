@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\warehouse_createBatch\param;
 
-// auto generated code
 class WarehouseLocation
 {
     public $address_id1;

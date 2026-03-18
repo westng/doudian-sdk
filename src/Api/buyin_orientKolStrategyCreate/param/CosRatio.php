@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_orientKolStrategyCreate\param;
 
-// auto generated code
 class CosRatio
 {
     public $cos_ratio;

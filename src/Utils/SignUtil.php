@@ -62,6 +62,7 @@ class SignUtil
             return '{}';
         }
         $arr = self::objToArray($param);
+
         if (is_object($param) && empty($arr)) {
             return '{}';
         }

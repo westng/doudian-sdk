@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_salesInherit_permission;
 
-// auto generated code
 class ProductSalesInheritPermissionRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\afterSale_returnGoodsToWareHouseSuccess;
 
-// auto generated code
 class AfterSaleReturnGoodsToWareHouseSuccessRequest
 {
     private $param;

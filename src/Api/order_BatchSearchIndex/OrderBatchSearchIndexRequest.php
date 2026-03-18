@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_BatchSearchIndex;
 
-// auto generated code
 class OrderBatchSearchIndexRequest
 {
     private $param;

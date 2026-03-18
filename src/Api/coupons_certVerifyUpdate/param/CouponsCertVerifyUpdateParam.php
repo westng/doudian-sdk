@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\coupons_certVerifyUpdate\param;
 
-// auto generated code
 class CouponsCertVerifyUpdateParam
 {
     public $cert_no;

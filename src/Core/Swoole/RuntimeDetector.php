@@ -12,16 +12,14 @@
 namespace DouDianSdk\Core\Swoole;
 
 /**
- * 运行时环境检测器
- * 
+ * 运行时环境检测器.
+ *
  * 用于检测当前是否在 Swoole 协程环境中运行
  */
 class RuntimeDetector
 {
     /**
-     * 检测是否在 Swoole 协程环境中
-     *
-     * @return bool
+     * 检测是否在 Swoole 协程环境中.
      */
     public static function inCoroutine(): bool
     {
@@ -29,9 +27,7 @@ class RuntimeDetector
     }
 
     /**
-     * 检测 Swoole 扩展是否已加载
-     *
-     * @return bool
+     * 检测 Swoole 扩展是否已加载.
      */
     public static function swooleLoaded(): bool
     {
@@ -39,8 +35,8 @@ class RuntimeDetector
     }
 
     /**
-     * 获取当前协程 ID
-     * 
+     * 获取当前协程 ID.
+     *
      * @return int 协程 ID，非协程环境返回 -1
      */
     public static function getCoroutineId(): int
@@ -54,14 +50,12 @@ class RuntimeDetector
         }
 
         $cid = \Swoole\Coroutine::getCid();
-        
-        return $cid !== false ? (int) $cid : -1;
+
+        return false !== $cid ? (int) $cid : -1;
     }
 
     /**
-     * 检测是否支持协程上下文
-     *
-     * @return bool
+     * 检测是否支持协程上下文.
      */
     public static function supportsContext(): bool
     {

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\coupons_extendCertValidEndByOrder\param;
 
-// auto generated code
 class CouponsExtendCertValidEndByOrderParam
 {
     public $order_id;

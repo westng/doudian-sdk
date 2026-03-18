@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_queryShopSelfAuthors;
 
-// auto generated code
 class BuyinQueryShopSelfAuthorsRequest
 {
     private $param;

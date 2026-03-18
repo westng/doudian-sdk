@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\spu_batchUploadImg;
 
-// auto generated code
 class SpuBatchUploadImgRequest
 {
     private $param;

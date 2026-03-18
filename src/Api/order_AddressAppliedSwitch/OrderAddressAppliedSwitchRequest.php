@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_AddressAppliedSwitch;
 
-// auto generated code
 class OrderAddressAppliedSwitchRequest
 {
     private $param;

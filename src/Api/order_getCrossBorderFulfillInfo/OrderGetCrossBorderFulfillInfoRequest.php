@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_getCrossBorderFulfillInfo;
 
-// auto generated code
 class OrderGetCrossBorderFulfillInfoRequest
 {
     private $param;

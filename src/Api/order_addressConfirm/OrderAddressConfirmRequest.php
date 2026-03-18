@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_addressConfirm;
 
-// auto generated code
 class OrderAddressConfirmRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_listV2;
 
-// auto generated code
 class ProductListV2Request
 {
     private $param;

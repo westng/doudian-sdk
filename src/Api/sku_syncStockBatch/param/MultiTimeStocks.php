@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sku_syncStockBatch\param;
 
-// auto generated code
 class MultiTimeStocks
 {
     public $stock_num;

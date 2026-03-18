@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_editComponentTemplate\param;
 
-// auto generated code
 class ProductEditComponentTemplateParam
 {
     public $template_id;

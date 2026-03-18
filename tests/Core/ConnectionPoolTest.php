@@ -1,7 +1,12 @@
 <?php
 
 /**
- * 连接池测试
+ * This file is part of DouDian-SDK
+ *
+ * @link     https://github.com/westng/doudian-sdk-php
+ * @document https://github.com/westng/doudian-sdk/blob/main/README.md
+ * @contact  457395070@qq.com
+ * @license  https://github.com/westng/doudian-sdk/blob/main/LICENSE
  */
 
 namespace DouDianSdk\Tests\Core;
@@ -26,7 +31,7 @@ class ConnectionPoolTest extends TestCase
     }
 
     /**
-     * 测试连接池单例
+     * 测试连接池单例.
      */
     public function testConnectionPoolSingleton(): void
     {
@@ -37,11 +42,11 @@ class ConnectionPoolTest extends TestCase
     }
 
     /**
-     * 测试获取和归还客户端
+     * 测试获取和归还客户端.
      */
     public function testGetAndPutClient(): void
     {
-        $config = new PoolConfig();
+        $config                 = new PoolConfig();
         $config->maxConnections = 5;
 
         $pool = ConnectionPool::getInstance($config);
@@ -64,11 +69,11 @@ class ConnectionPoolTest extends TestCase
     }
 
     /**
-     * 测试连接复用
+     * 测试连接复用.
      */
     public function testConnectionReuse(): void
     {
-        $config = new PoolConfig();
+        $config                 = new PoolConfig();
         $config->maxConnections = 2;
 
         $pool = ConnectionPool::getInstance($config);
@@ -93,7 +98,7 @@ class ConnectionPoolTest extends TestCase
      */
     public function testPoolStats(): void
     {
-        $config = new PoolConfig();
+        $config                 = new PoolConfig();
         $config->maxConnections = 10;
 
         $pool = ConnectionPool::getInstance($config);
@@ -113,7 +118,7 @@ class ConnectionPoolTest extends TestCase
     }
 
     /**
-     * 测试关闭连接池
+     * 测试关闭连接池.
      */
     public function testClosePool(): void
     {
@@ -134,7 +139,7 @@ class ConnectionPoolTest extends TestCase
     }
 
     /**
-     * 测试关闭后获取客户端抛出异常
+     * 测试关闭后获取客户端抛出异常.
      */
     public function testGetAfterClose(): void
     {
@@ -148,17 +153,18 @@ class ConnectionPoolTest extends TestCase
     }
 
     /**
-     * 测试多个客户端并发获取
+     * 测试多个客户端并发获取.
      */
     public function testMultipleClients(): void
     {
-        $config = new PoolConfig();
+        $config                 = new PoolConfig();
         $config->maxConnections = 5;
 
         $pool = ConnectionPool::getInstance($config);
 
         $clients = [];
-        for ($i = 0; $i < 5; $i++) {
+
+        for ($i = 0; $i < 5; ++$i) {
             $clients[] = $pool->get();
         }
 
@@ -178,14 +184,14 @@ class ConnectionPoolTest extends TestCase
     }
 
     /**
-     * 测试连接池配置
+     * 测试连接池配置.
      */
     public function testPoolConfig(): void
     {
-        $config = new PoolConfig();
+        $config                 = new PoolConfig();
         $config->maxConnections = 100;
-        $config->maxIdleTime = 120;
-        $config->waitTimeout = 5.0;
+        $config->maxIdleTime    = 120;
+        $config->waitTimeout    = 5.0;
 
         $pool = ConnectionPool::getInstance($config);
 

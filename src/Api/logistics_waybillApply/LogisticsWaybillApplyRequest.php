@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_waybillApply;
 
-// auto generated code
 class LogisticsWaybillApplyRequest
 {
     private $param;

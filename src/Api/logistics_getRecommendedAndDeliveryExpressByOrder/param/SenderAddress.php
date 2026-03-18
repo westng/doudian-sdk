@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_getRecommendedAndDeliveryExpressByOrder\param;
 
-// auto generated code
 class SenderAddress
 {
     public $country_code;

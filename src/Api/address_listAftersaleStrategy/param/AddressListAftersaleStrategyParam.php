@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\address_listAftersaleStrategy\param;
 
-// auto generated code
 class AddressListAftersaleStrategyParam
 {
     public $order_by_field;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_updateOrderAmount;
 
-// auto generated code
 class OrderUpdateOrderAmountRequest
 {
     private $param;

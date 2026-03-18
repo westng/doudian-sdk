@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_logisticsAddSinglePack;
 
-// auto generated code
 class OrderLogisticsAddSinglePackRequest
 {
     private $param;

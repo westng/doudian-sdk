@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\afterSale_openOutAfterSale;
 
-// auto generated code
 class AfterSaleOpenOutAfterSaleRequest
 {
     private $param;

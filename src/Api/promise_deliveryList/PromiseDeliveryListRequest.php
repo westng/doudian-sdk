@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\promise_deliveryList;
 
-// auto generated code
 class PromiseDeliveryListRequest
 {
     private $param;

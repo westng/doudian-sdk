@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_queryShopAllianceOrder\param;
 
-// auto generated code
 class BuyinQueryShopAllianceOrderParam
 {
     public $size;

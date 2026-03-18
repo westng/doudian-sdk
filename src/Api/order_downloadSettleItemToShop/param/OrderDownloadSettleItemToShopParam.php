@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_downloadSettleItemToShop\param;
 
-// auto generated code
 class OrderDownloadSettleItemToShopParam
 {
     public $start_time;

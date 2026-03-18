@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\openCloud_v1_imageVersion_create\param;
 
-// auto generated code
 class OpenCloudV1ImageVersionCreateParam
 {
     public $cs_id;

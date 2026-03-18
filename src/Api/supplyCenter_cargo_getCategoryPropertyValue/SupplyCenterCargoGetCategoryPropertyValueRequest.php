@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\supplyCenter_cargo_getCategoryPropertyValue;
 
-// auto generated code
 class SupplyCenterCargoGetCategoryPropertyValueRequest
 {
     private $param;

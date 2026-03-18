@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_public_template;
 
-// auto generated code
 class SmsPublicTemplateRequest
 {
     private $param;

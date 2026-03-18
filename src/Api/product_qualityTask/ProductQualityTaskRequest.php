@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_qualityTask;
 
-// auto generated code
 class ProductQualityTaskRequest
 {
     private $param;

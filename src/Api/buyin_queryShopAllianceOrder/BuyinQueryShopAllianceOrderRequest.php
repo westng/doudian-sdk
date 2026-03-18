@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_queryShopAllianceOrder;
 
-// auto generated code
 class BuyinQueryShopAllianceOrderRequest
 {
     private $param;

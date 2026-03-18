@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_createComponentTemplateV2;
 
-// auto generated code
 class ProductCreateComponentTemplateV2Request
 {
     private $param;

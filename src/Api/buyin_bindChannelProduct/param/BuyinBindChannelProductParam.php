@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_bindChannelProduct\param;
 
-// auto generated code
 class BuyinBindChannelProductParam
 {
     public $product_id;

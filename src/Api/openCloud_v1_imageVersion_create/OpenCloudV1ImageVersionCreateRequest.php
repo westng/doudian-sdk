@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\openCloud_v1_imageVersion_create;
 
-// auto generated code
 class OpenCloudV1ImageVersionCreateRequest
 {
     private $param;

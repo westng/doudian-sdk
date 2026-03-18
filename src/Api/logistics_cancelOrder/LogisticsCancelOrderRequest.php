@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_cancelOrder;
 
-// auto generated code
 class LogisticsCancelOrderRequest
 {
     private $param;

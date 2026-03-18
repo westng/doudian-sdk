@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_getSettleBillDetail\param;
 
-// auto generated code
 class OrderGetSettleBillDetailParam
 {
     public $page;

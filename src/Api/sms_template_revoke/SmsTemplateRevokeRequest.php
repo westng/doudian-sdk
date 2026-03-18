@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_template_revoke;
 
-// auto generated code
 class SmsTemplateRevokeRequest
 {
     private $param;

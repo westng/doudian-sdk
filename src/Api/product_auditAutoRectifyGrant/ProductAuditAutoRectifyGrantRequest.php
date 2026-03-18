@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_auditAutoRectifyGrant;
 
-// auto generated code
 class ProductAuditAutoRectifyGrantRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_recoverMaterial;
 
-// auto generated code
 class MaterialRecoverMaterialRequest
 {
     private $param;

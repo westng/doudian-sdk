@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_removeChannelProduct;
 
-// auto generated code
 class ProductRemoveChannelProductRequest
 {
     private $param;

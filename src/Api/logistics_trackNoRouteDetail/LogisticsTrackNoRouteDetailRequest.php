@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_trackNoRouteDetail;
 
-// auto generated code
 class LogisticsTrackNoRouteDetailRequest
 {
     private $param;

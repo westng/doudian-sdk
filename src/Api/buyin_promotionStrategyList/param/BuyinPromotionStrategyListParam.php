@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_promotionStrategyList\param;
 
-// auto generated code
 class BuyinPromotionStrategyListParam
 {
     public $product_id;

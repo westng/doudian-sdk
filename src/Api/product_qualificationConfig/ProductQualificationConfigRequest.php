@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_qualificationConfig;
 
-// auto generated code
 class ProductQualificationConfigRequest
 {
     private $param;

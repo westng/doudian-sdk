@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\address_update\param;
 
-// auto generated code
 class Address
 {
     public $id;

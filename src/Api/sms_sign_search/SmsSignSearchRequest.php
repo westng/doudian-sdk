@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_sign_search;
 
-// auto generated code
 class SmsSignSearchRequest
 {
     private $param;

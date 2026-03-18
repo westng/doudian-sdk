@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\cpaypromotion_ecom_applyMerchantSettleBill\param;
 
-// auto generated code
 class CpaypromotionEcomApplyMerchantSettleBillParam
 {
     public $bill_start_time;

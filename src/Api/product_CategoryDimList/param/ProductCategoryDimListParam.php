@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_CategoryDimList\param;
 
-// auto generated code
 class ProductCategoryDimListParam
 {
     public $level;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\open_submitRejectionReason\param;
 
-// auto generated code
 class OpenSubmitRejectionReasonParam
 {
     public $product_category_name;

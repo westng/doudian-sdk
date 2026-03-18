@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\address_create\param;
 
-// auto generated code
 class Address
 {
     public $user_name;

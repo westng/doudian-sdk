@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_getDesignTemplateList;
 
-// auto generated code
 class LogisticsGetDesignTemplateListRequest
 {
     private $param;

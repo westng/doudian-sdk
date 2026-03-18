@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_onlineChannelProduct;
 
-// auto generated code
 class ProductOnlineChannelProductRequest
 {
     private $param;

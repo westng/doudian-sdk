@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\spu_queryBookNameByISBN;
 
-// auto generated code
 class SpuQueryBookNameByISBNRequest
 {
     private $param;

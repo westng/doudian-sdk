@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\spu_createSpu;
 
-// auto generated code
 class SpuCreateSpuRequest
 {
     private $param;

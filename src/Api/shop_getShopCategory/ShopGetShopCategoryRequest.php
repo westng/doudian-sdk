@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\shop_getShopCategory;
 
-// auto generated code
 class ShopGetShopCategoryRequest
 {
     private $param;

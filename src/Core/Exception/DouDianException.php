@@ -37,10 +37,10 @@ class DouDianException extends \Exception
     public function __construct($message = '', $code = 0, $previous = null, $errorData = null)
     {
         // PHP 7.0 兼容性：手动检查 previous 类型
-        if ($previous !== null && !($previous instanceof \Exception) && !($previous instanceof \Throwable)) {
+        if (null !== $previous && !($previous instanceof \Exception) && !($previous instanceof \Throwable)) {
             throw new \InvalidArgumentException('Previous must be an instance of Exception or Throwable');
         }
-        
+
         parent::__construct($message, $code, $previous);
         $this->errorCode = $code;
         $this->errorData = $errorData;

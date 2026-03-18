@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_delProductMainPicVideo;
 
-// auto generated code
 class ProductDelProductMainPicVideoRequest
 {
     private $param;

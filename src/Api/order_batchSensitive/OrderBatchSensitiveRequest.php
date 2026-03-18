@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_batchSensitive;
 
-// auto generated code
 class OrderBatchSensitiveRequest
 {
     private $param;

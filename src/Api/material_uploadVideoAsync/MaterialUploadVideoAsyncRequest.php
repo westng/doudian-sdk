@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_uploadVideoAsync;
 
-// auto generated code
 class MaterialUploadVideoAsyncRequest
 {
     private $param;

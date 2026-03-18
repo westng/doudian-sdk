@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_merchant_confirmUpdateResult\param;
 
-// auto generated code
 class Sender
 {
     public $contact;

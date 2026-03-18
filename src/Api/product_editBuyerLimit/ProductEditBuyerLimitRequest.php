@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_editBuyerLimit;
 
-// auto generated code
 class ProductEditBuyerLimitRequest
 {
     private $param;

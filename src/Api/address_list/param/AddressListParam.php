@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\address_list\param;
 
-// auto generated code
 class AddressListParam
 {
     public $shop_id;

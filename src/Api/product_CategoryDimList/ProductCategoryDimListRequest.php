@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_CategoryDimList;
 
-// auto generated code
 class ProductCategoryDimListRequest
 {
     private $param;

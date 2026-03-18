@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\instantShopping_trade_freightUpdate;
 
-// auto generated code
 class InstantShoppingTradeFreightUpdateRequest
 {
     private $param;

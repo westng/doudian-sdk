@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sku_editCode\param;
 
-// auto generated code
 class SkuEditCodeParam
 {
     public $code;

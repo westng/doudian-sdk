@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_shopMultiSettlementOrders;
 
-// auto generated code
 class BuyinShopMultiSettlementOrdersRequest
 {
     private $param;

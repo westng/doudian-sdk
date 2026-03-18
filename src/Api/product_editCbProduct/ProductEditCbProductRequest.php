@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_editCbProduct;
 
-// auto generated code
 class ProductEditCbProductRequest
 {
     private $param;

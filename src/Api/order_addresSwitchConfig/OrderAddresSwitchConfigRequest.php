@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_addresSwitchConfig;
 
-// auto generated code
 class OrderAddresSwitchConfigRequest
 {
     private $param;

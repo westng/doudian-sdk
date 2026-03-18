@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\open_binaryupload;
 
-// auto generated code
 class OpenBinaryuploadRequest
 {
     private $param;

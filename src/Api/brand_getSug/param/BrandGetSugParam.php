@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\brand_getSug\param;
 
-// auto generated code
 class BrandGetSugParam
 {
     public $query;

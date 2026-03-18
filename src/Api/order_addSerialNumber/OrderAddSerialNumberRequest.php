@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_addSerialNumber;
 
-// auto generated code
 class OrderAddSerialNumberRequest
 {
     private $param;

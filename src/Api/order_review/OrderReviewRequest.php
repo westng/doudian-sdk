@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_review;
 
-// auto generated code
 class OrderReviewRequest
 {
     private $param;

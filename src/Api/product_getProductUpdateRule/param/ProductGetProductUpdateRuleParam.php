@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_getProductUpdateRule\param;
 
-// auto generated code
 class ProductGetProductUpdateRuleParam
 {
     public $category_id;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\afterSale_fillLogistics\param;
 
-// auto generated code
 class AfterSaleFillLogisticsParam
 {
     public $aftersale_id;

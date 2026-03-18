@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\cpaypromotion_operateProductDiscount;
 
-// auto generated code
 class CpaypromotionOperateProductDiscountRequest
 {
     private $param;

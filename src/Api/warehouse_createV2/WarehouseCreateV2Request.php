@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\warehouse_createV2;
 
-// auto generated code
 class WarehouseCreateV2Request
 {
     private $param;

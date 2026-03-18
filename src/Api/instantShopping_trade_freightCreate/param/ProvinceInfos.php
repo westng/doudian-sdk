@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\instantShopping_trade_freightCreate\param;
 
-// auto generated code
 class ProvinceInfos
 {
     public $id;

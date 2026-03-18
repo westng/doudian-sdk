@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_channelBindAuthors;
 
-// auto generated code
 class BuyinChannelBindAuthorsRequest
 {
     private $param;

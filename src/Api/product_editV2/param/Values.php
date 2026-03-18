@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_editV2\param;
 
-// auto generated code
 class Values
 {
     public $value_name;

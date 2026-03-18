@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_get_cap_info;
 
-// auto generated code
 class MaterialGetCapInfoRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_merge;
 
-// auto generated code
 class OrderMergeRequest
 {
     private $param;

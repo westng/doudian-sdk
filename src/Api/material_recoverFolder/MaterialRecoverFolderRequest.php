@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_recoverFolder;
 
-// auto generated code
 class MaterialRecoverFolderRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_orientKolStrategyCreate;
 
-// auto generated code
 class BuyinOrientKolStrategyCreateRequest
 {
     private $param;

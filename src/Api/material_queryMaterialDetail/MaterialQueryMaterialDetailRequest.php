@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_queryMaterialDetail;
 
-// auto generated code
 class MaterialQueryMaterialDetailRequest
 {
     private $param;

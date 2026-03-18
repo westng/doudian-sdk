@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\open_getAuthInfo;
 
-// auto generated code
 class OpenGetAuthInfoRequest
 {
     private $param;

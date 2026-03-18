@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\spu_QuerySpu\param;
 
-// auto generated code
 class Properties
 {
     public $brand_id;

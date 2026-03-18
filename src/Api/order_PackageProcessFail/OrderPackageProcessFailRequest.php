@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_PackageProcessFail;
 
-// auto generated code
 class OrderPackageProcessFailRequest
 {
     private $param;

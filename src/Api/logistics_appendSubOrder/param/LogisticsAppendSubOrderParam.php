@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_appendSubOrder\param;
 
-// auto generated code
 class LogisticsAppendSubOrderParam
 {
     public $track_no;

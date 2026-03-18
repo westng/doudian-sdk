@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_send\param;
 
-// auto generated code
 class SmsTestVerification
 {
     public $post_tel;

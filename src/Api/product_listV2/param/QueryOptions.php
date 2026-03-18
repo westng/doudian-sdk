@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_listV2\param;
 
-// auto generated code
 class QueryOptions
 {
     public $exist_category_misplaced;

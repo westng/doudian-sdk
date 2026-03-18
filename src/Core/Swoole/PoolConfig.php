@@ -12,7 +12,7 @@
 namespace DouDianSdk\Core\Swoole;
 
 /**
- * 连接池配置类
+ * 连接池配置类.
  */
 class PoolConfig
 {
@@ -32,10 +32,9 @@ class PoolConfig
     public $waitTimeout = 3.0;
 
     /**
-     * 从数组创建配置
+     * 从数组创建配置.
      *
      * @param array $config 配置数组
-     * @return self
      */
     public static function fromArray(array $config): self
     {
@@ -57,48 +56,38 @@ class PoolConfig
     }
 
     /**
-     * 转换为数组
-     *
-     * @return array
+     * 转换为数组.
      */
     public function toArray(): array
     {
         return [
             'max_connections' => $this->maxConnections,
-            'max_idle_time' => $this->maxIdleTime,
-            'wait_timeout' => $this->waitTimeout,
+            'max_idle_time'   => $this->maxIdleTime,
+            'wait_timeout'    => $this->waitTimeout,
         ];
     }
 
     /**
-     * 验证配置
+     * 验证配置.
      *
      * @throws \InvalidArgumentException
      */
     public function validate(): void
     {
         if ($this->maxConnections <= 0) {
-            throw new \InvalidArgumentException(
-                'max_connections must be greater than 0, got: ' . $this->maxConnections
-            );
+            throw new \InvalidArgumentException('max_connections must be greater than 0, got: ' . $this->maxConnections);
         }
 
         if ($this->maxConnections > 1000) {
-            throw new \InvalidArgumentException(
-                'max_connections must not exceed 1000, got: ' . $this->maxConnections
-            );
+            throw new \InvalidArgumentException('max_connections must not exceed 1000, got: ' . $this->maxConnections);
         }
 
         if ($this->maxIdleTime < 0) {
-            throw new \InvalidArgumentException(
-                'max_idle_time must be non-negative, got: ' . $this->maxIdleTime
-            );
+            throw new \InvalidArgumentException('max_idle_time must be non-negative, got: ' . $this->maxIdleTime);
         }
 
         if ($this->waitTimeout <= 0) {
-            throw new \InvalidArgumentException(
-                'wait_timeout must be greater than 0, got: ' . $this->waitTimeout
-            );
+            throw new \InvalidArgumentException('wait_timeout must be greater than 0, got: ' . $this->waitTimeout);
         }
     }
 }

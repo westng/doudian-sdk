@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\instantShopping_trade_freightUpdate\param;
 
-// auto generated code
 class Template
 {
     public $template_name;

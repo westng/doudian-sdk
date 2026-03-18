@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_publishPreCheck;
 
-// auto generated code
 class ProductPublishPreCheckRequest
 {
     private $param;

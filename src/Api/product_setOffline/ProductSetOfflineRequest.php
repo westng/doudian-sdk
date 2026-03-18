@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_setOffline;
 
-// auto generated code
 class ProductSetOfflineRequest
 {
     private $param;

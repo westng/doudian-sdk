@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_moveFolderToRecycleBin;
 
-// auto generated code
 class MaterialMoveFolderToRecycleBinRequest
 {
     private $param;

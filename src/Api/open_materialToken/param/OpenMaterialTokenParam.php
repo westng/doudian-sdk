@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\open_materialToken\param;
 
-// auto generated code
 class OpenMaterialTokenParam
 {
     public $upload_num;

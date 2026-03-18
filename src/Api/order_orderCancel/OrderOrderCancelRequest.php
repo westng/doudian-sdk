@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_orderCancel;
 
-// auto generated code
 class OrderOrderCancelRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\address_addAftersaleStrategy\param;
 
-// auto generated code
 class Address
 {
     public $id;

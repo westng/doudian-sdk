@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\spu_addShopSpu\param;
 
-// auto generated code
 class SpuAddShopSpuParam
 {
     public $spu_name;

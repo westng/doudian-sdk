@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_GetRecommendCategory;
 
-// auto generated code
 class ProductGetRecommendCategoryRequest
 {
     private $param;

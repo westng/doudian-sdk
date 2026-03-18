@@ -15,8 +15,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 
 /**
- * Swoole 连接池
- * 
+ * Swoole 连接池.
+ *
  * Worker 级别共享的 HTTP 客户端连接池，避免每个协程创建独立连接
  */
 class ConnectionPool
@@ -67,16 +67,16 @@ class ConnectionPool
     private $closed = false;
 
     /**
-     * 私有构造函数
+     * 私有构造函数.
      *
      * @param PoolConfig $config 连接池配置
      * @param array $clientConfig Guzzle 客户端配置
      */
     private function __construct(PoolConfig $config, array $clientConfig = [])
     {
-        $this->config = $config;
+        $this->config       = $config;
         $this->clientConfig = $clientConfig;
-        $this->idle = new \SplQueue();
+        $this->idle         = new \SplQueue();
 
         // 延迟创建等待通道，只在真正需要时创建
         // 避免在框架启动早期触发 Swoole 相关操作
@@ -84,30 +84,30 @@ class ConnectionPool
     }
 
     /**
-     * 获取或创建等待通道（延迟初始化）
+     * 获取或创建等待通道（延迟初始化）.
      *
      * @return \Swoole\Coroutine\Channel|null
      */
     private function getWaitChannel()
     {
-        if ($this->waitChannel === null 
-            && RuntimeDetector::inCoroutine() 
+        if (null === $this->waitChannel
+            && RuntimeDetector::inCoroutine()
             && class_exists('\Swoole\Coroutine\Channel')) {
             $this->waitChannel = new \Swoole\Coroutine\Channel($this->config->maxConnections);
         }
+
         return $this->waitChannel;
     }
 
     /**
-     * 获取连接池实例（Worker 级别单例）
+     * 获取连接池实例（Worker 级别单例）.
      *
      * @param PoolConfig|null $config 连接池配置
      * @param array $clientConfig Guzzle 客户端配置
-     * @return self
      */
     public static function getInstance(?PoolConfig $config = null, array $clientConfig = []): self
     {
-        if (self::$instance === null) {
+        if (null === self::$instance) {
             self::$instance = new self(
                 $config ?? new PoolConfig(),
                 $clientConfig
@@ -118,20 +118,19 @@ class ConnectionPool
     }
 
     /**
-     * 重置连接池（主要用于测试）
+     * 重置连接池（主要用于测试）.
      */
     public static function reset(): void
     {
-        if (self::$instance !== null) {
+        if (null !== self::$instance) {
             self::$instance->close();
             self::$instance = null;
         }
     }
 
     /**
-     * 从池中获取客户端
+     * 从池中获取客户端.
      *
-     * @return Client
      * @throws \RuntimeException
      */
     public function get(): Client
@@ -140,11 +139,12 @@ class ConnectionPool
             throw new \RuntimeException('Connection pool is closed');
         }
 
-        $this->totalRequests++;
+        ++$this->totalRequests;
 
         // 1. 尝试从空闲队列获取
         if (!$this->idle->isEmpty()) {
-            $this->activeCount++;
+            ++$this->activeCount;
+
             return $this->idle->dequeue();
         }
 
@@ -158,7 +158,7 @@ class ConnectionPool
     }
 
     /**
-     * 归还客户端到池中
+     * 归还客户端到池中.
      *
      * @param Client $client Guzzle 客户端
      */
@@ -166,16 +166,19 @@ class ConnectionPool
     {
         if ($this->closed) {
             // 池已关闭，直接丢弃
-            $this->activeCount--;
+            --$this->activeCount;
+
             return;
         }
 
-        $this->activeCount--;
+        --$this->activeCount;
 
         // 如果有协程在等待，直接唤醒
         $channel = $this->getWaitChannel();
-        if ($channel !== null && $channel->stats()['consumer_num'] > 0) {
+
+        if (null !== $channel && $channel->stats()['consumer_num'] > 0) {
             $channel->push($client, 0.001);
+
             return;
         }
 
@@ -184,14 +187,12 @@ class ConnectionPool
     }
 
     /**
-     * 创建新的 Guzzle 客户端
-     *
-     * @return Client
+     * 创建新的 Guzzle 客户端.
      */
     private function createClient(): Client
     {
-        $this->totalCreated++;
-        $this->activeCount++;
+        ++$this->totalCreated;
+        ++$this->activeCount;
 
         $config = array_merge([
             'timeout'         => 30,
@@ -209,7 +210,8 @@ class ConnectionPool
 
         // 尝试使用协程 Handler
         $handler = $this->createHandler();
-        if ($handler !== null) {
+
+        if (null !== $handler) {
             $config['handler'] = $handler;
         }
 
@@ -217,12 +219,10 @@ class ConnectionPool
     }
 
     /**
-     * 创建协程 Handler
-     * 
+     * 创建协程 Handler.
+     *
      * 注意：Hyperf PoolHandler 在 SwooleHttpClient 层处理
      * 这里只处理 CoroutineHandler（协程支持，无连接池）
-     *
-     * @return HandlerStack|null
      */
     private function createHandler(): ?HandlerStack
     {
@@ -240,37 +240,33 @@ class ConnectionPool
     }
 
     /**
-     * 等待可用连接
+     * 等待可用连接.
      *
-     * @return Client
      * @throws \RuntimeException
      */
     private function waitForClient(): Client
     {
         // Swoole 环境使用 Channel 等待
         $channel = $this->getWaitChannel();
-        if ($channel !== null) {
+
+        if (null !== $channel) {
             $client = $channel->pop($this->config->waitTimeout);
-            
-            if ($client === false) {
-                throw new \RuntimeException(
-                    "Connection pool exhausted: max={$this->config->maxConnections}, " .
-                    "active={$this->activeCount}, timeout={$this->config->waitTimeout}s"
-                );
+
+            if (false === $client) {
+                throw new \RuntimeException("Connection pool exhausted: max={$this->config->maxConnections}, active={$this->activeCount}, timeout={$this->config->waitTimeout}s");
             }
 
-            $this->activeCount++;
+            ++$this->activeCount;
+
             return $client;
         }
 
         // 非 Swoole 环境，直接抛出异常
-        throw new \RuntimeException(
-            "Connection pool exhausted: max={$this->config->maxConnections}, active={$this->activeCount}"
-        );
+        throw new \RuntimeException("Connection pool exhausted: max={$this->config->maxConnections}, active={$this->activeCount}");
     }
 
     /**
-     * 关闭连接池
+     * 关闭连接池.
      */
     public function close(): void
     {
@@ -282,23 +278,22 @@ class ConnectionPool
         }
 
         // 关闭等待通道
-        if ($this->waitChannel !== null) {
+        if (null !== $this->waitChannel) {
             $this->waitChannel->close();
             $this->waitChannel = null;
         }
 
-        $this->activeCount = 0;
+        $this->activeCount  = 0;
         $this->totalCreated = 0;
     }
 
     /**
-     * 获取连接池统计信息
-     *
-     * @return array
+     * 获取连接池统计信息.
      */
     public function getStats(): array
     {
         $channel = $this->getWaitChannel();
+
         return [
             'pool_size'          => $this->config->maxConnections,
             'total_created'      => $this->totalCreated,
@@ -311,9 +306,7 @@ class ConnectionPool
     }
 
     /**
-     * 获取配置
-     *
-     * @return PoolConfig
+     * 获取配置.
      */
     public function getConfig(): PoolConfig
     {

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_merchant_updateCalendar\param;
 
-// auto generated code
 class MerchantCalendarList
 {
     public $district_code;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\address_delAftersaleAddress\param;
 
-// auto generated code
 class AddressDelAftersaleAddressParam
 {
     public $address_id;

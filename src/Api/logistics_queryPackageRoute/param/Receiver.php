@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_queryPackageRoute\param;
 
-// auto generated code
 class Receiver
 {
     public $name;

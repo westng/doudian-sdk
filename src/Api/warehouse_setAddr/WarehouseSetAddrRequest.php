@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\warehouse_setAddr;
 
-// auto generated code
 class WarehouseSetAddrRequest
 {
     private $param;

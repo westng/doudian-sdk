@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_queryPropAutoOptimizeConfig;
 
-// auto generated code
 class ProductQueryPropAutoOptimizeConfigRequest
 {
     private $param;

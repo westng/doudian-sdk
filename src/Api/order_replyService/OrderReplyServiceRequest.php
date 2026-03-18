@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_replyService;
 
-// auto generated code
 class OrderReplyServiceRequest
 {
     private $param;

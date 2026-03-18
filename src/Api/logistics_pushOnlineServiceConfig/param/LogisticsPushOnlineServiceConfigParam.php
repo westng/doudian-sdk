@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_pushOnlineServiceConfig\param;
 
-// auto generated code
 class LogisticsPushOnlineServiceConfigParam
 {
     public $service_type;

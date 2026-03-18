@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_instituteOrderPick\param;
 
-// auto generated code
 class BuyinInstituteOrderPickParam
 {
     public $size;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_getProductShopRule\param;
 
-// auto generated code
 class ProductGetProductShopRuleParam
 {
     public $rule_types;

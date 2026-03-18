@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_searchMaterial;
 
-// auto generated code
 class MaterialSearchMaterialRequest
 {
     private $param;

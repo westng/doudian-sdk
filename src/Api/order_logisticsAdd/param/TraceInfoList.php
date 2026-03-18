@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_logisticsAdd\param;
 
-// auto generated code
 class TraceInfoList
 {
     public $batch_and_trace_code_list;

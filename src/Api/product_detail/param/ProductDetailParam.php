@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_detail\param;
 
-// auto generated code
 class ProductDetailParam
 {
     public $product_id;

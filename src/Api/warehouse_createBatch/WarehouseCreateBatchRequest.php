@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\warehouse_createBatch;
 
-// auto generated code
 class WarehouseCreateBatchRequest
 {
     private $param;

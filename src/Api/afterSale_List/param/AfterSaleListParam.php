@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\afterSale_List\param;
 
-// auto generated code
 class AfterSaleListParam
 {
     public $order_id;

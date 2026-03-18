@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\antispam_userLogin;
 
-// auto generated code
 class AntispamUserLoginRequest
 {
     private $param;

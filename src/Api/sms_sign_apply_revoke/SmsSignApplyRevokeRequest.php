@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_sign_apply_revoke;
 
-// auto generated code
 class SmsSignApplyRevokeRequest
 {
     private $param;

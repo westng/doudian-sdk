@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\freightTemplate_detail;
 
-// auto generated code
 class FreightTemplateDetailRequest
 {
     private $param;

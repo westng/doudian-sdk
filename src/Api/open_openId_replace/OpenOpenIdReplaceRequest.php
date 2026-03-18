@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\open_openId_replace;
 
-// auto generated code
 class OpenOpenIdReplaceRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\brand_convert;
 
-// auto generated code
 class BrandConvertRequest
 {
     private $param;

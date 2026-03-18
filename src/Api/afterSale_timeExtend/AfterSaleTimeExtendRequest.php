@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\afterSale_timeExtend;
 
-// auto generated code
 class AfterSaleTimeExtendRequest
 {
     private $param;

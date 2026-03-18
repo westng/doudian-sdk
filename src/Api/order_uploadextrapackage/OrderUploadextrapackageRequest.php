@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_uploadextrapackage;
 
-// auto generated code
 class OrderUploadextrapackageRequest
 {
     private $param;

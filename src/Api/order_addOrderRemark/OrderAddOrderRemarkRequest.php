@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_addOrderRemark;
 
-// auto generated code
 class OrderAddOrderRemarkRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_batchBindSerialNumber\param;
 
-// auto generated code
 class OrderBatchBindSerialNumberParam
 {
     public $bind_list;

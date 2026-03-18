@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_easyShuttle;
 
-// auto generated code
 class MaterialEasyShuttleRequest
 {
     private $param;

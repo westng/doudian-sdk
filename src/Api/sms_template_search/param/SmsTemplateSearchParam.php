@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_template_search\param;
 
-// auto generated code
 class SmsTemplateSearchParam
 {
     public $sms_account;

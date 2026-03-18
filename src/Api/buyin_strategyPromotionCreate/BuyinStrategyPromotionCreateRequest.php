@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_strategyPromotionCreate;
 
-// auto generated code
 class BuyinStrategyPromotionCreateRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\alliance_getOrderList;
 
-// auto generated code
 class AllianceGetOrderListRequest
 {
     private $param;

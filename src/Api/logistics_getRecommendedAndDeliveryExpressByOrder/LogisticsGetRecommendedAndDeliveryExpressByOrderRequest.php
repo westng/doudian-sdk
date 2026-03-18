@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_getRecommendedAndDeliveryExpressByOrder;
 
-// auto generated code
 class LogisticsGetRecommendedAndDeliveryExpressByOrderRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_kolStrategyEdit;
 
-// auto generated code
 class BuyinKolStrategyEditRequest
 {
     private $param;

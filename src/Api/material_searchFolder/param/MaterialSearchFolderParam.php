@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_searchFolder\param;
 
-// auto generated code
 class MaterialSearchFolderParam
 {
     public $order_by;

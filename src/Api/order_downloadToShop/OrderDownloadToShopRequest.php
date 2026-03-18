@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_downloadToShop;
 
-// auto generated code
 class OrderDownloadToShopRequest
 {
     private $param;

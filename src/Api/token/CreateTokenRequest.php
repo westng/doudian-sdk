@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\token;
 
-// auto generated code
 class CreateTokenRequest
 {
     // 通用变量
@@ -53,6 +52,6 @@ class CreateTokenRequest
     public function __construct()
     {
         $this->config = \DouDianSdk\Core\Config\GlobalConfig::getGlobalConfig();
-        $this->param  = new param\CreateTokenParam();
+        $this->param  = new \DouDianSdk\Api\token\param\CreateTokenParam();
     }
 }

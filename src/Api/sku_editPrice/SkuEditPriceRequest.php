@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sku_editPrice;
 
-// auto generated code
 class SkuEditPriceRequest
 {
     private $param;

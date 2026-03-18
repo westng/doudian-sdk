@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\token;
 
-// auto generated code
 class CreateTokenResponse
 {
 }

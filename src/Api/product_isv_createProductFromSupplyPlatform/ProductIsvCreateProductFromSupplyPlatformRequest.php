@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_isv_createProductFromSupplyPlatform;
 
-// auto generated code
 class ProductIsvCreateProductFromSupplyPlatformRequest
 {
     private $param;

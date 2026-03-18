@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\coupons_verifyV2;
 
-// auto generated code
 class CouponsVerifyV2Request
 {
     private $param;

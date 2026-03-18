@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\coupons_syncV2;
 
-// auto generated code
 class CouponsSyncV2Request
 {
     private $param;

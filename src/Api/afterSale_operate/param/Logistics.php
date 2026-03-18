@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\afterSale_operate\param;
 
-// auto generated code
 class Logistics
 {
     public $company_code;

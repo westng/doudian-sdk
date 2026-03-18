@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\coupons_abandon;
 
-// auto generated code
 class CouponsAbandonRequest
 {
     private $param;

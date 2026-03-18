@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\spu_getKeyPropertyByCid;
 
-// auto generated code
 class SpuGetKeyPropertyByCidRequest
 {
     private $param;

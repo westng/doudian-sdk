@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_addChannelProduct\param;
 
-// auto generated code
 class ChannelBuyLimit
 {
     public $total_buy_num;

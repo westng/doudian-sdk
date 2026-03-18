@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\topup_result;
 
-// auto generated code
 class TopupResultRequest
 {
     private $param;

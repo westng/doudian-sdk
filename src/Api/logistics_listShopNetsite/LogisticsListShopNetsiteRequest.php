@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_listShopNetsite;
 
-// auto generated code
 class LogisticsListShopNetsiteRequest
 {
     private $param;

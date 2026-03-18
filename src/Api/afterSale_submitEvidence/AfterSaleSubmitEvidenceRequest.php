@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\afterSale_submitEvidence;
 
-// auto generated code
 class AfterSaleSubmitEvidenceRequest
 {
     private $param;

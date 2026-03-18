@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\security_batchReportOrderSecurityEvent\param;
 
-// auto generated code
 class PurchaseProductInfoList
 {
     public $purchase_platform_type;

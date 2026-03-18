@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_deleteMaterial;
 
-// auto generated code
 class MaterialDeleteMaterialRequest
 {
     private $param;

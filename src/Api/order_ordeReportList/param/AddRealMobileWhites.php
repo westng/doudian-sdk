@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_ordeReportList\param;
 
-// auto generated code
 class AddRealMobileWhites
 {
     public $order_id;

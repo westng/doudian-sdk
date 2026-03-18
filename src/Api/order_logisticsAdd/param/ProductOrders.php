@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_logisticsAdd\param;
 
-// auto generated code
 class ProductOrders
 {
     public $serial_no_list;

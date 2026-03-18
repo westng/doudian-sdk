@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_createSFOrder;
 
-// auto generated code
 class LogisticsCreateSFOrderRequest
 {
     private $param;

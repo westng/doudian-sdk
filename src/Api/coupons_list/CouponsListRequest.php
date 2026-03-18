@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\coupons_list;
 
-// auto generated code
 class CouponsListRequest
 {
     private $param;

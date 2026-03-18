@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_getSettleBillDetailV3\param;
 
-// auto generated code
 class OrderGetSettleBillDetailV3Param
 {
     public $size;

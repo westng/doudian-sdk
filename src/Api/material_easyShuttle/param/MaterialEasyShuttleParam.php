@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_easyShuttle\param;
 
-// auto generated code
 class MaterialEasyShuttleParam
 {
     public $folder_id_list;

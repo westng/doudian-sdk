@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\coupons_cancelVerify;
 
-// auto generated code
 class CouponsCancelVerifyRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\cpaypromotion_operateProductDiscount\param;
 
-// auto generated code
 class SupportPeriod
 {
     public $actual_ratio;

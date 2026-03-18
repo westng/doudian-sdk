@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_deleteFolder;
 
-// auto generated code
 class MaterialDeleteFolderRequest
 {
     private $param;

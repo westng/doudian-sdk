@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\afterSale_CancelSendGoodsSuccess;
 
-// auto generated code
 class AfterSaleCancelSendGoodsSuccessRequest
 {
     private $param;

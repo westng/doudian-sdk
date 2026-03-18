@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_uploadextrapackage\param;
 
-// auto generated code
 class BundleProductList
 {
     public $count;

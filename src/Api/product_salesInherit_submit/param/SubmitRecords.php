@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_salesInherit_submit\param;
 
-// auto generated code
 class SubmitRecords
 {
     public $platform_id;

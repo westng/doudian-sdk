@@ -226,7 +226,7 @@ class HttpClient implements HttpClientInterface
      * 获取默认实例（单例模式，保持向后兼容）.
      *
      * @param array $config 客户端配置
-     * @return HttpClientInterface
+     *
      * @deprecated 使用 HttpClientFactory::getInstance() 代替
      */
     public static function getInstance(array $config = []): HttpClientInterface
@@ -236,10 +236,9 @@ class HttpClient implements HttpClientInterface
     }
 
     /**
-     * 创建新实例（内部使用）
+     * 创建新实例（内部使用）.
      *
      * @param array $config 客户端配置
-     * @return HttpClient
      */
     public static function createInstance(array $config = []): HttpClient
     {
@@ -247,7 +246,7 @@ class HttpClient implements HttpClientInterface
     }
 
     /**
-     * 重置单例实例（主要用于测试）
+     * 重置单例实例（主要用于测试）.
      */
     public static function resetInstance(): void
     {

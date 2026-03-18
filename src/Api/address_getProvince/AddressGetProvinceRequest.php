@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\address_getProvince;
 
-// auto generated code
 class AddressGetProvinceRequest
 {
     private $param;

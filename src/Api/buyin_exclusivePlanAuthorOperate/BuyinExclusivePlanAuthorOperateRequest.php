@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_exclusivePlanAuthorOperate;
 
-// auto generated code
 class BuyinExclusivePlanAuthorOperateRequest
 {
     private $param;

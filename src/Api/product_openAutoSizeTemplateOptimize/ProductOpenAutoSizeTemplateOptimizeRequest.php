@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_openAutoSizeTemplateOptimize;
 
-// auto generated code
 class ProductOpenAutoSizeTemplateOptimizeRequest
 {
     private $param;

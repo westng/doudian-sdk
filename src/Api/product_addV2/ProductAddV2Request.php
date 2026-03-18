@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_addV2;
 
-// auto generated code
 class ProductAddV2Request
 {
     private $param;

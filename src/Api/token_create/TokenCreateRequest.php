@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\token_create;
 
-// auto generated code
 class TokenCreateRequest
 {
     private $param;

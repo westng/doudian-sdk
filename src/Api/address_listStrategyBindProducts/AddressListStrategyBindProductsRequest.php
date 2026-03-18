@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\address_listStrategyBindProducts;
 
-// auto generated code
 class AddressListStrategyBindProductsRequest
 {
     private $param;

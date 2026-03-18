@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\address_provinceList;
 
-// auto generated code
 class AddressProvinceListRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\topup_result\param;
 
-// auto generated code
 class TopupResultParam
 {
     public $trade_order_no;

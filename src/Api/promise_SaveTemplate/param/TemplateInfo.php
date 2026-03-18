@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\promise_SaveTemplate\param;
 
-// auto generated code
 class TemplateInfo
 {
     public $c_shop_id;

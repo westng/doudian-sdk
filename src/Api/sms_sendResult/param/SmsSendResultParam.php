@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_sendResult\param;
 
-// auto generated code
 class SmsSendResultParam
 {
     public $from_time;

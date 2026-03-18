@@ -140,7 +140,7 @@ class DouDianOpConfig
     }
 
     /**
-     * 设置连接池配置（Swoole 环境有效）
+     * 设置连接池配置（Swoole 环境有效）.
      *
      * @param int $maxConnections 最大连接数
      * @param int $maxIdleTime 最大空闲时间（秒）
@@ -149,23 +149,21 @@ class DouDianOpConfig
     public function setPoolConfig($maxConnections = 50, $maxIdleTime = 60, $waitTimeout = 3.0): self
     {
         $this->poolMaxConnections = $maxConnections;
-        $this->poolMaxIdleTime = $maxIdleTime;
-        $this->poolWaitTimeout = $waitTimeout;
+        $this->poolMaxIdleTime    = $maxIdleTime;
+        $this->poolWaitTimeout    = $waitTimeout;
 
         return $this;
     }
 
     /**
-     * 获取连接池配置数组
-     *
-     * @return array
+     * 获取连接池配置数组.
      */
     public function getPoolConfigArray(): array
     {
         return [
             'max_connections' => $this->poolMaxConnections,
-            'max_idle_time' => $this->poolMaxIdleTime,
-            'wait_timeout' => $this->poolWaitTimeout,
+            'max_idle_time'   => $this->poolMaxIdleTime,
+            'wait_timeout'    => $this->poolWaitTimeout,
         ];
     }
 

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_updateOrder;
 
-// auto generated code
 class LogisticsUpdateOrderRequest
 {
     private $param;

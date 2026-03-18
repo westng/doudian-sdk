@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\open_submitRejectionReason;
 
-// auto generated code
 class OpenSubmitRejectionReasonRequest
 {
     private $param;

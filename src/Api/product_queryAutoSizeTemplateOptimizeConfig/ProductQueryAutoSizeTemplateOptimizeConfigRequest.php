@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_queryAutoSizeTemplateOptimizeConfig;
 
-// auto generated code
 class ProductQueryAutoSizeTemplateOptimizeConfigRequest
 {
     private $param;

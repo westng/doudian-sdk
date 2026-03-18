@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_getFolderInfo;
 
-// auto generated code
 class MaterialGetFolderInfoRequest
 {
     private $param;

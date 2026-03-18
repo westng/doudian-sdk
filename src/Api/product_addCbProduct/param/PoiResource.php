@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_addCbProduct\param;
 
-// auto generated code
 class PoiResource
 {
     public $valid_days;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_queryPackageRoute;
 
-// auto generated code
 class LogisticsQueryPackageRouteRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_insurance;
 
-// auto generated code
 class OrderInsuranceRequest
 {
     private $param;

@@ -12,15 +12,15 @@
 namespace DouDianSdk\Core\Swoole;
 
 /**
- * 协程上下文管理器
- * 
+ * 协程上下文管理器.
+ *
  * 用于在 Swoole 协程环境中存储和获取协程级别的数据
- * 
+ *
  * 使用示例：
  * ```php
  * // 存储请求追踪 ID
  * CoroutineContext::set('trace_id', uniqid());
- * 
+ *
  * // 获取
  * $traceId = CoroutineContext::get('trace_id');
  * ```
@@ -32,7 +32,6 @@ class CoroutineContext
      *
      * @param string $key 键名
      * @param mixed $default 默认值
-     * @return mixed
      */
     public static function get(string $key, $default = null)
     {
@@ -41,8 +40,8 @@ class CoroutineContext
         }
 
         $context = \Swoole\Coroutine::getContext();
-        
-        if ($context === null) {
+
+        if (null === $context) {
             return $default;
         }
 
@@ -62,17 +61,16 @@ class CoroutineContext
         }
 
         $context = \Swoole\Coroutine::getContext();
-        
-        if ($context !== null) {
+
+        if (null !== $context) {
             $context[$key] = $value;
         }
     }
 
     /**
-     * 检查键是否存在
+     * 检查键是否存在.
      *
      * @param string $key 键名
-     * @return bool
      */
     public static function has(string $key): bool
     {
@@ -81,8 +79,8 @@ class CoroutineContext
         }
 
         $context = \Swoole\Coroutine::getContext();
-        
-        if ($context === null) {
+
+        if (null === $context) {
             return false;
         }
 
@@ -90,7 +88,7 @@ class CoroutineContext
     }
 
     /**
-     * 删除键
+     * 删除键.
      *
      * @param string $key 键名
      */
@@ -101,8 +99,8 @@ class CoroutineContext
         }
 
         $context = \Swoole\Coroutine::getContext();
-        
-        if ($context !== null) {
+
+        if (null !== $context) {
             unset($context[$key]);
         }
     }

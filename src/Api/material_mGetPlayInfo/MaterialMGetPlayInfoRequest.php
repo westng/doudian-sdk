@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_mGetPlayInfo;
 
-// auto generated code
 class MaterialMGetPlayInfoRequest
 {
     private $param;

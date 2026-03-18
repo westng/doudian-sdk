@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\address_updateAftersaleStrategy\param;
 
-// auto generated code
 class AftersaleStrategy
 {
     public $strategy_type;

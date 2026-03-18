@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_fetchBluetoothCmd\param;
 
-// auto generated code
 class RemotePrintConfig
 {
     public $need_top_logo;

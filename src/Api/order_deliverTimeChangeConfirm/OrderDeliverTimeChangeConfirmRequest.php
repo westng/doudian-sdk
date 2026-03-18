@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_deliverTimeChangeConfirm;
 
-// auto generated code
 class OrderDeliverTimeChangeConfirmRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sku_syncStock\param;
 
-// auto generated code
 class SkuSyncStockParam
 {
     public $code;

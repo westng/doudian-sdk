@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\spu_createSpu\param;
 
-// auto generated code
 class SpuCreateSpuParam
 {
     public $category_leaf_id;

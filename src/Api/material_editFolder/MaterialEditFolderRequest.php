@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_editFolder;
 
-// auto generated code
 class MaterialEditFolderRequest
 {
     private $param;

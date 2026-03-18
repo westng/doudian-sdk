@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_policy\param;
 
-// auto generated code
 class OrderPolicyParam
 {
     public $order_id;

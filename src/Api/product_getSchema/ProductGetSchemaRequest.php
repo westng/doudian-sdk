@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_getSchema;
 
-// auto generated code
 class ProductGetSchemaRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\address_getAftersaleStrategy;
 
-// auto generated code
 class AddressGetAftersaleStrategyRequest
 {
     private $param;

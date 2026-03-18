@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_del;
 
-// auto generated code
 class ProductDelRequest
 {
     private $param;

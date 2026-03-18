@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\security_batchReportOrderSecurityEvent;
 
-// auto generated code
 class SecurityBatchReportOrderSecurityEventRequest
 {
     private $param;

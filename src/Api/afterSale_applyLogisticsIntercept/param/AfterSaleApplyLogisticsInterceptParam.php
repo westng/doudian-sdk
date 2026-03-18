@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\afterSale_applyLogisticsIntercept\param;
 
-// auto generated code
 class AfterSaleApplyLogisticsInterceptParam
 {
     public $after_sale_id;

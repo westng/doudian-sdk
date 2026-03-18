@@ -28,14 +28,12 @@ class GlobalConfig extends DouDianOpConfig
     private static $instance;
 
     /**
-     * 协程上下文键
+     * 协程上下文键.
      */
     private const CONTEXT_KEY = 'doudian.global_config';
 
     /**
      * 获取全局配置实例.
-     *
-     * @return GlobalConfig
      */
     public static function getGlobalConfig(): GlobalConfig
     {
@@ -43,8 +41,8 @@ class GlobalConfig extends DouDianOpConfig
     }
 
     /**
-     * 获取单例实例
-     * 
+     * 获取单例实例.
+     *
      * 注意：只有在真正处于协程环境中才使用协程上下文
      * 避免在框架启动早期触发 Swoole 相关操作
      *
@@ -59,7 +57,7 @@ class GlobalConfig extends DouDianOpConfig
         }
 
         // FPM 环境或 Swoole 非协程环境：使用静态单例
-        if (self::$instance === null) {
+        if (null === self::$instance) {
             self::$instance = new self();
         }
 
@@ -67,15 +65,13 @@ class GlobalConfig extends DouDianOpConfig
     }
 
     /**
-     * 获取协程级别的实例
-     *
-     * @return self
+     * 获取协程级别的实例.
      */
     private static function getCoroutineInstance(): self
     {
         $config = CoroutineContext::get(self::CONTEXT_KEY);
 
-        if ($config === null) {
+        if (null === $config) {
             $config = new self();
             CoroutineContext::set(self::CONTEXT_KEY, $config);
         }
@@ -84,7 +80,7 @@ class GlobalConfig extends DouDianOpConfig
     }
 
     /**
-     * 重置单例实例（主要用于测试）
+     * 重置单例实例（主要用于测试）.
      */
     public static function resetInstance(): void
     {
@@ -96,7 +92,7 @@ class GlobalConfig extends DouDianOpConfig
     }
 
     /**
-     * 设置单例实例（主要用于测试）
+     * 设置单例实例（主要用于测试）.
      *
      * @param static $instance 实例
      */

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sku_list;
 
-// auto generated code
 class SkuListRequest
 {
     private $param;

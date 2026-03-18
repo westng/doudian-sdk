@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_ordeReportList;
 
-// auto generated code
 class OrderOrdeReportListRequest
 {
     private $param;

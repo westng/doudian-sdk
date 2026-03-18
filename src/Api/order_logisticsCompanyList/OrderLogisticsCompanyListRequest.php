@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_logisticsCompanyList;
 
-// auto generated code
 class OrderLogisticsCompanyListRequest
 {
     private $param;

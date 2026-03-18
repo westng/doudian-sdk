@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\warehouse_removeAddr;
 
-// auto generated code
 class WarehouseRemoveAddrRequest
 {
     private $param;

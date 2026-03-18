@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_uploadImageSync\param;
 
-// auto generated code
 class MaterialUploadImageSyncParam
 {
     public $folder_id;

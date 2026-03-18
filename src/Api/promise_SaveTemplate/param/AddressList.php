@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\promise_SaveTemplate\param;
 
-// auto generated code
 class AddressList
 {
     public $province_code;

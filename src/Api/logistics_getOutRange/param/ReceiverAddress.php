@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_getOutRange\param;
 
-// auto generated code
 class ReceiverAddress
 {
     public $country_code;

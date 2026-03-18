@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_fetchBluetoothCmd;
 
-// auto generated code
 class LogisticsFetchBluetoothCmdRequest
 {
     private $param;

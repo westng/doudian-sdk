@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\promise_setSkuShipTime\param;
 
-// auto generated code
 class Rules
 {
     public $sku_id;

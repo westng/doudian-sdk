@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_launchProduct;
 
-// auto generated code
 class ProductLaunchProductRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\brand_list\param;
 
-// auto generated code
 class BrandListParam
 {
     public $categories;

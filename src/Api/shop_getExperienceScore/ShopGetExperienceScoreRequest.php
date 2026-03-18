@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\shop_getExperienceScore;
 
-// auto generated code
 class ShopGetExperienceScoreRequest
 {
     private $param;

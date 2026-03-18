@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\address_list;
 
-// auto generated code
 class AddressListRequest
 {
     private $param;

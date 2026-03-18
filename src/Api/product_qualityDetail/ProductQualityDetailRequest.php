@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_qualityDetail;
 
-// auto generated code
 class ProductQualityDetailRequest
 {
     private $param;

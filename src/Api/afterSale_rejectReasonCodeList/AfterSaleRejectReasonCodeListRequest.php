@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\afterSale_rejectReasonCodeList;
 
-// auto generated code
 class AfterSaleRejectReasonCodeListRequest
 {
     private $param;

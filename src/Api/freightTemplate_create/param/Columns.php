@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\freightTemplate_create\param;
 
-// auto generated code
 class Columns
 {
     public $rule_type;

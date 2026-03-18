@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_openPropAutoOptimize;
 
-// auto generated code
 class ProductOpenPropAutoOptimizeRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\brand_list;
 
-// auto generated code
 class BrandListRequest
 {
     private $param;

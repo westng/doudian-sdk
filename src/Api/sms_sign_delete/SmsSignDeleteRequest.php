@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_sign_delete;
 
-// auto generated code
 class SmsSignDeleteRequest
 {
     private $param;

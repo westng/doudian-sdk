@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_getPublishProductLimit;
 
-// auto generated code
 class ProductGetPublishProductLimitRequest
 {
     private $param;

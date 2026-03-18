@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_auditList;
 
-// auto generated code
 class ProductAuditListRequest
 {
     private $param;

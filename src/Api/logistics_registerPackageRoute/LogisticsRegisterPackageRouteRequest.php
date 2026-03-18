@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_registerPackageRoute;
 
-// auto generated code
 class LogisticsRegisterPackageRouteRequest
 {
     private $param;

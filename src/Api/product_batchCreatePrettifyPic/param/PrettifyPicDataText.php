@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_batchCreatePrettifyPic\param;
 
-// auto generated code
 class PrettifyPicDataText
 {
     public $text;

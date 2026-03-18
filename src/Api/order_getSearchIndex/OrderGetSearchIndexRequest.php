@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_getSearchIndex;
 
-// auto generated code
 class OrderGetSearchIndexRequest
 {
     private $param;

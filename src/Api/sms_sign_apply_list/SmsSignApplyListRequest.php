@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_sign_apply_list;
 
-// auto generated code
 class SmsSignApplyListRequest
 {
     private $param;

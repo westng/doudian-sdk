@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\cpaypromotion_signContract;
 
-// auto generated code
 class CpaypromotionSignContractRequest
 {
     private $param;

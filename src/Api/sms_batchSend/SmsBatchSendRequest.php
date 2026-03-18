@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_batchSend;
 
-// auto generated code
 class SmsBatchSendRequest
 {
     private $param;

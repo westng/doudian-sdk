@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_moveMaterialToRecycleBin;
 
-// auto generated code
 class MaterialMoveMaterialToRecycleBinRequest
 {
     private $param;

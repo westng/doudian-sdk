@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_getMCToken;
 
-// auto generated code
 class OrderGetMCTokenRequest
 {
     private $param;

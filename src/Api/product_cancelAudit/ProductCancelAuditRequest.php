@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_cancelAudit;
 
-// auto generated code
 class ProductCancelAuditRequest
 {
     private $param;

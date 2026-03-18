@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_appendSubOrder;
 
-// auto generated code
 class LogisticsAppendSubOrderRequest
 {
     private $param;

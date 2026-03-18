@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\afterSale_addOrderRemark;
 
-// auto generated code
 class AfterSaleAddOrderRemarkRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_getServiceList\param;
 
-// auto generated code
 class OrderGetServiceListParam
 {
     public $start_time;

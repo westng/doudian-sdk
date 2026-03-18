@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\warehouse_list\param;
 
-// auto generated code
 class Addr
 {
     public $addr_id1;

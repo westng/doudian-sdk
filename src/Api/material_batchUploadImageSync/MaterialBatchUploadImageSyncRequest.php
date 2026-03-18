@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_batchUploadImageSync;
 
-// auto generated code
 class MaterialBatchUploadImageSyncRequest
 {
     private $param;

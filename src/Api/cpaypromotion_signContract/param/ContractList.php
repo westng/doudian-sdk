@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\cpaypromotion_signContract\param;
 
-// auto generated code
 class ContractList
 {
     public $contract_url;

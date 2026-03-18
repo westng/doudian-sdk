@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_merchant_updateCalendar;
 
-// auto generated code
 class LogisticsMerchantUpdateCalendarRequest
 {
     private $param;

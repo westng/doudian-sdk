@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_logisticsEdit\param;
 
-// auto generated code
 class OrderLogisticsEditParam
 {
     public $order_id;

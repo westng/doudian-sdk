@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sms_template_apply\param;
 
-// auto generated code
 class SmsTemplateApplyParam
 {
     public $sms_account;

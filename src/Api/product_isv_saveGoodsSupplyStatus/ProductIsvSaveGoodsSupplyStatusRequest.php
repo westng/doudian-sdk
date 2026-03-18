@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_isv_saveGoodsSupplyStatus;
 
-// auto generated code
 class ProductIsvSaveGoodsSupplyStatusRequest
 {
     private $param;

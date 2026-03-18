@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_batchUploadVideoAsync\param;
 
-// auto generated code
 class Materials
 {
     public $request_id;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\open_materialToken;
 
-// auto generated code
 class OpenMaterialTokenRequest
 {
     private $param;

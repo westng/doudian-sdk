@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\afterSale_OpenAfterSaleChannel;
 
-// auto generated code
 class AfterSaleOpenAfterSaleChannelRequest
 {
     private $param;

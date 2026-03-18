@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_createFolder;
 
-// auto generated code
 class MaterialCreateFolderRequest
 {
     private $param;

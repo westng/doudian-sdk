@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_isv_scanClue;
 
-// auto generated code
 class ProductIsvScanClueRequest
 {
     private $param;

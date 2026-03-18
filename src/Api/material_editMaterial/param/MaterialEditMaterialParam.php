@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\material_editMaterial\param;
 
-// auto generated code
 class MaterialEditMaterialParam
 {
     public $material_id;

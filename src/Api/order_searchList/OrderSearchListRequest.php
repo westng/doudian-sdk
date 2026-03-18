@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_searchList;
 
-// auto generated code
 class OrderSearchListRequest
 {
     private $param;

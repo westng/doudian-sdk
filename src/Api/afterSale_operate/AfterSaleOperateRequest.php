@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\afterSale_operate;
 
-// auto generated code
 class AfterSaleOperateRequest
 {
     private $param;

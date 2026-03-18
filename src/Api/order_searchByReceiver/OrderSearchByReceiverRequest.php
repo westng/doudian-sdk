@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\order_searchByReceiver;
 
-// auto generated code
 class OrderSearchByReceiverRequest
 {
     private $param;

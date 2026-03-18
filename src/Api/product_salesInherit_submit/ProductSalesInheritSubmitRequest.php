@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_salesInherit_submit;
 
-// auto generated code
 class ProductSalesInheritSubmitRequest
 {
     private $param;

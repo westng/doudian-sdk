@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_getShopKey;
 
-// auto generated code
 class LogisticsGetShopKeyRequest
 {
     private $param;

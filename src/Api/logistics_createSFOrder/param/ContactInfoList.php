@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\logistics_createSFOrder\param;
 
-// auto generated code
 class ContactInfoList
 {
     public $contact_type;

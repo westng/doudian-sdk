@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\spu_getAuditInfo;
 
-// auto generated code
 class SpuGetAuditInfoRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_simplePlan;
 
-// auto generated code
 class BuyinSimplePlanRequest
 {
     private $param;

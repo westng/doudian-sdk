@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\product_batchCreatePrettifyPic;
 
-// auto generated code
 class ProductBatchCreatePrettifyPicRequest
 {
     private $param;

@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\buyin_orientKolStrategyCreate\param;
 
-// auto generated code
 class BuyinOrientKolStrategyCreateParam
 {
     public $product_id;

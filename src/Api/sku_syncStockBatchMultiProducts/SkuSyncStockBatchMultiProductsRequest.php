@@ -11,7 +11,6 @@
 
 namespace DouDianSdk\Api\sku_syncStockBatchMultiProducts;
 
-// auto generated code
 class SkuSyncStockBatchMultiProductsRequest
 {
     private $param;
