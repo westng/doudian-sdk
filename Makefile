@@ -1,6 +1,6 @@
 # 抖店SDK Makefile
 
-.PHONY: help install test test-coverage cs-check cs-fix phpstan clean
+.PHONY: help install test test-coverage cs-check cs-fix phpstan clean fix-api-namespaces
 
 # 默认目标
 help: ## 显示帮助信息
@@ -76,6 +76,9 @@ security-check: ## 检查安全漏洞
 
 docs: ## 生成文档
 	@echo "文档位于 README.md 和 examples/ 目录"
+
+fix-api-namespaces: ## 修复 src/Api 下缺失 namespace 的SDK文件
+	python3 scripts/fix_api_namespaces.py
 
 examples: ## 运行示例
 	@echo "基础示例:"

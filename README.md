@@ -71,6 +71,9 @@ composer require hyperf/guzzle
 
 ### 1. 基础用法（推荐）
 
+SDK 作为 Composer 包使用时，推荐由业务项目自行封装初始化逻辑。  
+本 SDK 不依赖 `.env` 作为运行时配置来源，也不假设系统里只存在单一应用配置。
+
 ```php
 <?php
 require_once 'vendor/autoload.php';
@@ -108,6 +111,35 @@ if (isset($result['code']) && $result['code'] === 10000) {
     print_r($result['data']);
 }
 ```
+
+### 1.1 多应用场景
+
+在实际项目中，通常会同时管理多个抖店开放平台应用。推荐按应用维度创建 SDK 实例，而不是把配置写死在 SDK 内部：
+
+```php
+<?php
+
+use DouDianSdk\Core\Client\DouDianSdk;
+
+$appASdk = new DouDianSdk($appAKey, $appASecret);
+$appBSdk = new DouDianSdk($appBKey, $appBSecret);
+
+$appAResult = $appASdk->callApi(
+    'order_searchList\OrderSearchListRequest',
+    'order_searchList\param\OrderSearchListParam',
+    ['page' => 1, 'size' => 10],
+    $appAAccessToken
+);
+
+$appBResult = $appBSdk->callApi(
+    'order_searchList\OrderSearchListRequest',
+    'order_searchList\param\OrderSearchListParam',
+    ['page' => 1, 'size' => 10],
+    $appBAccessToken
+);
+```
+
+如果你的项目里有统一配置中心、租户体系或应用工厂，建议在业务层封装 `DouDianSdk` 的实例创建与 token 管理。
 
 ### 2. 高级配置
 
@@ -443,39 +475,85 @@ src/
 ./vendor/bin/phpunit tests/Core/SwooleCompatibilityTest.php
 ```
 
-## 📝 更新日志
+### 集成测试配置
 
-### v2.1.0 (2026-01-11)
+注意：`.env` 仅用于本仓库自带测试，**不是 SDK 正常接入方式**。业务项目中请直接在代码里初始化 `DouDianSdk`，并自行管理 `app_key`、`app_secret`、`access_token`。
 
-**重要更新：Swoole 协程支持 & 智能连接池**
+1. 复制 `.env.example` 为 `.env`
+2. 配置基础凭证：
 
-#### 新增功能
-- 🌊 **Swoole 协程支持**：原生支持 Swoole 协程环境
-- 🔗 **智能连接池策略**：
-  - 优先使用 Hyperf PoolHandler（最优方案）
-  - 其次使用 SDK 连接池 + Hyperf CoroutineHandler
-  - 兜底使用 SDK 连接池 + 原生 Swoole
-- 🚀 **Hyperf 深度集成**：自动检测并使用 Hyperf 内置连接池
-- 📊 **连接池监控**：`getPoolStats()` 获取连接池状态和模式
-- 🔧 **资源管理**：`shutdown()` 方法显式释放资源
+```env
+DOUDIAN_APP_KEY=your_app_key
+DOUDIAN_APP_SECRET=your_app_secret
+DOUDIAN_SHOP_ID=your_shop_id
+DOUDIAN_TOKEN=your_access_token
+DOUDIAN_REFRESH_TOKEN=your_refresh_token
+DOUDIAN_INTEGRATION_TEST=true
+```
 
-#### 新增类
-- `ConnectionPool` - Worker 级别共享的连接池（兜底方案）
-- `HttpClientFactory` - HTTP 客户端工厂
-- `SwooleHttpClient` - Swoole 协程安全客户端（智能选择策略）
-- `RuntimeDetector` - 运行时环境检测
-- `PoolConfig` - 连接池配置
+3. 确保服务器 IP 已加入抖店开放平台白名单
 
-#### 兼容性
-- ✅ 完全向后兼容，现有代码无需修改
-- ✅ PHP >= 7.2
-- ✅ 支持 Swoole 4.5+
-- ✅ 支持 Hyperf 2.x / 3.x
+### 商品相关测试数据
 
-### v2.0.0 (2024-12-11)
+商品相关集成测试默认直接读取 `tests/fixtures/` 下的 JSON 文件，不再依赖 `.env` 传 Step3 / Step4 的业务参数：
 
-- 完善错误处理和响应解析
-- 新增 `sub_code` 和 `sub_msg` 字段支持
+- `tests/fixtures/product_get_recommend_category_payload.example.json`
+  - `product.GetRecommendCategory` 请求数据
+- `tests/fixtures/product_add_v2_payload.example.json`
+  - `product.addV2` 请求数据
+
+当前测试结构：
+
+```text
+tests/
+├── Api/
+│   ├── Product/
+│   │   └── ProductGetRecommendCategoryApiTest.php
+│   └── Shop/
+│       ├── ShopGetShopCategoryApiTest.php
+│       └── ShopCategory2PublishWorkflowTest.php
+├── Support/
+│   └── ProductPublishTestHelper.php
+└── fixtures/
+    ├── product_add_v2_payload.example.json
+    └── product_get_recommend_category_payload.example.json
+```
+
+说明：
+
+- `ShopGetShopCategoryApiTest`：单独验证 `shop.getShopCategory(channel=1)`
+- `ProductGetRecommendCategoryApiTest`：单独验证 `product.GetRecommendCategory`
+- `ShopCategory2PublishWorkflowTest`：验证 `shop.getShopCategory -> product.GetRecommendCategory -> product.addV2` 链路
+- Step3 和 Step4 使用不同 fixture，仅共享商品标题语义，不共用整份请求参数
+
+### 常用测试命令
+
+```bash
+# 单独运行店铺类目测试
+./vendor/bin/phpunit tests/Api/Shop/ShopGetShopCategoryApiTest.php
+
+# 单独运行推荐类目测试
+./vendor/bin/phpunit tests/Api/Product/ProductGetRecommendCategoryApiTest.php
+
+# 单独运行商品发布链路测试
+./vendor/bin/phpunit tests/Api/Shop/ShopCategory2PublishWorkflowTest.php
+```
+
+## 🔧 重新导入官方 API 文件后的处理
+
+如果你用官方最新 SDK 文件替换了 `src/Api/`，可以直接运行：
+
+```bash
+python3 scripts/fix_api_namespaces.py
+```
+
+或使用 Makefile：
+
+```bash
+make fix-api-namespaces
+```
+
+这个脚本只处理 `src/Api/` 目录，用于补齐缺失的 namespace，并修复常见的客户端/配置类引用。
 
 ## 注意事项
 
