@@ -16,6 +16,7 @@ use DouDianSdk\Core\Exception\ApiException;
 use DouDianSdk\Core\Exception\DouDianException;
 use DouDianSdk\Core\Exception\HttpException;
 use DouDianSdk\Core\Token\AccessTokenBuilder;
+use DouDianSdk\Tests\Support\ProductPublishTestHelper;
 use DouDianSdk\Tests\TestCase;
 
 /**
@@ -103,11 +104,10 @@ class SdkIntegrationTest extends TestCase
                 'api'   => 'order_searchList\OrderSearchListRequest',
                 'param' => 'order_searchList\param\OrderSearchListParam',
                 'data'  => [
-                    'page'         => 1,
-                    'size'         => 2,
-                    'order_status' => 1,
-                    'start_time'   => date('Y-m-d H:i:s', strtotime('-3 days')),
-                    'end_time'     => date('Y-m-d H:i:s'),
+                    'page'              => 1,
+                    'size'              => 2,
+                    'create_time_start' => date('Y-m-d H:i:s', strtotime('-3 days')),
+                    'create_time_end'   => date('Y-m-d H:i:s'),
                 ],
             ],
             [
@@ -135,15 +135,20 @@ class SdkIntegrationTest extends TestCase
                 );
 
                 $this->assertIsArray($result);
+                $this->assertArrayHasKey('code', $result);
+                $this->assertArrayHasKey('msg', $result);
+                $this->assertArrayHasKey('log_id', $result);
+                $this->assertNotEmpty($result['log_id'] ?? '', 'API response should contain log_id');
 
-                $isSuccess = (isset($result['err_no']) && 0 == $result['err_no'])
-                    || (isset($result['code']) && 10000 == (int) $result['code']);
+                $isSuccess = ProductPublishTestHelper::isApiSuccess($result);
 
                 if ($isSuccess) {
                     echo "    ✅ {$api['name']} API调用成功\n";
+                    $this->assertSame(10000, (int) $result['code']);
                     ++$successCount;
                 } else {
-                    echo "    ⚠️ {$api['name']} API返回业务错误: " . ($result['message'] ?? $result['msg'] ?? 'Unknown') . "\n";
+                    echo "    ⚠️ {$api['name']} API返回业务错误: " . (ProductPublishTestHelper::getApiMessage($result) ?? 'Unknown') . "\n";
+                    $this->assertNotSame(10000, (int) ($result['code'] ?? 0));
                 }
             } catch (ApiException $e) {
                 echo "    ⚠️ {$api['name']} API业务异常: " . $e->getMessage() . "\n";

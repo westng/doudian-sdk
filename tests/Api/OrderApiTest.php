@@ -14,6 +14,7 @@ namespace DouDianSdk\Tests\Api;
 use DouDianSdk\Core\Client\DouDianSdk;
 use DouDianSdk\Core\Exception\ApiException;
 use DouDianSdk\Core\Exception\HttpException;
+use DouDianSdk\Tests\Support\ProductPublishTestHelper;
 use DouDianSdk\Tests\TestCase;
 
 use const DouDianSdk\Core\Token\ACCESS_TOKEN_SHOP_ID;
@@ -76,27 +77,32 @@ class OrderApiTest extends TestCase
                 'order_searchList\OrderSearchListRequest',
                 'order_searchList\param\OrderSearchListParam',
                 [
-                    'page'         => 1,
-                    'size'         => 5,
-                    'order_status' => 1,  // 待发货
-                    'start_time'   => date('Y-m-d H:i:s', strtotime('-7 days')),
-                    'end_time'     => date('Y-m-d H:i:s'),
+                    'page'              => 1,
+                    'size'              => 5,
+                    'create_time_start' => date('Y-m-d H:i:s', strtotime('-7 days')),
+                    'create_time_end'   => date('Y-m-d H:i:s'),
                 ],
                 $this->accessToken
             );
 
             // 验证响应格式
             $this->assertIsArray($result, 'API response should be an array');
+            $this->assertArrayHasKey('code', $result, 'API response should contain code');
+            $this->assertArrayHasKey('msg', $result, 'API response should contain msg');
+            $this->assertArrayHasKey('log_id', $result, 'API response should contain log_id');
 
             echo "✅ 订单列表API调用成功\n";
             echo "响应信息:\n";
-            echo '  - 错误码: ' . ($result['err_no'] ?? 'NULL') . "\n";
-            echo '  - 消息: ' . ($result['message'] ?? 'NULL') . "\n";
+            echo '  - 错误码: ' . (ProductPublishTestHelper::getApiCode($result) ?? 'NULL') . "\n";
+            echo '  - 消息: ' . (ProductPublishTestHelper::getApiMessage($result) ?? 'NULL') . "\n";
             echo '  - 日志ID: ' . ($result['log_id'] ?? 'NULL') . "\n";
+            $this->assertNotEmpty($result['log_id'] ?? '', 'Order list response should contain log_id');
 
             // 验证响应结构
-            if (isset($result['err_no'])) {
-                $this->assertEquals(0, $result['err_no'], 'API should return success');
+            if (ProductPublishTestHelper::isApiSuccess($result)) {
+                $this->assertSame(10000, (int) $result['code'], 'API should return success');
+            } else {
+                $this->assertNotSame(10000, (int) ($result['code'] ?? 0), 'Business error should not be success');
             }
 
             if (isset($result['data'])) {
@@ -156,12 +162,16 @@ class OrderApiTest extends TestCase
                 'order_orderDetail\OrderOrderDetailRequest',
                 'order_orderDetail\param\OrderOrderDetailParam',
                 [
-                    'order_id' => $testOrderId,
+                    'shop_order_id' => $testOrderId,
                 ],
                 $this->accessToken
             );
 
             $this->assertIsArray($result);
+            $this->assertArrayHasKey('code', $result, 'API response should contain code');
+            $this->assertArrayHasKey('msg', $result, 'API response should contain msg');
+            $this->assertArrayHasKey('log_id', $result, 'API response should contain log_id');
+            $this->assertNotEmpty($result['log_id'] ?? '', 'Order detail response should contain log_id');
 
             echo "✅ 订单详情API调用成功\n";
             echo '响应: ' . json_encode($result, JSON_UNESCAPED_UNICODE) . "\n";
@@ -200,6 +210,7 @@ class OrderApiTest extends TestCase
             } elseif (isset($result['code'])) {
                 echo "✅ API正确返回参数错误\n";
                 $this->assertNotEquals(10000, (int) $result['code'], 'Should return parameter error');
+                $this->assertNotEmpty($result['log_id'] ?? '', 'Parameter validation response should contain log_id');
             } else {
                 $this->fail('API参数校验测试未返回可识别的状态码字段');
             }

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DouDian SDK 测试覆盖率报告</title>
+    <style>
+        :root {
+            --bg: #ece8df;
+            --panel: #fbfaf6;
+            --panel-strong: #f4f0e6;
+            --card: #fffdf8;
+            --line: #d7d0c3;
+            --text: #1f2a30;
+            --muted: #6c756f;
+            --accent: #b7652a;
+            --accent-soft: #f2dfcf;
+            --success: #2d6a4f;
+            --success-soft: #dceee4;
+            --warn: #a56212;
+            --warn-soft: #f4e4c9;
+            --danger: #b23a2b;
+            --danger-soft: #f6dbd6;
+            --shadow: 0 18px 48px rgba(43, 35, 23, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "IBM Plex Sans", "PingFang SC", "Helvetica Neue", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(183, 101, 42, 0.12), transparent 28%),
+                radial-gradient(circle at top right, rgba(45, 106, 79, 0.08), transparent 24%),
+                linear-gradient(180deg, #f4f0e8 0%, var(--bg) 42%, #e8e2d6 100%);
+            line-height: 1.65;
+            padding: 32px 20px 56px;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(255, 253, 248, 0.96), rgba(244, 240, 230, 0.94));
+            border: 1px solid rgba(215, 208, 195, 0.9);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 26px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(120deg, transparent 0%, rgba(183, 101, 42, 0.07) 52%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.8fr) minmax(260px, 0.8fr);
+            gap: 28px;
+            padding: 34px 36px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(183, 101, 42, 0.1);
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 16px 0 10px;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+        }
+
+        .hero-copy p {
+            margin: 0;
+            max-width: 720px;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .meta-pill {
+            padding: 10px 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.72);
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .score-card {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 22px;
+            border-radius: 22px;
+            background: #1f2a30;
+            color: #f7f4ed;
+            min-height: 220px;
+        }
+
+        .score-label {
+            color: rgba(247, 244, 237, 0.72);
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .score-value {
+            margin: 10px 0 0;
+            font-size: clamp(3rem, 8vw, 5rem);
+            line-height: 0.95;
+            font-weight: 700;
+            letter-spacing: -0.06em;
+        }
+
+        .score-caption {
+            color: rgba(247, 244, 237, 0.78);
+            font-size: 14px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 253, 248, 0.84);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            padding: 22px 20px;
+            box-shadow: 0 10px 30px rgba(43, 35, 23, 0.05);
+        }
+
+        .stat-label {
+            color: var(--muted);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .stat-number {
+            margin-top: 12px;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.05em;
+        }
+
+        .stat-note {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .section {
+            margin-top: 28px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: 1.45rem;
+            letter-spacing: -0.03em;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .module-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .module-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(43, 35, 23, 0.05);
+        }
+
+        .module-header {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(220px, 0.6fr);
+            gap: 20px;
+            padding: 24px 24px 18px;
+            background: linear-gradient(180deg, rgba(244, 240, 230, 0.7), rgba(255, 253, 248, 0.92));
+            border-bottom: 1px solid var(--line);
+        }
+
+        .module-title {
+            margin: 0;
+            font-size: 1.2rem;
+            letter-spacing: -0.03em;
+        }
+
+        .module-desc {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .coverage-summary {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .coverage-summary strong {
+            font-size: 1.5rem;
+            letter-spacing: -0.04em;
+        }
+
+        .coverage-bar {
+            height: 10px;
+            border-radius: 999px;
+            background: #e7e0d3;
+            overflow: hidden;
+        }
+
+        .coverage-fill {
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #c97b3d 0%, #2d6a4f 100%);
+            transition: width 0.35s ease;
+        }
+
+        .coverage-caption {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .module-content {
+            padding: 8px 24px 22px;
+        }
+
+        .method-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 8px;
+        }
+
+        .method-item {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(215, 208, 195, 0.65);
+        }
+
+        .method-item:last-child {
+            border-bottom: 0;
+        }
+
+        .method-name {
+            font-family: "JetBrains Mono", "SFMono-Regular", monospace;
+            font-size: 14px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 112px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .status-pass {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+
+        .status-partial {
+            background: var(--warn-soft);
+            color: var(--warn);
+        }
+
+        .status-fail {
+            background: var(--danger-soft);
+            color: var(--danger);
+        }
+
+        .results-grid,
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .panel {
+            background: rgba(255, 253, 248, 0.88);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: 0 10px 28px rgba(43, 35, 23, 0.05);
+            padding: 24px;
+        }
+
+        .panel h3 {
+            margin: 0 0 14px;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .test-result {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 14px;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(215, 208, 195, 0.65);
+        }
+
+        .test-result:last-child {
+            border-bottom: 0;
+        }
+
+        .test-result strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .test-result small {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .recommend-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 12px;
+        }
+
+        .recommend-list li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 12px 14px;
+            border-radius: 16px;
+            background: var(--panel-strong);
+        }
+
+        .recommend-list span {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        pre {
+            margin: 0;
+            padding: 18px 20px;
+            border-radius: 18px;
+            background: #202a30;
+            color: #f4efe7;
+            overflow-x: auto;
+            font-family: "JetBrains Mono", "SFMono-Regular", monospace;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 980px) {
+            .hero-inner,
+            .module-header,
+            .results-grid,
+            .bottom-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 18px 14px 40px;
+            }
+
+            .hero-inner,
+            .panel,
+            .module-header,
+            .module-content {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .test-result,
+            .method-item {
+                grid-template-columns: 1fr;
+                align-items: start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <div class="eyebrow">Quality Snapshot</div>
+                    <h1>DouDian SDK<br>测试覆盖率报告</h1>
+                    <p>聚焦核心调用链、令牌管理和配置能力的质量面板。页面保留原有报告信息，但重组了层级与视觉系统，更适合内部验收、截图展示和持续维护。</p>
+                    <div class="meta-row">
+                        <div class="meta-pill">生成时间：2025-12-06 17:24:13</div>
+                        <div class="meta-pill">报告类型：静态快照</div>
+                    </div>
+                </div>
+                <aside class="score-card">
+                    <div>
+                        <div class="score-label">Overall Coverage</div>
+                        <div class="score-value">85%</div>
+                    </div>
+                    <div class="score-caption">当前覆盖率已覆盖核心能力，但业务 API 与异常分支仍有继续补强空间。</div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <div class="stat-label">通过测试</div>
+                <div class="stat-number">5</div>
+                <div class="stat-note">核心流程全部通过</div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-label">总断言数</div>
+                <div class="stat-number">16</div>
+                <div class="stat-note">覆盖主要 SDK 行为</div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-label">整体覆盖率</div>
+                <div class="stat-number">85%</div>
+                <div class="stat-note">重点在核心入口与令牌</div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-label">失败测试</div>
+                <div class="stat-number">0</div>
+                <div class="stat-note">当前快照无失败项</div>
+            </article>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <h2>模块覆盖率分析</h2>
+                <p>按模块查看方法粒度覆盖情况</p>
+            </div>
+            <div class="module-grid">
+                <article class="module-card">
+                    <div class="module-header">
+                        <div>
+                            <h3 class="module-title">Core/Client/DouDianSdk</h3>
+                            <p class="module-desc">SDK 主入口类，负责初始化、配置与统一 API 调用。</p>
+                        </div>
+                        <div class="coverage-summary">
+                            <strong>83.3%</strong>
+                            <div class="coverage-bar">
+                                <div class="coverage-fill" style="width: 83.3%"></div>
+                            </div>
+                            <div class="coverage-caption">覆盖率：83.3%（5 / 6 方法）</div>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <ul class="method-list">
+                            <li class="method-item">
+                                <span class="method-name">__construct</span>
+                                <span class="status-badge status-pass">已测试</span>
+                            </li>
+                            <li class="method-item">
+                                <span class="method-name">getConfig</span>
+                                <span class="status-badge status-pass">已测试</span>
+                            </li>
+                            <li class="method-item">
+                                <span class="method-name">setDebug</span>
+                                <span class="status-badge status-pass">已测试</span>
+                            </li>
+                            <li class="method-item">
+                                <span class="method-name">getAccessToken</span>
+                                <span class="status-badge status-pass">已测试</span>
+                            </li>
+                            <li class="method-item">
+                                <span class="method-name">refreshAccessToken</span>
+                                <span class="status-badge status-pass">已测试</span>
+                            </li>
+                            <li class="method-item">
+                                <span class="method-name">callApi</span>
+                                <span class="status-badge status-partial">部分测试</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="module-card">
+                    <div class="module-header">
+                        <div>
+                            <h3 class="module-title">Core/Token/AccessToken</h3>
+                            <p class="module-desc">访问令牌对象，负责封装 token 生命周期与店铺信息。</p>
+                        </div>
+                        <div class="coverage-summary">
+                            <strong>100%</strong>
+                            <div class="coverage-bar">
+                                <div class="coverage-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="coverage-caption">覆盖率：100%（6 / 6 方法）</div>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <ul class="method-list">
+                            <li class="method-item">
+                                <span class="method-name">isSuccess</span>
+                                <span class="status-badge status-pass">已测试</span>
+                            </li>
+                            <li class="method-item">
+                                <span class="method-name">getAccessToken</span>
+                                <span class="status-badge status-pass">已测试</span>
+                            </li>
+                            <li class="method-item">
+                                <span class="method-name">getRefreshToken</span>
+                                <span class="status-badge status-pass">已测试</span>
+                            </li>
+                            <li class="method-item">
+                                <span class="method-name">getExpireIn</span>
+                                <span class="status-badge status-pass">已测试</span>
+                            </li>
+                            <li class="method-item">
+                                <span class="method-name">getShopId</span>
+                                <span class="status-badge status-pass">已测试</span>
+                            </li>
+                            <li class="method-item">
+                                <span class="method-name">getShopName</span>
+                                <span class="status-badge status-pass">已测试</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <h2>功能测试结果</h2>
+                <p>按测试场景查看结果与断言密度</p>
+            </div>
+            <div class="results-grid">
+                <div class="panel">
+                    <h3>已验证能力</h3>
+                    <div class="test-result">
+                        <div>
+                            <strong>获取访问令牌</strong>
+                            <small>通过店铺 ID 获取访问令牌（3 个断言）</small>
+                        </div>
+                        <span class="status-badge status-pass">通过</span>
+                    </div>
+                    <div class="test-result">
+                        <div>
+                            <strong>刷新访问令牌</strong>
+                            <small>使用刷新令牌获取新的访问令牌（3 个断言）</small>
+                        </div>
+                        <span class="status-badge status-pass">通过</span>
+                    </div>
+                    <div class="test-result">
+                        <div>
+                            <strong>SDK 配置管理</strong>
+                            <small>覆盖超时、调试、重试等配置（8 个断言）</small>
+                        </div>
+                        <span class="status-badge status-pass">通过</span>
+                    </div>
+                    <div class="test-result">
+                        <div>
+                            <strong>AccessTokenBuilder</strong>
+                            <small>直接调用令牌构建器（2 个断言）</small>
+                        </div>
+                        <span class="status-badge status-pass">通过</span>
+                    </div>
+                </div>
+                <div class="panel">
+                    <h3>仍需继续补强</h3>
+                    <div class="test-result">
+                        <div>
+                            <strong>API 调用覆盖</strong>
+                            <small>订单与业务 API 仍以通路验证为主，断言深度偏轻</small>
+                        </div>
+                        <span class="status-badge status-partial">部分测试</span>
+                    </div>
+                    <div class="test-result">
+                        <div>
+                            <strong>异常分支</strong>
+                            <small>可继续覆盖网络波动、签名异常、业务错误码分层处理</small>
+                        </div>
+                        <span class="status-badge status-partial">待加强</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section bottom-grid">
+            <div class="panel">
+                <h3>待改进项</h3>
+                <ul class="recommend-list">
+                    <li><span>01</span><div>补充更多业务 API 的断言，而不仅是通路级验证。</div></li>
+                    <li><span>02</span><div>增加异常处理、认证失败与边界参数的覆盖率。</div></li>
+                    <li><span>03</span><div>加入网络错误与重试行为的模拟测试。</div></li>
+                    <li><span>04</span><div>视项目需要补充性能与并发场景测试。</div></li>
+                    <li><span>05</span><div>安装 Xdebug 或 PCOV，生成更细粒度的真实代码覆盖率报告。</div></li>
+                </ul>
+            </div>
+            <div class="panel">
+                <h3>测试命令</h3>
+                <pre># 运行所有测试
+php vendor/bin/phpunit
+
+# 运行核心测试
+php vendor/bin/phpunit tests/Core/
+
+# 运行集成测试
+DOUDIAN_INTEGRATION_TEST=true php vendor/bin/phpunit tests/Core/Token/AccessTokenTest.php
+
+# 生成测试报告
+php vendor/bin/phpunit --testdox-html test-report.html</pre>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
